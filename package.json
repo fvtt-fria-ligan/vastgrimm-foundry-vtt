@@ -1,0 +1,25 @@
+{
+  "name": "vastgrimm",
+  "version": "0.2.0",
+  "description": "Unofficial system for Vast Grimm on Foundry VTT.",
+  "scripts": {
+    "lint": "eslint --fix --ext .js ./",
+    "pug": "gulp pug",
+    "sass": "gulp sass",
+    "watch": "gulp watch"
+  },
+  "repository": "https://github.com/fvtt-fria-ligan/vastgrimm-fvtt.git",
+  "author": "mcglincy",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-pug-3": "^1.2.2",
+    "gulp-sass": "^5.0.0",
+    "postcss": "^8.3.0",
+    "sass": "^1.39.2"
+  },
+  "dependencies": {}
+}

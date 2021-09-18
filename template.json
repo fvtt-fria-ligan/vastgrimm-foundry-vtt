@@ -1,0 +1,134 @@
+{
+  "Actor": {
+    "types": ["character", "creature", "ship"],
+    "templates": {
+      "common": {
+        "abilities": {
+          "agility": {
+            "value": 0
+          },
+          "presence": {
+            "value": 0
+          },
+          "strength": {
+            "value": 0
+          },
+          "toughness": {
+            "value": 0
+          }
+        },
+        "description": "",        
+        "hp": {
+          "max": 1,
+          "value": 1
+        }
+      }
+    },
+    "character": {
+      "templates": ["common"],
+      "torments": {
+        "min": 0,
+        "max": 7,
+        "value": 0
+      },
+      "favors": {
+        "min": 0,
+        "max": 0,
+        "value": 0
+      },
+      "neuromancyPoints": {
+        "min": 0,
+        "max": 0,
+        "value": 0
+      },
+      "credits": 0
+    },
+    "creature": {
+      "templates": ["common"],
+      "armor": "",
+      "attack": "",
+      "morale": 7,
+      "special": "",
+      "gp": ""
+    }
+  },
+  "Item": {
+    "types": [
+      "armor", "consumable", "class", "container", "helmet", 
+      "misc", "parasite", "pharmaceutical", "skill", "tribute", "weapon"],
+    "templates": {
+      "baseEquipment": {
+        "description": "",
+        "equipped": false,
+        "price": 0,
+        "quantity": 1,
+        "volume": 1,
+        "weight": 1
+      }
+    },
+    "armor": {
+      "templates": ["baseEquipment"],
+      "tier": {
+        "min": 0,
+        "max": 1,
+        "value": 1
+      }
+    },
+    "class": {
+      "abilities": "",
+      "armorTableDie": "1d4",
+      "description": "",
+      "favorDie": "1d2",
+      "startingAgility": "3d6",
+      "startingCredits": "2d6*10",
+      "startingHitPoints": "1d8",
+      "startingItems": null,
+      "startingPresence": "3d6",
+      "startingRolls": null,
+      "startingStrength": "3d6",
+      "startingToughness": "3d6",
+      "weaponTableDie": "1d10"
+    },
+    "consumable": {
+      "templates": ["baseEquipment"],
+      "amount": {
+        "min": 0,
+        "max": 24,
+        "value": 24
+      },
+      "unit": "charge"
+    },    
+    "container": {
+      "templates": ["baseEquipment"],
+      "capacity": 1
+    },
+    "helmet": {
+      "templates": ["baseEquipment"]
+    },   
+    "misc": {
+      "templates": ["baseEquipment"]
+    },
+    "pharmaceutical": {
+      "templates": ["baseEquipment"],
+      "addiction": ""
+    },    
+    "skill": {
+      "description": "",
+      "rollFormula": "",
+      "rollLabel": ""
+    },
+    "tribute": {
+      "templates": ["baseEquipment"],
+      "type": "hacked"
+    },
+    "weapon": {
+      "templates": ["baseEquipment"],
+      "ammoPerUse": 0,
+      "ammoType": "",
+      "damageDie": "1d4",
+      "range": 0,
+      "rateOfFire": 1,
+      "weaponType": "melee"
+    }
+  }
+}
