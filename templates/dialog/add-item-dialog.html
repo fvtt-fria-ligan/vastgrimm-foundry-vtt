@@ -1,0 +1,18 @@
+<form class="custom-dialog">
+    <div class="form-group">
+      <label>{{localize 'VG.Name'}}:</label>
+      <input type="text" name="itemname" value="" placeholder="{{localize 'VG.Name'}}" data-dtype="String" />
+    </div>     
+    <div class="form-group">
+      <label>{{localize 'VG.Type'}}:</label>
+      <br>
+      <select name="itemtype" class="add-type">
+        <option value="armor">Armor</option>
+        <option value="container">Container</option>
+        <option value="misc" selected>Misc</option>
+        <option value="scroll">Scroll</option>
+        <option value="shield">Shield</option>
+        <option value="weapon">Weapon</option>
+      </select>
+    </div>    
+</form>

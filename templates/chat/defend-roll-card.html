@@ -1,0 +1,47 @@
+<form class="roll-card defend-roll-card">
+    <div class="card-title">
+        {{localize 'VG.Defend'}}
+    </div>
+    {{#each items as |item id|}}
+        <div class="item-row">
+            <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+            <span class="item-name">{{item.name}}</span>
+        </div>
+    {{/each}}
+    <div class="defend-roll">
+        <div class="roll-title">
+            <span>{{localize 'VG.Defend'}}: {{defendRoll.formula}} {{localize 'VG.Vs'}} {{localize 'VG.DR'}} {{defendDR}}</span>
+        </div>
+        <div class="roll-result">
+            <span>{{xtotal defendRoll}}</span>
+        </div>
+    </div>
+    <div class="outcome-text">
+        <span class="defend-outcome">{{defendOutcome}}</span>
+    </div>    
+    {{#if damageRoll}}        
+        <div class="damage-roll">
+            <div class="roll-title">
+                <span>{{localize 'VG.Damage'}}: {{damageRoll.formula}}</span>
+            </div>
+            <div class="roll-result">
+                <span>{{xtotal damageRoll}}</span>
+            </div>
+        </div>
+    {{/if}}
+    {{#if armorRoll}}
+        <div class="armor-roll">
+            <div class="roll-title">
+                {{localize 'VG.Armor'}}: {{armorRoll.formula}}
+            </div>
+            <div class="roll-result">
+                <span>{{xtotal armorRoll}}</span>
+            </div>
+        </div>
+    {{/if}}
+    {{#if takeDamage}}
+        <div class="outcome-text">
+            <span class="take-damage">{{takeDamage}}</span>
+        </div>
+    {{/if}}
+</form>

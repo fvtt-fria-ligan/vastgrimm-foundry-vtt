@@ -24,7 +24,11 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./css'))
 })
 
-gulp.task('watch', gulp.series(['pug', 'sass'], () => {
-  gulp.watch('source/**/*.scss', gulp.series(['sass']))
-  gulp.watch(['source/**/*.pug','source/**/*.js'], gulp.series(['html']))
+// gulp.task('watch', gulp.series(['pug', 'sass'], () => {
+//   gulp.watch('pug/**/*.scss', gulp.series(['sass']))
+//   gulp.watch(['pug/**/*.pug','pug/**/*.js'], gulp.series(['pug']))
+// }))
+
+gulp.task('watch', gulp.series(['sass'], () => {
+  gulp.watch('pug/**/*.scss', gulp.series(['sass']))
 }))

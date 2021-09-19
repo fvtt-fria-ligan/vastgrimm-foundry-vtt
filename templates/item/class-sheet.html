@@ -1,0 +1,100 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile-img" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <div class="header-details">
+            <h1 class="item-name">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'VG.ItemName' }}"/>
+            </h1>
+            <div class="item-subtitle">
+                <h4 class="item-type">{{item.type}}</h4>
+            </div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="abilities">{{ localize "VG.Abilities" }}</a>
+        <a class="item" data-tab="details">{{ localize "VG.TabDetails" }}</a>        
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Abilities Tab --}}
+        <div class="tab" data-group="primary" data-tab="abilities">
+            {{editor content=data.data.abilities target="data.abilities" button=true owner=owner editable=true}}               
+        </div>
+
+        {{!-- Details Tab --}}
+        <div class="tab" data-group="primary" data-tab="details">
+
+            {{!-- Description --}}
+            <div class="form-group">
+                <label>{{ localize "VG.Description" }}:</label>
+                <textarea name="data.description" rows="8">{{data.data.description}}</textarea>
+            </div>
+
+            <br>
+
+           {{!-- Starting credits --}}
+            <div class="form-group">
+                <label>{{ localize "VG.Credits" }}:</label>
+                <input type="text" name="data.startingCredits" value="{{data.data.startingCredits}}" placeholder="2d6*10" data-dtype="String" />
+            </div>
+
+            {{!-- Favor Die --}}
+            <div class="form-group">
+                <label>{{ localize "VG.Favors" }}:</label>
+                <input type="text" name="data.favorDie" value="{{data.data.favorDie}}" placeholder="1d2" data-dtype="String" />
+            </div>
+
+            {{!-- Starting hit points --}}
+            <div class="form-group">
+                <label>{{ localize "VG.HitPoints" }}:</label>
+                <input type="text" name="data.startingHitPoints" value="{{data.data.startingHitPoints}}" placeholder="1d8" data-dtype="String" />
+            </div>
+
+            <br>
+
+            {{!-- Starting abilities --}}
+            <div class="form-group">
+                <label>{{ localize "VG.AbilityStrength" }}:</label>
+                <input type="text" name="data.startingStrength" value="{{data.data.startingStrength}}" placeholder="3d6" data-dtype="String" />
+            </div>
+            <div class="form-group">
+                <label>{{ localize "VG.AbilityAgility" }}:</label>
+                <input type="text" name="data.startingAgility" value="{{data.data.startingAgility}}" placeholder="3d6" data-dtype="String" />
+            </div>
+            <div class="form-group">
+                <label>{{ localize "VG.AbilityPresence" }}:</label>
+                <input type="text" name="data.startingPresence" value="{{data.data.startingPresence}}" placeholder="3d6" data-dtype="String" />
+            </div>
+            <div class="form-group">
+                <label>{{ localize "VG.AbilityToughness" }}:</label>
+                <input type="text" name="data.startingToughness" value="{{data.data.startingToughness}}" placeholder="3d6" data-dtype="String" />
+            </div>
+
+            <br>
+
+            {{!-- Starting equipment --}}
+            <div class="form-group">
+                <label>{{ localize "VG.WeaponTable" }}:</label>
+                <input type="text" name="data.weaponTableDie" value="{{data.data.weaponTableDie}}" placeholder="1d10" data-dtype="String" />
+            </div>
+            <div class="form-group">
+                <label>{{ localize "VG.ArmorTable" }}:</label>
+                <input type="text" name="data.armorTableDie" value="{{data.data.armorTableDie}}" placeholder="1d4" data-dtype="String" />
+            </div>
+            <div class="form-group">
+                <label>{{ localize "VG.Items" }}:</label>
+                <textarea name="data.startingItems" rows="4">{{data.data.startingItems}}</textarea>
+            </div>
+            <div class="form-group">
+                <label>{{ localize "VG.Rolls" }}:</label>
+                <textarea name="data.startingRolls" rows="4">{{data.data.startingRolls}}</textarea>
+            </div>
+        </div>
+
+    </section>
+</form>

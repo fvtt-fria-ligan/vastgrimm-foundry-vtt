@@ -19,7 +19,7 @@ export class VGItemSheet extends ItemSheet {
     /** @override */
     get template() {
       const path = "systems/vastgrimm/templates/item";
-      if (["cargo", "hubModule"].includes(this.item.data.type)) {
+      if (["armor", "class", "container", "helmet", "skill", "tribute", "weapon"].includes(this.item.data.type)) {
         // specific item-type sheet
         return `${path}/${this.item.data.type}-sheet.html`;
       } else {

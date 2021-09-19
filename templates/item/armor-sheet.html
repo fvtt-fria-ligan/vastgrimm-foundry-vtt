@@ -1,0 +1,75 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+
+    {{!-- Item Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile-img" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <div class="header-details">
+            <h1 class="item-name">
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'VG.ItemName' }}"/>
+            </h1>
+            <div class="item-subtitle">
+                <h4 class="item-type">{{item.type}}</h4>
+            </div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">{{ localize "VG.TabDescription" }}</a>
+        <a class="item" data-tab="details">{{ localize "VG.TabDetails" }}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Description Tab --}}
+        <div class="tab" data-group="primary" data-tab="description">
+            {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+        </div>
+
+        {{!-- Details Tab --}}
+        <div class="tab" data-group="primary" data-tab="details">
+            {{!-- Price --}}
+            <div class="form-group">
+                <label>{{ localize "VG.ItemPrice" }}:</label>
+                <input type="number" name="data.price" value="{{data.data.price}}" placeholder="0" data-dtype="Number" />
+            </div> 
+
+            {{!-- Weight --}}
+            <div class="form-group">
+                <label>{{ localize "VG.Weight" }}:</label>
+                <input type="number" name="data.weight" value="{{data.data.weight}}" placeholder="1" data-dtype="Number" />
+            </div> 
+
+            {{!-- Volume --}}
+            <div class="form-group">
+                <label>{{ localize "VG.Volume" }}:</label>
+                <input type="number" name="data.volume" value="{{data.data.volume}}" placeholder="1" data-dtype="Number" />
+            </div> 
+
+            {{!-- Armor Current Tier --}}
+            <div class="form-group">
+                <label>{{ localize "VG.ArmorCurrentTier" }}:</label>
+                <select name="data.tier.value" data-dtype="Number">
+                    {{#select data.data.tier.value}}
+                        {{#each config.armorTiers as |tierObj tierNum|}}
+                            <option value="{{tierNum}}">{{tierNum}} ({{localize tierObj.key}})</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+            </div> 
+
+            {{!-- Armor Max Tier --}}
+            <div class="form-group">
+                <label>{{ localize "VG.ArmorMaxTier" }}:</label>
+                <select name="data.tier.max" data-dtype="Number">
+                    {{#select data.data.tier.max}}
+                        {{#each config.armorTiers as |tierObj tierNum|}}
+                            <option value="{{tierNum}}">{{tierNum}} ({{localize tierObj.key}})</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+            </div> 
+
+        </div>
+    </section>
+</form>

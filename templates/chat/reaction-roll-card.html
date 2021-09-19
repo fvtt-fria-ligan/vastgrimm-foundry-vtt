@@ -1,0 +1,16 @@
+<form class="roll-card reaction-roll-card">
+    <div class="card-title">
+        {{localize 'VG.Reaction'}}
+    </div>
+    <div class="reaction-roll">
+        <div class="roll-title">
+            <span>{{localize 'VG.Reaction'}}: {{reactionRoll.formula}}</span>
+        </div>
+        <div class="roll-result">
+            <span>{{xtotal reactionRoll}}</span>
+        </div>
+        <div class="reaction-text">
+            {{actor.name}} {{localize 'VG.Is'}} {{reactionText}}
+        </div>
+    </div>
+</form>

@@ -1,34 +1,33 @@
 form(class="{{cssClass}}")
   header.sheet-header
-    .header-row
-      .col1
-        .game-title
-          | VAST GRIMM
-        .sheet-title
-          | ITEM SHEET
-      .col2
-        div 
-          | SECTION 0. ITEM INFORMATION 
-        div.item-name
-          input(class="item-name" name="data.name" type="text" value="{{data.name}}" placeholder="Item Name" spellcheck="false")
+    img(class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}")
+    .header-fields
+      h1.item-name
+        input(name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'VG.ItemName' }}" spellcheck="false")
 
   nav(class="sheet-tabs tabs" data-group="primary")
-    a(class="item" data-tab="notes")
-      | {{ localize 'DIS.TabNotes' }}
-    a(class="item" data-tab="data")
-      | {{ localize 'DIS.TabData' }}
+    a(class="item" data-tab="description")
+      | {{ localize 'VG.TabDescription' }}
+    a(class="item" data-tab="details")
+      | {{ localize 'VG.TabDetails' }}
   
   section.sheet-body 
+    div(class="tab description-tab" data-group="primary" data-tab="description")
+        | {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
 
-    div(class="tab notes-tab" data-group="primary" data-tab="notes")
-      .notes-wrapper
-        | {{editor content=data.data.notes target="data.notes" button=true owner=owner editable=editable}}
+    div(class="tab details-tab" data-group="primary" data-tab="details")
+      .form-group
+        label
+          | {{ localize "VG.ItemPrice" }}
+        input(type="number" name="data.price" value="{{data.data.price}}" placeholder="0" data-dtype="Number")
 
+      .form-group
+        label
+          | {{ localize "VG.ItemWeight" }}
+        input(type="number" name="data.weight" value="{{data.data.weight}}" placeholder="1" data-dtype="Number")
 
-    div(class="tab data-tab" data-group="primary" data-tab="data")
-      .data-wrapper
-        .form-group 
-          label
-            | Foo Field 
-          input(type="number" name="data.fooField" value="{{data.data.fooField}}" placeholder="1" data-dtype="Number")
+      .form-group 
+        label
+          | {{ localize "VG.ItemVolume" }}
+        input(type="number" name="data.volume" value="{{data.data.volume}}" placeholder="1" data-dtype="Number")
 
