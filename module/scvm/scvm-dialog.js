@@ -19,7 +19,7 @@ export default class ScvmDialog extends Application {
         const options = super.defaultOptions;
         options.id = "scvm-dialog";
         options.classes = ["vastgrimm"];
-        options.title = "The Proginetor";
+        options.title = "The Progenitor";
         options.template = "systems/vastgrimm/templates/dialog/scvm-dialog.html";
         options.width = 420;
         options.height = "auto";
