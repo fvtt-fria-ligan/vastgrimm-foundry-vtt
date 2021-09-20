@@ -1,6 +1,122 @@
+:root {
+  --background-color: #000000;
+  --foreground-color: #ffffff;
+  --foreground-alt-color: #FF3EB5;
+  --highlight-background-color: #FF3EB5;
+  --highlight-foreground-color: #000000;
+  --sidebar-background-color: #000000;
+  --sidebar-foreground-color: #ffffff;
+  --sidebar-button-background-color: #000000;
+  --sidebar-button-foreground-color: #ffffff;
+  --window-background: #000000;
+  --chat-font: "helvetica";
+  --chat-info-font: "helvetica";
+  --h1-font: "Takota";
+  --h2-font: "Lazenby Computer";
+  --h3-font: "Audiowide";
+  --item-font: "Special Elite";
+}
+/* ====================== */
+/* Fonts */
+/* ====================== */
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Special+Elite&display=swap");
+@font-face {
+  font-family: "Lazenby Computer";
+  src: url("../assets/fonts/LazenbyCompSmooth.ttf") format("truetype");
+}
+@font-face {
+  font-family: "a Aksentuasi";
+  src: url("../assets/fonts/aAksentuasi.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Dinosaur Jr";
+  src: url("../assets/fonts/dinojp__.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Takota";
+  src: url("../assets/fonts/takota.ttf") format("truetype");
+}
+
 .vastgrimm .editor,
 .vastgrimm .editor-content {
   // TODO: figure out what other height is needed where, to allow 100% to work here
   // height: 100%;
   height: 490px;
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.flexrow > * {
+  flex: 1;
+}
+.flexrow .flex1 {
+  flex: 1;
+}
+.flexrow .flex2 {
+  flex: 2;
+}
+.flexrow .flex3 {
+  flex: 3;
+}
+.flexrow .flex4 {
+  flex: 4;
+}
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.flexcol > * {
+  flex: 1;
+}
+.flexcol .flex1 {
+  flex: 1;
+}
+.flexcol .flex2 {
+  flex: 2;
+}
+.flexcol .flex3 {
+  flex: 3;
+}
+.flexcol .flex4 {
+  flex: 4;
+}
+.vastgrimm .window-content {
+  font-size: 13px;
+  color: #191813;
+}
+.vastgrimm form {
+  height: 100%;
+}
+.vastgrimm ::-webkit-scrollbar-thumb {
+  background: darkgray;
+  border: 1px solid lightgray;
+}
+.vastgrimm ::selection {
+  background: var(--highlight-background-color);
+  color: var(--background-color);
+}
+.vastgrimm select {
+  height: 27px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #7a7971;
+  border-radius: 0px;
+  padding: 0 3px;
+  text-overflow: ellipsis;
+  color: var(--foreground-color);
+}
+.vastgrimm select:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+  outline: none;
+}
+.vastgrimm select[multiple] {
+  height: auto;
+  padding: 3px;
+}
+.vastgrimm select > option {
+  background-color: var(--background-color) !important;
+  color: var(--foreground-color) !important;
 }

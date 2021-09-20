@@ -64,6 +64,30 @@
                 <input type="text" name="data.damageDie" value="{{data.data.damageDie}}" placeholder="1d4" data-dtype="String" />
             </div>
 
+            {{!-- Ammo type --}}
+            <div class="form-group">
+                <label>{{ localize "VG.AmmoType" }}:</label>
+                <input type="text" name="data.ammoType" value="{{data.data.ammoType}}" placeholder="battery" data-dtype="String" />
+            </div> 
+
+            {{!-- Ammo per use --}}
+            <div class="form-group">
+                <label>{{ localize "VG.AmmoPerUse" }}:</label>
+                <input type="number" name="data.ammoPerUse" value="{{data.data.ammoPerUse}}" placeholder="0" data-dtype="Number" />
+            </div> 
+
+            {{!-- Rate of fire --}}
+            <div class="form-group">
+                <label>{{ localize "VG.RateOfFire" }}:</label>
+                <input type="number" name="data.rateOfFire" value="{{data.data.rateOfFire}}" placeholder="0" data-dtype="Number" />
+            </div> 
+
+            {{!-- Max range --}}
+            <div class="form-group">
+                <label>{{ localize "VG.MaxRange" }}:</label>
+                <input type="number" name="data.maxRange" value="{{data.data.maxRange}}" placeholder="0" data-dtype="Number" />
+            </div> 
+
         </div>
     </section>
 </form>

@@ -1,8 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Special+Elite&display=swap");
+:root {
+  --background-color: #000000;
+  --foreground-color: #ffffff;
+  --foreground-alt-color: #FF3EB5;
+  --highlight-background-color: #FF3EB5;
+  --highlight-foreground-color: #000000;
+  --sidebar-background-color: #000000;
+  --sidebar-foreground-color: #ffffff;
+  --sidebar-button-background-color: #000000;
+  --sidebar-button-foreground-color: #ffffff;
+  --window-background: #000000;
+  --chat-font: "helvetica";
+  --chat-info-font: "helvetica";
+  --h1-font: "Takota";
+  --h2-font: "Lazenby Computer";
+  --h3-font: "Audiowide";
+  --item-font: "Special Elite";
+}
+
+/* ====================== */
+/* Fonts */
+/* ====================== */
+@font-face {
+  font-family: "Lazenby Computer";
+  src: url("../assets/fonts/LazenbyCompSmooth.ttf") format("truetype");
+}
+@font-face {
+  font-family: "a Aksentuasi";
+  src: url("../assets/fonts/aAksentuasi.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Dinosaur Jr";
+  src: url("../assets/fonts/dinojp__.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Takota";
+  src: url("../assets/fonts/takota.ttf") format("truetype");
+}
 .vastgrimm .editor,
 .vastgrimm .editor-content {
   height: 490px;
 }
 
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.flexrow > * {
+  flex: 1;
+}
+
+.flexrow .flex1 {
+  flex: 1;
+}
+
+.flexrow .flex2 {
+  flex: 2;
+}
+
+.flexrow .flex3 {
+  flex: 3;
+}
+
+.flexrow .flex4 {
+  flex: 4;
+}
+
+.flexcol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.flexcol > * {
+  flex: 1;
+}
+
+.flexcol .flex1 {
+  flex: 1;
+}
+
+.flexcol .flex2 {
+  flex: 2;
+}
+
+.flexcol .flex3 {
+  flex: 3;
+}
+
+.flexcol .flex4 {
+  flex: 4;
+}
+
+.vastgrimm .window-content {
+  font-size: 13px;
+  color: #191813;
+}
+
+.vastgrimm form {
+  height: 100%;
+}
+
+.vastgrimm ::-webkit-scrollbar-thumb {
+  background: darkgray;
+  border: 1px solid lightgray;
+}
+
+.vastgrimm ::-moz-selection {
+  background: var(--highlight-background-color);
+  color: var(--background-color);
+}
+
+.vastgrimm ::selection {
+  background: var(--highlight-background-color);
+  color: var(--background-color);
+}
+
+.vastgrimm select {
+  height: 27px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #7a7971;
+  border-radius: 0px;
+  padding: 0 3px;
+  text-overflow: ellipsis;
+  color: var(--foreground-color);
+}
+
+.vastgrimm select:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+  outline: none;
+}
+
+.vastgrimm select[multiple] {
+  height: auto;
+  padding: 3px;
+}
+
+.vastgrimm select > option {
+  background-color: var(--background-color) !important;
+  color: var(--foreground-color) !important;
+}
+.vastgrimm.sheet .window-content {
+  overflow-y: hidden;
+  padding: 5px;
+  /* inherited background is parchment img bg */
+  background: var(--window-background);
+  font-size: 13px;
+  color: var(--foreground-color);
+  border-bottom: 1px solid #222222;
+  border-left: 1px solid #222222;
+  border-right: 1px solid #222222;
+}
+
+.vastgrimm.sheet .window-content form {
+  height: 100%;
+  overflow: hidden;
+}
+
+.vastgrimm.sheet {
+  margin-top: 0;
+}
+
+.vastgrimm.sheet .editable .rollable:hover {
+  color: var(--highlight-foreground-color);
+  text-shadow: 0 0 10px var(--highlight-background-color);
+  cursor: pointer;
+}
+
+.vastgrimm.sheet input[type=text],
+.vastgrimm.sheet input[type=number],
+.vastgrimm.sheet input[type=password],
+.vastgrimm.sheet input[type=date] {
+  color: var(--foreground-color);
+  border-radius: 0;
+}
+
+.vastgrimm.sheet input[type=text]:focus,
+.vastgrimm.sheet input[type=number]:focus,
+.vastgrimm.sheet input[type=password]:focus,
+.vastgrimm.sheet input[type=date]:focus,
+.vastgrimm.sheet input[type=time]:focus,
+.vastgrimm.sheet input[type=text]:hover,
+.vastgrimm.sheet input[type=number]:hover,
+.vastgrimm.sheet input[type=password]:hover,
+.vastgrimm.sheet input[type=date]:hover,
+.vastgrimm.sheet input[type=time]:hover {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+
+.vastgrimm.sheet select:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+
+.vastgrimm.sheet button:hover,
+.vastgrimm.sheet button:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+
+.vastgrimm.sheet a:hover {
+  text-shadow: 0 0 8px var(--highlight-background-color);
+}
+
+.vastgrimm.sheet textarea {
+  border: 1px solid #7a7971;
+  border-radius: 0;
+  color: var(--foreground-color);
+  font-family: var(--item-font);
+  font-size: 14px;
+  resize: none;
+}
+
+.vastgrimm.sheet textarea:hover {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+
+.vastgrimm.sheet textarea:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+  outline: none;
+}
+
+.vastgrimm.sheet .profile-img {
+  border: none;
+}
+
+/* ====================== */
+/* TinyMCE editor */
+/* ====================== */
+.vastgrimm.sheet .editor {
+  color: var(--foreground-color);
+  border: 1px solid #7a7971;
+  font-family: var(--item-font);
+}
+
+.vastgrimm.sheet .tox.tox-tinymce .tox-edit-area__iframe {
+  background: var(--background-color);
+}
+
+.mce-content-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  color: var(--foreground-color);
+}
+
+.vastgrimm .editor,
+.vastgrimm .editor-content {
+  height: 100%;
+}
+
+.vastgrimm.sheet .editor {
+  padding: 0 8px;
+}
+
+/* ====================== */
+/* Sheet Tabs */
+/* ====================== */
+.vastgrimm.sheet .sheet-tabs {
+  flex: 0 0 30px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  /* TODO: track down the border-top and border-bottom getting inherited on these */
+  border-top: none;
+  border-bottom: none;
+}
+
+.vastgrimm.sheet .sheet-tabs .item {
+  border-bottom: 1px solid var(--highlight-background-color);
+  font-family: var(--h2-font);
+  font-size: 22px;
+  height: 30px;
+  line-height: 32px;
+  margin: 0 5px;
+  width: 150px;
+}
+
+.vastgrimm.sheet .sheet-tabs .item:hover {
+  color: var(--highlight-foreground-color);
+  text-shadow: 0 0 10px var(--highlight-background-color);
+}
+
+.vastgrimm.sheet .sheet-tabs .item.active {
+  text-shadow: none;
+  background-color: var(--highlight-background-color);
+  color: var(--highlight-foreground-color);
+}
+
+/* ====================== */
+/* Sheet Body */
+/* ====================== */
+.vastgrimm .sheet-body {
+  overflow: hidden;
+}
+
+.vastgrimm .sheet-body .tab {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.vastgrimm.sheet .sheet-body .form-group {
+  margin-bottom: 8px;
+}
+
+.vastgrimm.sheet .sheet-body .form-group label {
+  font-family: var(--h2-font);
+  font-size: 20px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.vastgrimm.sheet .sheet-body .form-group input {
+  font-family: var(--item-font);
+  font-size: 14pt;
+}
+
+.vastgrimm.sheet .sheet-body .form-group select {
+  font-family: var(--item-font);
+  font-size: 14pt;
+}
+
+.vastgrimm.sheet .sheet-body .form-group.special {
+  flex: 1;
+}
 .vastgrimm.sheet.item .sheet-header {
   margin-top: 0;
   flex: 0 0 90px;
@@ -34,4 +355,657 @@
 .vastgrimm.sheet.item .sheet-body {
   margin-top: 8px;
   padding: 5px;
+}
+/* ====================== */
+/* Actor sheet */
+/* ====================== */
+.vastgrimm.sheet.actor .sheet-header .actor-subtitle {
+  font-family: var(--h3-font);
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-left: 13px;
+}
+
+.vastgrimm.sheet.actor .rule-text {
+  font-family: var(--item-font);
+  font-size: 10pt;
+}
+
+/* ====================== */
+/* Actor sheet header */
+/* ====================== */
+.vastgrimm.sheet.actor .sheet-header {
+  margin-top: 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.vastgrimm.sheet.actor .sheet-header .header-gutter-col {
+  flex: 0 0 10px;
+}
+
+.vastgrimm.sheet.actor .sheet-header .profile-img {
+  height: 200px;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+}
+
+.vastgrimm.sheet.actor .stat-label {
+  font-family: var(--h2-font);
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.vastgrimm.sheet.actor .stat-input {
+  border: 1px solid #7a7971;
+  font-family: var(--item-font);
+  font-size: 14pt;
+  text-align: center;
+  padding-top: 8px;
+  width: 50px;
+  color: var(--foreground-color);
+}
+
+.vastgrimm.sheet.actor .stat-value {
+  font-family: var(--item-font);
+  font-size: 14pt;
+  text-align: center;
+  width: 50px;
+  color: var(--foreground-color);
+}
+
+.vastgrimm.sheet.actor .sheet-body .item-controls .item-toggle {
+  color: darkgray;
+}
+
+.vastgrimm.sheet.actor .sheet-body .item-controls .item-toggle.equipped {
+  color: var(--highlight-background-color);
+}
+
+/* ====================== */
+/* Actor sheet combat tab */
+/* ====================== */
+.vastgrimm.sheet.actor .sheet-body .combat-tab div.initiative {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .roll-initiative {
+  font-family: var(--item-font);
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .initiative-button {
+  background-color: var(--foreground-color);
+  border: none;
+  border-bottom: 2px solid #777;
+  border-radius: 0;
+  color: var(--background-color);
+  font-family: var(--h3-font);
+  font-size: 20px;
+  width: 150px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .items-list {
+  margin-top: 0px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .item-list.weapon-list .item {
+  align-items: center;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .item-list.weapon-list .item-button {
+  font-size: 20px;
+  width: 120px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .item-name {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .item-fields {
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .versus-armor {
+  margin-left: 10px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .weapon-list .item-field.handed {
+  text-align: right;
+  width: 30px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .weapon-list .item-field.damage-die {
+  text-align: right;
+  width: 70px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .attack-rule {
+  text-align: center;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .combat-gutter {
+  height: 10px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .tier-label {
+  float: left;
+  font-size: 20;
+  margin-right: 10px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers {
+  list-style-type: none;
+  margin: 0;
+  margin-top: 3px;
+  padding: 0;
+  float: left;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers li {
+  float: left;
+  height: 45px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers label {
+  display: block;
+  padding: 4px;
+  position: relative;
+  padding-left: 32px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio] {
+  display: none;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio]:checked + span.tier-num {
+  background: var(--highlight-background-color);
+  color: var(--highlight-foreground-color);
+  border: none;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio]:disabled + span.tier-num {
+  color: #444444;
+  border: 1px solid #444444;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio]:disabled ~ span.tier-dmg {
+  color: #444444;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers span.tier-num {
+  border: 1px solid #7a7971;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  overflow: hidden;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 100%;
+  font-size: 14pt;
+  font-family: var(--item-font);
+  left: 0;
+  /*top: 50%; */
+  top: 0%;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers span.tier-dmg {
+  width: 30px;
+  height: 15px;
+  position: absolute;
+  overflow: hidden;
+  line-height: 1;
+  text-align: center;
+  font-family: var(--item-font);
+  font-size: 10pt;
+  left: -5px;
+  top: 30px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .underarmor-row {
+  margin-top: 0px;
+  text-align: center;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .underarmor-row button {
+  margin-left: 10px;
+  width: 120px;
+  margin-bottom: 10px;
+  font-family: var(--h3-font);
+  font-size: 20px;
+  background-color: var(--foreground-color);
+  color: var(--background-color);
+  border: none;
+  border-bottom: 2px solid #777;
+  border-radius: 0;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .shield-rule {
+  margin-top: 5px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .combat-tab .defend-rule {
+  text-align: center;
+}
+
+/* ====================== */
+/* Actor sheet skills tab */
+/* ====================== */
+.vastgrimm.sheet.actor .skill-button {
+  min-width: 120px;
+}
+
+.vastgrimm.sheet.actor .roll-button {
+  margin-left: 10px;
+  width: 120px;
+  margin-bottom: 10px;
+  font-family: var(--h3-font);
+  font-size: 20px;
+  background-color: var(--foreground-color);
+  color: var(--background-color);
+  border: none;
+  border-bottom: 2px solid #777;
+  border-radius: 0;
+}
+/* ====================== */
+/* Character sheet */
+/* ====================== */
+.vastgrimm.sheet.actor.character {
+  min-width: 742px;
+  min-height: 650px;
+}
+
+/* ====================== */
+/* Character sheet header */
+/* ====================== */
+.vastgrimm.sheet.actor.character .sheet-header {
+  flex: 0 0 200px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col1 {
+  flex: 0 0 200px;
+  margin: 5px;
+  padding: 0;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col2 {
+  flex: 1 0 350px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col2 .rest-buttons {
+  margin-left: 14px;
+  width: 170px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col2 button {
+  background: white;
+  border: none;
+  border-bottom: 2px solid #777;
+  border-radius: 0;
+  font-family: var(--h3-font);
+  font-size: 14px;
+  height: 28px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col2 .broken-button {
+  width: 80px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col2 .rest-button {
+  width: 80px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col2 .improve-button {
+  width: 90px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .header-col3 {
+  flex: 0 0 120px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .profile-img {
+  height: 200px;
+  width: 200px;
+}
+
+.vastgrimm.sheet.actor input[type=text].actor-name {
+  font-family: var(--h1-font);
+  font-size: 38px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .name-row {
+  flex: 0 0 50px;
+  margin-bottom: 7px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .name-row input[type=text] {
+  height: 45px;
+  width: 100%;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .classname-row {
+  display: flex;
+  flex: 0 0 30px;
+  flex-direction: row;
+  margin-bottom: 7px;
+  width: 100%;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .classname-row img.classimg {
+  height: 24px;
+  width: 24px;
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .classname-row label.classname {
+  font-family: var(--h3-font);
+  font-size: 28px;
+  width: 100%;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .classname-row .item-controls {
+  flex: 0 0 35px;
+  text-align: right;
+  margin-right: 0;
+  /* TODO: fix vertical alignment in a better way */
+  padding-top: 6px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .hitpoints-row {
+  display: flex;
+  flex: 0 0 30px;
+  margin-bottom: 7px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .favors-row {
+  display: flex;
+  flex: 0 0 30px;
+  margin-bottom: 7px;
+  width: 100%;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .favor-rule {
+  flex: 0 0 90px;
+  margin-left: 10px;
+  margin-right: 11px;
+  margin-top: 10px;
+  text-transform: lowercase;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .torments-row {
+  flex: 0 0 30px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .stat-label {
+  float: left;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .torments-label {
+  float: left;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header ul.torments {
+  list-style-type: none;
+  margin: 0;
+  margin-top: 3px;
+  padding: 0;
+  float: left;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header ul.torments li {
+  float: left;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header ul.torments label {
+  display: block;
+  padding: 4px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header ul.torments label input[type=radio] {
+  display: none;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header ul.torments input[type=radio]:checked + span {
+  background: var(--highlight-background-color);
+  color: var(--highlight-foreground-color);
+  border: none;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header ul.torments label span {
+  border: 1px solid #7a7971;
+  width: 17px;
+  height: 17px;
+  position: absolute;
+  overflow: hidden;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 100%;
+  font-size: 10pt;
+  font-family: var(--item-font);
+  left: 0;
+  top: 50%;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header ul.torments li:last-child label span {
+  background: var(--foreground-color);
+  color: var(--background-color);
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .ability-row {
+  margin-bottom: 10px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .ability-row:last-child {
+  margin-bottom: 0;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .ability-label {
+  font-family: var(--h2-font);
+  font-size: 24px;
+  margin-left: 5px;
+  margin-top: 5px;
+  float: left;
+}
+
+.vastgrimm.sheet.actor.character .sheet-header .ability-input {
+  border: 1px solid #7a7971;
+  font-family: var(--item-font);
+  font-size: 14pt;
+  text-align: center;
+  padding: 5px;
+  padding-top: 10px;
+  line-height: 1.5;
+  width: 42px;
+  height: 42px;
+  float: left;
+  border-radius: 0;
+  color: var(--foreground-color);
+}
+
+/* ====================== */
+/* Character sheet neuromancy tab */
+/* ====================== */
+.vastgrimm.sheet.actor.character .sheet-body .neuromancy-top-row {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .activate-tribute {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .neuromancy-gutter {
+  flex: 0 0 20px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .activate-tribute-button {
+  width: 200px;
+  margin-bottom: 10px;
+  font-family: var(--h3-font);
+  font-size: 24px;
+  background-color: var(--foreground-color);
+  color: var(--background-color);
+  border: none;
+  border-bottom: 2px solid #777;
+  border-radius: 0;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .wield-rule {
+  text-align: center;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body div.uses-remaining {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .uses-remaining div {
+  margin-bottom: 20px;
+}
+
+/* ====================== */
+/* Character sheet treasures (equipment) tab */
+/* ====================== */
+.vastgrimm.sheet.actor .sheet-body .equipment-top-row {
+  margin-top: 10px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.vastgrimm.sheet.actor .sheet-body .silver {
+  flex: 0 0 200px;
+}
+
+.vastgrimm.sheet.actor .sheet-body .silver-input {
+  width: 70px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .carry-block {
+  flex: 1;
+  text-align: center;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .container-label {
+  margin-left: 40px;
+}
+
+.vastgrimm.sheet.actor.character .sheet-body .encumbered {
+  color: var(--highlight-background-color);
+}
+/* ====================== */
+/* Item list */
+/* ====================== */
+.vastgrimm .items-list .items-header {
+  height: 28px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+}
+
+.vastgrimm .items-list .items-header > * {
+  font-size: 12px;
+  text-align: center;
+}
+
+.vastgrimm .items-list .items-header .item-name {
+  /*padding-left: 5px;*/
+  font-family: var(--h2-font);
+  font-size: 24px;
+}
+
+.vastgrimm .item-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.vastgrimm .item-list .item {
+  min-height: 30px;
+  line-height: 24px;
+  padding: 3px 0;
+  border-bottom: 1px solid #7a7971;
+  align-items: stretch;
+}
+
+.vastgrimm .item-list .item img {
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+
+.vastgrimm .item-list .item-name {
+  margin: 0;
+  font-family: var(--item-font);
+  font-size: 12pt;
+}
+
+.vastgrimm .item-list .item-fields {
+  font-family: var(--item-font);
+  font-size: 12pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
+  flex: 2;
+}
+
+.vastgrimm .item-list .item-field {
+  margin-right: 20px;
+}
+
+.vastgrimm .item-list .item-buttons {
+  align-items: right;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.vastgrimm .item-list .item-controls {
+  flex: 0 0 70px;
+  text-align: right;
+}
+
+.vastgrimm .item-list .item-button {
+  background-color: var(--foreground-color);
+  border: none;
+  border-bottom: 2px solid #777;
+  border-radius: 0;
+  color: var(--background-color);
+  flex: none;
+  font-family: var(--h2-font);
+  font-size: 20px;
+  width: auto;
+}
+
+.vastgrimm .item-list .equipped {
+  color: var(--foreground-color);
+}
+
+.vastgrimm .item-list .unequipped {
+  color: gray;
 }

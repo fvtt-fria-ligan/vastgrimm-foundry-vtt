@@ -1,0 +1,153 @@
+.vastgrimm.sheet .window-content {
+  overflow-y: hidden;
+  padding: 5px;
+  /* inherited background is parchment img bg */
+  background: var(--window-background);
+  font-size: 13px;
+  color: var(--foreground-color);
+  border-bottom: 1px solid #222222;
+  border-left: 1px solid #222222;
+  border-right: 1px solid #222222;
+}
+.vastgrimm.sheet .window-content form {
+  height: 100%;
+  overflow: hidden;
+}
+.vastgrimm.sheet {
+  margin-top: 0;
+}
+.vastgrimm.sheet .editable .rollable:hover {
+  color: var(--highlight-foreground-color);
+  text-shadow: 0 0 10px var(--highlight-background-color);
+  cursor: pointer;
+}
+.vastgrimm.sheet input[type="text"],
+.vastgrimm.sheet input[type="number"],
+.vastgrimm.sheet input[type="password"],
+.vastgrimm.sheet input[type="date"] {
+  color: var(--foreground-color);
+  border-radius: 0;
+}
+.vastgrimm.sheet input[type="text"]:focus,
+.vastgrimm.sheet input[type="number"]:focus,
+.vastgrimm.sheet input[type="password"]:focus,
+.vastgrimm.sheet input[type="date"]:focus,
+.vastgrimm.sheet input[type="time"]:focus,
+.vastgrimm.sheet input[type="text"]:hover,
+.vastgrimm.sheet input[type="number"]:hover,
+.vastgrimm.sheet input[type="password"]:hover,
+.vastgrimm.sheet input[type="date"]:hover,
+.vastgrimm.sheet input[type="time"]:hover {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+.vastgrimm.sheet select:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+.vastgrimm.sheet button:hover,
+.vastgrimm.sheet button:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+.vastgrimm.sheet a:hover {
+  text-shadow: 0 0 8px var(--highlight-background-color);
+}
+.vastgrimm.sheet textarea {
+  border: 1px solid #7a7971;
+  border-radius: 0;
+  color: var(--foreground-color);
+  font-family: var(--item-font);
+  font-size: 14px;
+  resize: none;
+}
+.vastgrimm.sheet textarea:hover {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+}
+.vastgrimm.sheet textarea:focus {
+  box-shadow: 0 0 5px var(--highlight-background-color);
+  outline: none;
+}
+.vastgrimm.sheet .profile-img {
+  border: none;
+}
+/* ====================== */
+/* TinyMCE editor */
+/* ====================== */
+.vastgrimm.sheet .editor {
+  color: var(--foreground-color);
+  border: 1px solid #7a7971;
+  font-family: var(--item-font);
+}
+.vastgrimm.sheet .tox.tox-tinymce .tox-edit-area__iframe {
+  background: var(--background-color);
+}
+.mce-content-body {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  color: var(--foreground-color);
+}
+.vastgrimm .editor,
+.vastgrimm .editor-content {
+  height: 100%;
+}
+.vastgrimm.sheet .editor {
+  padding: 0 8px;
+}
+/* ====================== */
+/* Sheet Tabs */
+/* ====================== */
+.vastgrimm.sheet .sheet-tabs {
+  flex: 0 0 30px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  /* TODO: track down the border-top and border-bottom getting inherited on these */
+  border-top: none;
+  border-bottom: none;
+}
+.vastgrimm.sheet .sheet-tabs .item {
+  border-bottom: 1px solid var(--highlight-background-color);
+  font-family: var(--h2-font);
+  font-size: 22px;
+  height: 30px;
+  line-height: 32px;
+  margin: 0 5px;
+  width: 150px;
+}
+.vastgrimm.sheet .sheet-tabs .item:hover {
+  color: var(--highlight-foreground-color);
+  text-shadow: 0 0 10px var(--highlight-background-color);
+}
+.vastgrimm.sheet .sheet-tabs .item.active {
+  text-shadow: none;
+  background-color: var(--highlight-background-color);
+  color: var(--highlight-foreground-color);
+}
+/* ====================== */
+/* Sheet Body */
+/* ====================== */
+.vastgrimm .sheet-body {
+  overflow: hidden;
+}
+.vastgrimm .sheet-body .tab {
+  height: 100%;
+  overflow-y: auto;
+}
+.vastgrimm.sheet .sheet-body .form-group {
+  margin-bottom: 8px;
+}
+.vastgrimm.sheet .sheet-body .form-group label {
+  font-family: var(--h2-font);
+  font-size: 20px;
+  text-align: right;
+  margin-right: 10px;
+}
+.vastgrimm.sheet .sheet-body .form-group input {
+  font-family: var(--item-font);
+  font-size: 14pt;
+}
+.vastgrimm.sheet .sheet-body .form-group select {
+  font-family: var(--item-font);
+  font-size: 14pt;
+}
+.vastgrimm.sheet .sheet-body .form-group.special {
+  flex: 1;
+}

@@ -32,26 +32,26 @@
                     <button type="button" class="button item-button rest-button rollable" title="{{localize 'VG.Rest'}}">{{localize 'VG.Rest'}}</button>
                 </div>
             </div>
-            <div class="omens-row">
-                <span class="stat-label">{{ localize "VG.Omens" }}:</span>
-                <input class="stat-input" name="data.omens.value" type="number" value="{{data.data.omens.value}}" data-dtype="Number"/>
-                <span class="rule-text omen-rule rollable">{{data.data.class.data.omenDie}} {{ localize "VG.PerRest"}}</span>
+            <div class="favors-row">
+                <span class="stat-label">{{ localize "VG.Favors" }}:</span>
+                <input class="stat-input" name="data.favors.value" type="number" value="{{data.data.favors.value}}" data-dtype="Number"/>
+                <span class="rule-text favor-rule rollable">{{data.data.class.data.favorDie}} {{ localize "VG.PerRest"}}</span>
                 <!--
                 <div class="rest-buttons">
                 -->
-                    <button type="button" class="button item-button get-better-button rollable" title="{{localize 'VG.GetBetter'}}">{{localize 'VG.GetBetter'}}</button>
+                    <button type="button" class="button item-button improve-button rollable" title="{{localize 'VG.Improve'}}">{{localize 'VG.Improve'}}</button>
             </div>
-            <div class="miseries-row">
-                <label class="stat-label miseries-label">{{ localize "VG.Miseries" }}:</label>
-                <ul class="miseries">
-                    <li><label><input type="radio" name="data.miseries.value" value="0" data-dtype="Number" {{#ifEq data.data.miseries.value 0}}checked{{/ifEq}}/><span>0</span></label></li>                  
-                    <li><label><input type="radio" name="data.miseries.value" value="1" data-dtype="Number" {{#ifEq data.data.miseries.value 1}}checked{{/ifEq}}/><span>1</span></label></li>                  
-                    <li><label><input type="radio" name="data.miseries.value" value="2" data-dtype="Number" {{#ifEq data.data.miseries.value 2}}checked{{/ifEq}}/><span>2</span></label></li>                  
-                    <li><label><input type="radio" name="data.miseries.value" value="3" data-dtype="Number" {{#ifEq data.data.miseries.value 3}}checked{{/ifEq}}/><span>3</span></label></li>                  
-                    <li><label><input type="radio" name="data.miseries.value" value="4" data-dtype="Number" {{#ifEq data.data.miseries.value 4}}checked{{/ifEq}}/><span>4</span></label></li>                  
-                    <li><label><input type="radio" name="data.miseries.value" value="5" data-dtype="Number" {{#ifEq data.data.miseries.value 5}}checked{{/ifEq}}/><span>5</span></label></li>                  
-                    <li><label><input type="radio" name="data.miseries.value" value="6" data-dtype="Number" {{#ifEq data.data.miseries.value 6}}checked{{/ifEq}}/><span>6</span></label></li>                  
-                    <li><label><input type="radio" name="data.miseries.value" value="7" data-dtype="Number" {{#ifEq data.data.miseries.value 7}}checked{{/ifEq}}/><span>X</span></label></li>                  
+            <div class="torments-row">
+                <label class="stat-label torments-label">{{ localize "VG.Torments" }}:</label>
+                <ul class="torments">
+                    <li><label><input type="radio" name="data.torments.value" value="0" data-dtype="Number" {{#ifEq data.data.torments.value 0}}checked{{/ifEq}}/><span>0</span></label></li>                  
+                    <li><label><input type="radio" name="data.torments.value" value="1" data-dtype="Number" {{#ifEq data.data.torments.value 1}}checked{{/ifEq}}/><span>1</span></label></li>                  
+                    <li><label><input type="radio" name="data.torments.value" value="2" data-dtype="Number" {{#ifEq data.data.torments.value 2}}checked{{/ifEq}}/><span>2</span></label></li>                  
+                    <li><label><input type="radio" name="data.torments.value" value="3" data-dtype="Number" {{#ifEq data.data.torments.value 3}}checked{{/ifEq}}/><span>3</span></label></li>                  
+                    <li><label><input type="radio" name="data.torments.value" value="4" data-dtype="Number" {{#ifEq data.data.torments.value 4}}checked{{/ifEq}}/><span>4</span></label></li>                  
+                    <li><label><input type="radio" name="data.torments.value" value="5" data-dtype="Number" {{#ifEq data.data.torments.value 5}}checked{{/ifEq}}/><span>5</span></label></li>                  
+                    <li><label><input type="radio" name="data.torments.value" value="6" data-dtype="Number" {{#ifEq data.data.torments.value 6}}checked{{/ifEq}}/><span>6</span></label></li>                  
+                    <li><label><input type="radio" name="data.torments.value" value="7" data-dtype="Number" {{#ifEq data.data.torments.value 7}}checked{{/ifEq}}/><span>X</span></label></li>                  
                 </ul>
             </div>
         </div>
@@ -79,26 +79,62 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="obituary">{{ localize 'VG.TabObituary' }}</a>
-        <a class="item" data-tab="violence">{{ localize 'VG.TabViolence' }}</a>
-        <a class="item" data-tab="feats">{{ localize 'VG.TabFeats' }}</a>
-        <a class="item" data-tab="powers">{{ localize 'VG.Powers' }}</a>
-        <a class="item" data-tab="equipment">{{ localize 'VG.TabTreasures' }}</a>
+        <a class="item" data-tab="description">{{ localize 'VG.TabDescription' }}</a>
+        <a class="item" data-tab="skillz">{{ localize 'VG.TabSkillz' }}</a>
+        <a class="item" data-tab="combat">{{ localize 'VG.TabCombat' }}</a>
+        <a class="item" data-tab="neuromancy">{{ localize 'VG.TabNeuromancy' }}</a>
+        <a class="item" data-tab="equipment">{{ localize 'VG.TabEquipment' }}</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
-        {{!-- Obituary Tab --}}
-        <div class="tab class-tab" data-group="primary" data-tab="obituary">
+        {{!-- Description Tab --}}
+        <div class="tab class-tab" data-group="primary" data-tab="description">
             {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
         </div>
 
-        {{!-- Violence Tab --}}
-        <div class="tab violence-tab" data-group="primary" data-tab="violence">
+        {{!-- Skillz Tab --}}
+        <div class="tab specials-tab" data-group="primary" data-tab="skillz">
+            <ol class="items-list inventory-list">
+                {{!--
+                <li class="items-header flexrow">
+                    <h3 class="item-name flexrow">{{localize "VG.ItemTypeSkillPlural"}}</h3>
+                    <div class="item-controls flexrow">
+                    </div>
+                </li>
+                --}}
+                <ol class="item-list">
+                    {{#each data.data.skills as |item id|}}
+                    <li class="item flexrow" data-item-id="{{item._id}}">
+                        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+                        <h4 class="item-name item-edit rollable">{{item.name}}</h4>
+                        <div class="item-buttons">
+                            {{#if item.data.rollLabel}}
+                                <button type="button" class="item-button rollable skill-button" data-roll="{{item.data.rollFormula}}" data-label="{{item.data.rollLabel}}"
+                                        title="{{item.data.rollLabel}}">{{item.data.rollLabel}}</button>
+                            {{/if}}
+                        </div>
+                        <div class="item-controls">
+                            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+                {{#unless data.data.skills.length}}
+                    <div class="rule-text you-have-no">
+                        {{localize 'VG.YouHaveNoSkills'}}
+                    </div>
+                {{/unless}}
+            </ol>
+        </div>
+
+        {{!-- Combat Tab --}}
+        <div class="tab combat-tab" data-group="primary" data-tab="combat">
             <div class="initiative">
                 <span class="roll-initiative">{{localize "VG.Roll"}} {{localize "VG.Initiative"}}:</span>
-                <button type="button" class="button item-button rollable initiative-button party-initiative-button" title="{{localize 'VG.Party'}}">{{localize "VG.Party"}}</button>
+                <button type="button" class="button item-button rollable initiative-button party-initiative-button" title="{{localize 'VG.Legion'}}">{{localize "VG.Legion"}}</button>
                 <button type="button" class="button item-button rollable initiative-button individual-initiative-button" title="{{localize 'VG.IndividualI'}}">{{localize "VG.Individual"}}</button>
             </div>
             <ol class="items-list inventory-list">
@@ -111,7 +147,6 @@
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name item-edit rollable">{{item.name}}</h4>
                         <div class="item-fields">
-                            <span class="item-field handed">{{item.data.handed}}H</span>
                             <span class="item-field damage-die">{{item.data.damageDie}}</span>
                         </div>
                         <div class="item-buttons">
@@ -136,7 +171,7 @@
                         {{localize 'VG.EquipAWeaponToAttack'}}
                     </div>
                 {{/if}}
-                <div class="violence-gutter"></div>
+                <div class="combat-gutter"></div>
                 <li class="items-header flexrow">
                     <h3 class="item-name flexrow">{{localize "VG.ItemTypeArmorPlural"}}</h3>
                     <div class="item-controls flexrow">
@@ -167,22 +202,22 @@
                         </div>
                     </li>
                     {{/if}}
-                    {{#if data.data.equippedShield}}
-                    <li class="item flexrow" data-item-id="{{data.data.equippedShield._id}}">
-                        <img src="{{data.data.equippedShield.img}}" title="{{data.data.equippedShield.name}}" width="24" height="24" />
-                        <h4 class="item-name item-edit rollable">{{data.data.equippedShield.name}}</h4>
+                    {{#if data.data.equippedHelmet}}
+                    <li class="item flexrow" data-item-id="{{data.data.equippedHelmet._id}}">
+                        <img src="{{data.data.equippedHelmet.img}}" title="{{data.data.equippedHelmet.name}}" width="24" height="24" />
+                        <h4 class="item-name item-edit rollable">{{data.data.equippedHelmet.name}}</h4>
                         <div class="item-buttons">
-                            <span class="rule-text shield-rule">{{localize 'VG.ShieldUseText'}}</span>
+                            <span class="rule-text shield-rule">{{localize 'VG.HelmetUseText'}}</span>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedShield.data.toggleClass}}" title='{{data.data.equippedShield.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{data.data.equippedHelmet.data.toggleClass}}" title='{{data.data.equippedHelmet.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
                     </li>
                     {{/if}}
                     {{#unless data.data.equippedArmor}}
-                      {{#unless data.data.equippedShield}}
+                      {{#unless data.data.equippedHelmet}}
                         <div class="rule-text you-have-no">
                             {{localize 'VG.EquipArmorToAbsorb'}}
                         </div>
@@ -203,64 +238,28 @@
             </div>
         </div>
 
-        {{!-- Feats Tab --}}
-        <div class="tab specials-tab" data-group="primary" data-tab="feats">
-            <ol class="items-list inventory-list">
-                {{!--
-                <li class="items-header flexrow">
-                    <h3 class="item-name flexrow">{{localize "VG.ItemTypeFeatPlural"}}</h3>
-                    <div class="item-controls flexrow">
-                    </div>
-                </li>
-                --}}
-                <ol class="item-list">
-                    {{#each data.data.feats as |item id|}}
-                    <li class="item flexrow" data-item-id="{{item._id}}">
-                        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
-                        <h4 class="item-name item-edit rollable">{{item.name}}</h4>
-                        <div class="item-buttons">
-                            {{#if item.data.rollLabel}}
-                                <button type="button" class="item-button rollable feat-button" data-roll="{{item.data.rollFormula}}" data-label="{{item.data.rollLabel}}"
-                                        title="{{item.data.rollLabel}}">{{item.data.rollLabel}}</button>
-                            {{/if}}
-                        </div>
-                        <div class="item-controls">
-                            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                        </div>
-                    </li>
-                    {{/each}}
-                </ol>
-                {{#unless data.data.feats.length}}
-                    <div class="rule-text you-have-no">
-                        {{localize 'VG.YouHaveNoFeats'}}
-                    </div>
-                {{/unless}}
-            </ol>
-        </div>
-
-        {{!-- Powers Tab --}}
-        <div class="tab powers-tab" data-group="primary" data-tab="powers">
-            <div class="powers-top-row">
-                <div class="powers-gutter">
+        {{!-- Neuromancy Tab --}}
+        <div class="tab neuromancy-tab" data-group="primary" data-tab="neuromancy">
+            <div class="neuromancy-top-row">
+                <div class="neuromancy-gutter">
                 </div>
-                <div class="wield-power">
-                    <button type="button" class="rollable wield-power-button">{{localize "VG.WieldAPower"}}</button>
-                    <span class="rule-text wield-rule">{{localize 'VG.WieldAPowerText'}}</span>
+                <div class="activate-tribute">
+                    <button type="button" class="rollable activate-tribute-button">{{localize "VG.ActivateTribute"}}</button>
+                    <span class="rule-text wield-rule">{{localize 'VG.ActivateTributeText'}}</span>
                 </div>
-                <div class="powers-gutter">
+                <div class="neuromancy-gutter">
                 </div>
                 <div class="uses-remaining">
                     <div>
-                        <label class="stat-label uses-remaining-label">{{localize "VG.PowerUsesRemaining"}}:</label>
+                        <label class="stat-label uses-remaining-label">{{localize "VG.NeuromancyPoints"}}:</label>
                         <input class="stat-input" name="data.powerUses.value" type="number" value="{{data.data.powerUses.value}}" data-dtype="Number" />
                     </div>
-                    <span class="rule-text rollable powers-per-day-text">{{localize "VG.PowersPerDayText"}}</span>
+                    <span class="rule-text rollable neuromancy-per-day-text">{{localize "VG.NeuromancyPointsPerDayText"}}</span>
                 </div>
             </div>
             <ol class="items-list inventory-list">
                 <li class="items-header flexrow">
-                    <h3 class="item-name flexrow">{{localize "VG.ItemTypeScrollPlural"}}</h3>
+                    <h3 class="item-name flexrow">{{localize "VG.ItemTypeTributePlural"}}</h3>
                     <div class="item-controls flexrow">
                     </div>
                 </li>
@@ -280,7 +279,7 @@
                 </ol>
                 {{#unless data.data.scrolls.length}}
                     <div class="rule-text you-have-no">
-                        {{localize 'VG.YouHaveNoScrolls'}}
+                        {{localize 'VG.YouHaveNoTributes'}}
                     </div>
                 {{/unless}}
             </ol>
@@ -290,7 +289,7 @@
         <div class="tab equipment-tab" data-group="primary" data-tab="equipment">
             <div class="equipment-top-row">
                 <div class="silver">
-                    <span class="stat-label silver-label">{{ localize "VG.Silver" }}:</span>
+                    <span class="stat-label silver-label">{{ localize "VG.Credits" }}:</span>
                     <input class="stat-input silver-input" name="data.silver" type="number" value="{{data.data.silver}}" data-dtype="Number" />  
                 </div>
                 <div class="carry-block">

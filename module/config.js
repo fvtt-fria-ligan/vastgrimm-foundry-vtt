@@ -110,7 +110,7 @@ VG.colorSchemes = {
   }
 };
 
-VG.flagScope = "morkborg";  // must match system name
+VG.flagScope = "vastgrimm";  // must match system name
 
 VG.flags = {
   ATTACK_DR: "attackDR",

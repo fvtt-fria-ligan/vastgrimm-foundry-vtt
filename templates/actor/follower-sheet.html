@@ -26,8 +26,8 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">{{ localize "VG.TabDescription" }}</a>
         <a class="item" data-tab="details">{{ localize "VG.TabDetails" }}</a>
-        <a class="item" data-tab="violence">{{ localize "VG.TabViolence" }}</a>
-        <a class="item" data-tab="treasures">{{ localize "VG.TabTreasures" }}</a>
+        <a class="item" data-tab="combat">{{ localize "VG.TabCombat" }}</a>
+        <a class="item" data-tab="treasures">{{ localize "VG.TabEquipment" }}</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -65,11 +65,11 @@
 
         </div>
 
-        {{!-- Violence Tab --}}
-        <div class="tab violence-tab" data-group="primary" data-tab="violence">
+        {{!-- Combat Tab --}}
+        <div class="tab combat-tab" data-group="primary" data-tab="combat">
             <div class="initiative">
                 <span class="roll-initiative">{{localize "VG.Roll"}} {{localize "VG.Initiative"}}:</span>
-                <button type="button" class="button item-button rollable initiative-button party-initiative-button" title="{{localize 'VG.Party'}}">{{localize "VG.Party"}}</button>
+                <button type="button" class="button item-button rollable initiative-button party-initiative-button" title="{{localize 'VG.Legion'}}">{{localize "VG.Legion"}}</button>
                 <button type="button" class="button item-button rollable initiative-button individual-initiative-button" title="{{localize 'VG.IndividualI'}}">{{localize "VG.Individual"}}</button>
             </div>
             <ol class="items-list inventory-list">
@@ -101,7 +101,7 @@
                     {{localize 'VG.AttackCritText'}}
                     {{localize 'VG.AttackFumbleText'}}
                 </div>
-                <div class="violence-gutter"></div>
+                <div class="combat-gutter"></div>
                 <li class="items-header flexrow">
                     <h3 class="item-name flexrow">{{localize "VG.ItemTypeArmorPlural"}}</h3>
                     <div class="item-controls flexrow">
@@ -132,15 +132,15 @@
                         </div>
                     </li>
                     {{/if}}
-                    {{#if data.equippedShield}}
-                    <li class="item flexrow" data-item-id="{{data.data.equippedShield._id}}">
-                        <img src="{{data.data.equippedShield.img}}" title="{{data.data.equippedShield.name}}" width="24" height="24" />
-                        <h4 class="item-name">{{data.data.equippedShield.name}}</h4>
+                    {{#if data.equippedHelmet}}
+                    <li class="item flexrow" data-item-id="{{data.data.equippedHelmet._id}}">
+                        <img src="{{data.data.equippedHelmet.img}}" title="{{data.data.equippedHelmet.name}}" width="24" height="24" />
+                        <h4 class="item-name">{{data.data.equippedHelmet.name}}</h4>
                         <div class="item-buttons">
-                            <span class="rule-text shield-rule">{{localize 'VG.ShieldUseText'}}</span>
+                            <span class="rule-text shield-rule">{{localize 'VG.HelmetUseText'}}</span>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedShield.data.toggleClass}}" title='{{data.data.equippedShield.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{data.data.equippedHelmet.data.toggleClass}}" title='{{data.data.equippedHelmet.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
@@ -161,11 +161,11 @@
             </ol>                        
         </div>
 
-        {{!-- Treasures Tab --}}
+        {{!-- Equipment Tab --}}
         <div class="tab equipment-tab" data-group="primary" data-tab="treasures">
             <div class="equipment-top-row">
                 <div class="silver">
-                    <span class="stat-label silver-label">{{ localize "VG.Silver" }}:</span>
+                    <span class="stat-label silver-label">{{ localize "VG.Credits" }}:</span>
                     <input class="stat-input silver-input" name="data.silver" type="number" value="{{data.data.silver}}" data-dtype="Number" />  
                 </div>
             </div>
