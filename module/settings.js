@@ -2,7 +2,7 @@ export const registerSystemSettings = () => {
   /**
    * Track the system version upon which point a migration was last applied.
    */
-  game.settings.register("morkborg", "systemMigrationVersion", {
+  game.settings.register("vastgrimm", "systemMigrationVersion", {
     name: "System Migration Version",
     scope: "world",
     config: false,
@@ -11,7 +11,7 @@ export const registerSystemSettings = () => {
   });
 
   /** UI Color scheme */
-  game.settings.register("morkborg", "colorScheme", {
+  game.settings.register("vastgrimm", "colorScheme", {
     name: "SETTINGS.MBColorScheme",
     hint: "SETTINGS.MBColorSchemeHint",
     scope: "client",
@@ -29,7 +29,7 @@ export const registerSystemSettings = () => {
   });  
 
   /** UI Font scheme */
-  game.settings.register("morkborg", "fontScheme", {
+  game.settings.register("vastgrimm", "fontScheme", {
     name: "SETTINGS.MBFontScheme",
     hint: "SETTINGS.MBFontSchemeHint",
     scope: "client",

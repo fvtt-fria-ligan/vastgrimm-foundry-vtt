@@ -72,7 +72,7 @@ export class VGActor extends Actor {
   }
 
   equippedHelmet() {
-    return this._firstEquipped("shield");
+    return this._firstEquipped("helmet");
   }
 
   normalCarryingCapacity() {
@@ -401,7 +401,7 @@ export class VGActor extends Actor {
   async _rollDefend(defendDR, incomingAttack) {
     const rollData = this.getRollData();
     const armor = this.equippedArmor();
-    const shield = this.equippedHelmet();
+    const helmet = this.equippedHelmet();
 
     // roll 1: defend
     let defendRoll = new Roll("d20+@abilities.agility.value", rollData);
@@ -443,15 +443,15 @@ export class VGActor extends Actor {
       addShowDicePromise(dicePromises, damageRoll);
       let damage = damageRoll.total;
 
-      // roll 3: damage reduction from equipped armor and shield
+      // roll 3: damage reduction from equipped armor and helmet
       let damageReductionDie = "";
       if (armor) {
         damageReductionDie = CONFIG.VG.armorTiers[armor.data.data.tier.value].damageReductionDie;
         items.push(armor);
       }    
-      if (shield) {
+      if (helmet) {
         damageReductionDie += "+1";
-        items.push(shield);
+        items.push(helmet);
       }
       if (damageReductionDie) {
         armorRoll = new Roll("@die", {die: damageReductionDie});

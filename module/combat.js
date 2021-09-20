@@ -1,7 +1,7 @@
 import { diceSound, showDice } from "./dice.js";
 
-const INDIVIDUAL_INITIATIVE_ROLL_CARD_TEMPLATE = "systems/morkborg/templates/chat/individual-initiative-roll-card.html";
-const PARTY_INITIATIVE_ROLL_CARD_TEMPLATE = "systems/morkborg/templates/chat/party-initiative-roll-card.html";
+const INDIVIDUAL_INITIATIVE_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/individual-initiative-roll-card.html";
+const PARTY_INITIATIVE_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/legion-initiative-roll-card.html";
 
 export const rollLegionInitiative = async () => {
   let initiativeRoll = new Roll("d6", {});
@@ -64,7 +64,7 @@ export const rollIndividualInitiative = async (actor) => {
 export class MBCombat extends Combat {
 
   async setLegionInitiative(rollTotal) {
-    game.combat.partyInitiative = rollTotal;
+    game.combat.legionInitiative = rollTotal;
     await game.combat.resortCombatants();
   }
 
@@ -92,12 +92,12 @@ export class MBCombat extends Combat {
    */
   _sortCombatants(a, b) {
     // .combat is a getter, so verify existence of combats array
-    if (game.combats && game.combat.partyInitiative) {
+    if (game.combats && game.combat.legionInitiative) {
       const isLegionA = game.combat.isFriendlyCombatant(a);
       const isLegionB = game.combat.isFriendlyCombatant(b);
       if (isLegionA !== isLegionB) {
         // only matters if they're different
-        if (game.combat.partyInitiative > 3) {
+        if (game.combat.legionInitiative > 3) {
           // players begin
           return isLegionA ? -1 : 1;
         } else {

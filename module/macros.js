@@ -14,7 +14,7 @@ export async function createMorkBorgMacro(data, slot) {
     return ui.notifications.warn("You can only create macro buttons for owned Items");
   }
   const item = data.data;
-  const supportedItemTypes = ["armor", "feat", "scroll", "shield", "weapon"];
+  const supportedItemTypes = ["armor", "feat", "scroll", "helmet", "weapon"];
   if (!supportedItemTypes.includes(item.type)) {
     return ui.notifications.warn(`Macros only supported for item types: ${supportedItemTypes.join(', ')}`);
   }
@@ -24,7 +24,7 @@ export async function createMorkBorgMacro(data, slot) {
   }
 
   // Create the macro command
-  const command = `game.morkborg.rollItemMacro("${item.name}");`;
+  const command = `game.vastgrimm.rollItemMacro("${item.name}");`;
   let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
   if (!macro) {
     macro = await Macro.create({
@@ -32,7 +32,7 @@ export async function createMorkBorgMacro(data, slot) {
       type: "script",
       img: item.img,
       command: command,
-      flags: {"morkborg.itemMacro": true}
+      flags: {"vastgrimm.itemMacro": true}
     });
   }
   game.user.assignHotbarMacro(macro, slot);
@@ -66,7 +66,7 @@ export async function createMorkBorgMacro(data, slot) {
 
   if (item.data.type === "weapon") {
     actor.attack(item.data.id);
-  } else if (item.data.type === "armor" || item.data.type === "shield") {
+  } else if (item.data.type === "armor" || item.data.type === "helmet") {
     actor.defend();
   } else if (item.data.type === "scroll") {
     actor.wieldPower();

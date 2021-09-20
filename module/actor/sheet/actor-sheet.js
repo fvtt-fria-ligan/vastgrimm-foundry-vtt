@@ -40,8 +40,8 @@ export default class VGActorSheet extends ActorSheet {
     html.find('.item-qty-minus').click(this._onItemSubtractQuantity.bind(this));
     html.find('.item-toggle').click(this._onToggleItem.bind(this));
 
-    // Violence-related buttons
-    html.find(".party-initiative-button").on("click", this._onLegionInitiativeRoll.bind(this));
+    // Combat-related buttons
+    html.find(".legion-initiative-button").on("click", this._onLegionInitiativeRoll.bind(this));
     html.find(".individual-initiative-button").on("click", this._onIndividualInitiativeRoll.bind(this));
     html.find(".attack-button").on("click", this._onAttackRoll.bind(this));
     html.find(".defend-button").on("click", this._onDefendRoll.bind(this));
@@ -56,7 +56,7 @@ export default class VGActorSheet extends ActorSheet {
    */
   async _onItemCreate(event) {
     event.preventDefault();
-    const template = "systems/morkborg/templates/dialog/add-item-dialog.html";
+    const template = "systems/vastgrimm/templates/dialog/add-item-dialog.html";
     let dialogData = {
       config: CONFIG.MorkBorg
     };
@@ -125,8 +125,8 @@ export default class VGActorSheet extends ActorSheet {
     const currEquipped = getProperty(item.data, attr);
     if (!currEquipped) {
       // we're equipping something
-      // if this is armor or shield, unequip any other equipped armor/shield
-      if (item.type === 'armor' || item.type === 'shield') {
+      // if this is armor or helmet, unequip any other equipped armor/helmet
+      if (item.type === 'armor' || item.type === 'helmet') {
         for (const otherItem of this.actor.items) {
           if (otherItem.type === item.type && otherItem.id != item.id) {
             const otherEquipped = getProperty(otherItem.data, attr);
@@ -204,8 +204,8 @@ export default class VGActorSheet extends ActorSheet {
     event.preventDefault();
     const sheetData = this.getData();
     const armorItemId = sheetData.data.equippedArmor ? sheetData.data.equippedArmor.id : null;
-    const shieldItemId = sheetData.data.equippedHelmet ? sheetData.data.equippedHelmet.id : null;
-    this.actor.defend(armorItemId, shieldItemId);
+    const helmetItemId = sheetData.data.equippedHelmet ? sheetData.data.equippedHelmet.id : null;
+    this.actor.defend(armorItemId, helmetItemId);
   }
  }
 
