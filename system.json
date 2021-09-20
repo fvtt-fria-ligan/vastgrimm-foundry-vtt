@@ -8,7 +8,43 @@
   "scripts": [],
   "esmodules": ["module/vastgrimm.js"],
   "styles": ["css/vastgrimm.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "character-creation",
+      "label": "Character Creation",
+      "system": "vastgrimm",
+      "path": "./packs/character-creation.db",
+      "entity": "RollTable"
+    },
+    {
+      "name": "equipment-armor",
+      "label": "Equipment - Armor",
+      "system": "vastgrimm",
+      "path": "./packs/equipment-armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "equipment-misc",
+      "label": "Equipment - Misc",
+      "system": "vastgrimm",
+      "path": "./packs/equipment-misc.db",
+      "entity": "Item"
+    },
+    {
+      "name": "equipment-weapons",
+      "label": "Equipment - Weapons",
+      "system": "vastgrimm",
+      "path": "./packs/equipment-weapons.db",
+      "entity": "Item"
+    },
+    {
+      "name": "tributes",
+      "label": "Tributes",
+      "system": "vastgrimm",
+      "path": "./packs/tributes.db",
+      "entity": "Item"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

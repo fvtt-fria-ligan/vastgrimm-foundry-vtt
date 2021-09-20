@@ -10,9 +10,9 @@ export const rollLegionInitiative = async () => {
 
   let outcomeText = "";
   if (initiativeRoll.total <= 3) {
-    outcomeText = game.i18n.localize('MB.InitiativeEnemiesBegin');
+    outcomeText = game.i18n.localize('VG.InitiativeEnemiesBegin');
   } else {
-    outcomeText = game.i18n.localize('MB.InitiativePlayerCharactersBegin');
+    outcomeText = game.i18n.localize('VG.InitiativePlayerCharactersBegin');
   }
 
   const rollResult = {
@@ -40,7 +40,7 @@ export const rollIndividualInitiative = async (actor) => {
       game.combat.rollInitiative(combatant.id);
     } else {
       // the actor hasn't been added to the combat
-      ui.notifications.warn(`${game.i18n.localize('MB.ActorNotInEncounter')}!`);
+      ui.notifications.warn(`${game.i18n.localize('VG.ActorNotInEncounter')}!`);
     }
     return;
   }

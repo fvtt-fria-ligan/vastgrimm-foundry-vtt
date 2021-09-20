@@ -17,7 +17,7 @@
                 <label class="classname item-edit rollable">{{data.data.class.name}}</label>
                 <div class="item-controls">
                     <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                    <a class="item-control item-scvmify" title="Scvmify"><i class="fas fa-skull"></i></a>
+                    <a class="item-control item-scvmify" title="Obliterate"><i class="fas fa-skull"></i></a>
                 </div>
             </div>
             <div class="hitpoints-row">
@@ -154,7 +154,7 @@
                                     title="{{localize 'VG.Attack'}}">{{localize 'VG.Attack'}}</button>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-helmet-alt"></i></a>
+                            <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
@@ -196,7 +196,7 @@
                             </div>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedArmor.data.toggleClass}}" title='{{data.data.equippedArmor.data.toggleTitle}}'><i class="fas fa-helmet-alt"></i></a>
+                            <a class="item-control item-toggle {{data.data.equippedArmor.data.toggleClass}}" title='{{data.data.equippedArmor.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
@@ -210,7 +210,7 @@
                             <span class="rule-text helmet-rule">{{localize 'VG.HelmetUseText'}}</span>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedHelmet.data.toggleClass}}" title='{{data.data.equippedHelmet.data.toggleTitle}}'><i class="fas fa-helmet-alt"></i></a>
+                            <a class="item-control item-toggle {{data.data.equippedHelmet.data.toggleClass}}" title='{{data.data.equippedHelmet.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
@@ -342,7 +342,7 @@
                                 &nbsp;
                             {{/ifEq}}
                             {{#if item.data.equippable}}
-                                <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-helmet-alt"></i></a>
+                                <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             {{/if}}
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>

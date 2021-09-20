@@ -152,7 +152,7 @@ export class VGCharacterSheet extends VGActorSheet {
     html
       .find(".ability-label.rollable.toughness")
       .on("click", this._onToughnessRoll.bind(this));
-    html.find(".item-scvmify").click(this._onScvmify.bind(this));
+    html.find(".item-scvmify").click(this._onObliterate.bind(this));
     html.find(".broken-button").on("click", this._onBroken.bind(this));
     html.find(".rest-button").on("click", this._onRest.bind(this));
     html
@@ -200,7 +200,7 @@ export class VGCharacterSheet extends VGActorSheet {
     this.actor.rollNeuromancyPointsPerDay();
   }
 
-  _onScvmify(event) {
+  _onObliterate(event) {
     event.preventDefault();
     this.actor.scvmify();
   }

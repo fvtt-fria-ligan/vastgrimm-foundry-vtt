@@ -1,4 +1,5 @@
 import { VG } from "../../config.js";
+import * as editor from "../../editor.js";
 
 /*
  * @extends {ItemSheet}
@@ -40,7 +41,7 @@ export class VGItemSheet extends ItemSheet {
     data.config = CONFIG.VG;
     if (data.data.data.tributeType) {
       data.data.data.localizedtributeType = game.i18n.localize(
-        MB.tributeTypes[data.data.data.tributeType]
+        VG.tributeTypes[data.data.data.tributeType]
       );
     }
     return data;
@@ -50,4 +51,11 @@ export class VGItemSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
   }
+
+    /** @override */
+    activateEditor(name, options={}, initialContent="") {
+      editor.setCustomEditorOptions(options);
+      super.activateEditor(name, options, initialContent);
+    }
+
 }

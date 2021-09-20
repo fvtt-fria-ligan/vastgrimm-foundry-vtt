@@ -56,10 +56,10 @@ export const classItemFromPack = async (packName) => {
 const rollScvmForClass = async (clazz) => {
     console.log(`Creating new ${clazz.data.name}`);
 
-    const silverRoll = new Roll(clazz.data.data.startingSilver).evaluate({async: false});
+    const creditsRoll = new Roll(clazz.data.data.startingCredits).evaluate({async: false});
     const favorsRoll = new Roll(clazz.data.data.favorDie).evaluate({async: false});
     const hpRoll = new Roll(clazz.data.data.startingHitPoints).evaluate({async: false});
-    const powerUsesRoll = new Roll("1d4").evaluate({async: false});
+    const neuromancyPointsRoll = new Roll("1d4").evaluate({async: false});
 
     const strRoll = new Roll(clazz.data.data.startingStrength).evaluate({async: false});
     const strength = abilityBonus(strRoll.total);
@@ -71,56 +71,37 @@ const rollScvmForClass = async (clazz) => {
     const toughness = abilityBonus(touRoll.total);
 
     const hitPoints = Math.max(1, hpRoll.total + toughness);
-    const powerUses = Math.max(0, powerUsesRoll.total + presence);
-
-    // everybody gets food and water
-    const miscPack = game.packs.get('vastgrimm.equipment-misc');
-    const miscContent = await miscPack.getDocuments();
-    const waterskin = miscContent.find(i => i.data.name === "Waterskin");
-    const food = miscContent.find(i => i.data.name === "Dried food");
-    const foodRoll = new Roll("1d4", {}).evaluate({async: false});
-    // TODO: need to mutate _data to get it to change for our owned item creation.
-    // Is there a better way to do this? 
-    food.data._source.quantity = foodRoll.total;
+    const neuromancyPoints = Math.max(0, neuromancyPointsRoll.total + presence);
 
     // 3 starting equipment tables
     const ccPack = game.packs.get('vastgrimm.character-creation');
     const ccContent = await ccPack.getDocuments();
-    const equipTable1 = ccContent.find(i => i.name === 'Starting Equipment (1)');
-    const equipTable2 = ccContent.find(i => i.name === 'Starting Equipment (2)');
-    const equipTable3 = ccContent.find(i => i.name === 'Starting Equipment (3)');
+    const equipTable1 = ccContent.find(i => i.name === 'Starting Equipment - 1');
+    const equipTable2 = ccContent.find(i => i.name === 'Starting Equipment - 2');
+    const equipTable3 = ccContent.find(i => i.name === 'Starting Equipment - 3');
     const eqDraw1 = await equipTable1.draw({displayChat: false});
     const eqDraw2 = await equipTable2.draw({displayChat: false});
     const eqDraw3 = await equipTable3.draw({displayChat: false});
     const eq1 = await entitiesFromResults(eqDraw1.results);
     const eq2 = await entitiesFromResults(eqDraw2.results);
     const eq3 = await entitiesFromResults(eqDraw3.results);
-    let allEq = [].concat(eq1, eq2, eq3);
-    const rolledTribute = allEq.filter(i => i.data.type === "scroll").length > 0;
 
-    const ttTable = ccContent.find(i => i.name === 'Terribler Traits');
-    const bbTable = ccContent.find(i => i.name === 'Brokener Bodies');
-    const bhTable = ccContent.find(i => i.name === 'Badder Habits');
-    const ttResults = await compendiumTableDrawMany(ttTable, 2);
-    const bbDraw = await bbTable.draw({displayChat: false});
-    const bhDraw = await bhTable.draw({displayChat: false});
-    const terribleTrait1 = ttResults[0].data.text;
-    const terribleTrait2 = ttResults[1].data.text;
-    const brokenBody = bbDraw.results[0].data.text;
-    const badHabit = bhDraw.results[0].data.text;
+    // const ttTable = ccContent.find(i => i.name === 'Terribler Traits');
+    // const bbTable = ccContent.find(i => i.name === 'Brokener Bodies');
+    // const bhTable = ccContent.find(i => i.name === 'Badder Habits');
+    // const ttResults = await compendiumTableDrawMany(ttTable, 2);
+    // const bbDraw = await bbTable.draw({displayChat: false});
+    // const bhDraw = await bhTable.draw({displayChat: false});
+    // const terribleTrait1 = ttResults[0].data.text;
+    // const terribleTrait2 = ttResults[1].data.text;
+    // const brokenBody = bbDraw.results[0].data.text;
+    // const badHabit = bhDraw.results[0].data.text;
 
     // starting weapon
     let weapons = [];
     if (clazz.data.data.weaponTableDie) {
-        let weaponDie = clazz.data.data.weaponTableDie;
-        if (rolledTribute) {
-            // TODO: should only the classless adventurer get gimped down to d6?
-            if (weaponDie === "1d10") {
-                weaponDie = "1d6";
-            }
-        }
-        let weaponRoll = new Roll(weaponDie);
-        const weaponTable = ccContent.find(i => i.name === 'Starting Weapon');
+        const weaponRoll = new Roll(clazz.data.data.weaponTableDie);
+        const weaponTable = ccContent.find(i => i.name === 'Weapons Table');
         const weaponDraw = await weaponTable.draw({roll: weaponRoll, displayChat: false});
         weapons = await entitiesFromResults(weaponDraw.results);
     }
@@ -129,7 +110,7 @@ const rollScvmForClass = async (clazz) => {
     let armors = [];
     if (clazz.data.data.armorTableDie) {
         const armorRoll = new Roll(clazz.data.data.armorTableDie);
-        const armorTable = ccContent.find(i => i.name === 'Starting Armor');
+        const armorTable = ccContent.find(i => i.name === 'Armor Table');
         const armorDraw = await armorTable.draw({roll: armorRoll, displayChat: false});
         armors = await entitiesFromResults(armorDraw.results);
     }
@@ -154,10 +135,10 @@ const rollScvmForClass = async (clazz) => {
     // start accumulating character description, starting with the class description
     const descriptionLines = [];
     descriptionLines.push(clazz.data.data.description);
-    descriptionLines.push("<p>&nbsp;</p>");
-    // BrokenBodies and BadHabits end with a period, but TerribleTraits don't.
-    descriptionLines.push(`${terribleTrait1} and ${terribleTrait2.charAt(0).toLowerCase()}${terribleTrait2.slice(1)}. ${brokenBody} ${badHabit}`);
-    descriptionLines.push("<p>&nbsp;</p>");
+    // descriptionLines.push("<p>&nbsp;</p>");
+    // // BrokenBodies and BadHabits end with a period, but TerribleTraits don't.
+    // descriptionLines.push(`${terribleTrait1} and ${terribleTrait2.charAt(0).toLowerCase()}${terribleTrait2.slice(1)}. ${brokenBody} ${badHabit}`);
+    // descriptionLines.push("<p>&nbsp;</p>");
 
     // class-specific starting rolls
     const startingRollItems = [];
@@ -199,7 +180,7 @@ const rollScvmForClass = async (clazz) => {
     }
 
     // all new entities
-    const ents = [].concat([clazz], [waterskin, food], eq1, eq2, eq3, weapons, armors, startingItems, startingRollItems);
+    const ents = [].concat([clazz], eq1, eq2, eq3, weapons, armors, startingItems, startingRollItems);
 
     // add items as owned items
     const items = ents.filter(e => e instanceof VGItem);
@@ -218,13 +199,13 @@ const rollScvmForClass = async (clazz) => {
     return {
         actorImg: clazz.img,
         agility,
+        credits: creditsRoll.total,
         description: descriptionLines.join(""),
+        favors: favorsRoll.total,
         hitPoints,
         items: items.map(i => i.data),
-        favors: favorsRoll.total,
-        powerUses,
+        neuromancyPoints,
         presence,
-        silver: silverRoll.total,
         strength,
         tokenImg: clazz.img,
         toughness,
@@ -244,6 +225,7 @@ const scvmToActorData = (s) => {
                 presence: { value: s.presence },
                 toughness: { value: s.toughness },
             },
+            credits: s.credits,
             description: s.description,
             hp: {
                 max: s.hitPoints,
@@ -253,11 +235,10 @@ const scvmToActorData = (s) => {
                 max: s.favors,
                 value: s.favors,
             },
-            powerUses: {
-                max: s.powerUses,
-                value: s.powerUses,
+            neuromancyPoints: {
+                max: s.neuromancyPoints,
+                value: s.neuromancyPoints,
             },
-            silver: s.silver,
         },
         items: s.items,
         flags: {}
@@ -276,6 +257,7 @@ const createActorWithScvm = async (s) => {
 
 const updateActorWithScvm = async (actor, s) => {
     const data = scvmToActorData(s);
+    data.name = randomName();
     // Explicitly nuke all items before updating.
     // Before Foundry 0.8.x, actor.update() used to overwrite items,
     // but now doesn't. Maybe because we're passing items: [item.data]?
