@@ -17,6 +17,13 @@
       "entity": "RollTable"
     },
     {
+      "name": "class-treacherous-merc",
+      "label": "Class - Treacherous Merc",
+      "system": "vastgrimm",
+      "path": "./packs/class-treacherous-merc.db",
+      "entity": "Item"
+    },
+    {
       "name": "equipment-armor",
       "label": "Equipment - Armor",
       "system": "vastgrimm",
@@ -36,6 +43,13 @@
       "system": "vastgrimm",
       "path": "./packs/equipment-weapons.db",
       "entity": "Item"
+    },
+    {
+      "name": "rolls-treacherous-merc",
+      "label": "Rolls - Treacherous Merc",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-treacherous-merc.db",
+      "entity": "RollTable"
     },
     {
       "name": "tributes",
