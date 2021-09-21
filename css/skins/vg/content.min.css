@@ -164,8 +164,8 @@ pre[class*="language-"] {
   cursor: help;
 }
 .mce-content-body {
-  color: white;
   background-color: black;
+  color: white;
   font-family: "Special Elite";
   overflow-wrap: break-word;
   word-wrap: break-word;
