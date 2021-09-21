@@ -852,15 +852,30 @@ export class VGActor extends Actor {
       const hpRoll = new Roll("1d4").evaluate({async: false});
       const s = actRoll.total > 1 ? "s" : "";
       if (limbRoll.total <= 5) {
-        outcomeLines = [`Broken or severed limb.`, `Can't act for ${actRoll.total} round${s} then become active`, `with ${hpRoll.total} HP.`];
+        outcomeLines = [
+          "Severed limb,",
+          "reduce Agility",
+          "permanently by 1.",
+          `Can't act for ${actRoll.total} round${s} then become active`, `with ${hpRoll.total} HP.`
+        ];
       } else {
-        outcomeLines = [`Lost eye.`, `Can't act for ${actRoll.total} round${s} then become active with ${hpRoll.total} HP.`];
+        outcomeLines = [
+          "Lost eye,",
+          "reduce Presence",
+          "permanently by 1",
+          `Can't act for ${actRoll.total} round${s} then become active with ${hpRoll.total} HP.`
+        ];
       }
       additionalRolls = [limbRoll, actRoll, hpRoll];
     } else if (brokenRoll.total === 3) {
       const hemorrhageRoll = new Roll("1d2").evaluate({async: false}); 
       const s = hemorrhageRoll.total > 1 ? "s" : "";
-      outcomeLines = [`Hemorrhage:`, `dead in ${hemorrhageRoll.total} hour${s}`, `unless treated.`, `All tests are DR16`, `the first hour.`];
+      outcomeLines = [
+        `Hemorrhage:`, 
+        `dead in ${hemorrhageRoll.total} hour${s}`, `unless treated.`,
+        `All tests are DR16`, 
+        `the first hour.`
+      ];
       if (hemorrhageRoll.total == 2) {
         outcomeLines.push( `DR18 the last hour.`);
       }
