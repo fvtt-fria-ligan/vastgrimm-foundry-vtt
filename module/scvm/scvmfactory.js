@@ -74,11 +74,11 @@ const rollScvmForClass = async (clazz) => {
     const neuromancyPoints = Math.max(0, neuromancyPointsRoll.total + presence);
 
     // 3 starting equipment tables
-    const ccPack = game.packs.get('vastgrimm.character-creation');
+    const ccPack = game.packs.get("vastgrimm.character-creation");
     const ccContent = await ccPack.getDocuments();
-    const equipTable1 = ccContent.find(i => i.name === 'Starting Equipment - 1');
-    const equipTable2 = ccContent.find(i => i.name === 'Starting Equipment - 2');
-    const equipTable3 = ccContent.find(i => i.name === 'Starting Equipment - 3');
+    const equipTable1 = ccContent.find(i => i.name === "Starting Equipment - 1");
+    const equipTable2 = ccContent.find(i => i.name === "Starting Equipment - 2");
+    const equipTable3 = ccContent.find(i => i.name === "Starting Equipment - 3");
     const eqDraw1 = await equipTable1.draw({displayChat: false});
     const eqDraw2 = await equipTable2.draw({displayChat: false});
     const eqDraw3 = await equipTable3.draw({displayChat: false});
@@ -88,9 +88,9 @@ const rollScvmForClass = async (clazz) => {
     let allEq = [].concat(eq1, eq2, eq3);
     const rolledTribute = allEq.filter(i => i.data.type === "tribute").length > 0;
 
-    const myTable = ccContent.find(i => i.name === 'Misspent Youth');
-    const bsTable = ccContent.find(i => i.name === 'Battle Scars');
-    const iiTable = ccContent.find(i => i.name === 'Irritating Idiosyncrasies');
+    const myTable = ccContent.find(i => i.name === "Misspent Youth");
+    const bsTable = ccContent.find(i => i.name === "Battle Scars");
+    const iiTable = ccContent.find(i => i.name === "Irritating Idiosyncrasies");
     const myResults = await compendiumTableDrawMany(myTable, 2);
     const bsDraw = await bsTable.draw({displayChat: false});
     const iiDraw = await iiTable.draw({displayChat: false});
@@ -109,7 +109,7 @@ const rollScvmForClass = async (clazz) => {
             }
         }        
         const weaponRoll = new Roll(weaponDie);
-        const weaponTable = ccContent.find(i => i.name === 'Weapons Table');
+        const weaponTable = ccContent.find(i => i.name === "Weapons Table");
         const weaponDraw = await weaponTable.draw({roll: weaponRoll, displayChat: false});
         weapons = await entitiesFromResults(weaponDraw.results);
     }
@@ -118,7 +118,7 @@ const rollScvmForClass = async (clazz) => {
     let armors = [];
     if (clazz.data.data.armorTableDie) {
         const armorRoll = new Roll(clazz.data.data.armorTableDie);
-        const armorTable = ccContent.find(i => i.name === 'Armor Table');
+        const armorTable = ccContent.find(i => i.name === "Armor Table");
         const armorDraw = await armorTable.draw({roll: armorRoll, displayChat: false});
         armors = await entitiesFromResults(armorDraw.results);
     }
@@ -144,7 +144,7 @@ const rollScvmForClass = async (clazz) => {
     const descriptionLines = [];
     descriptionLines.push(clazz.data.data.description);
     descriptionLines.push("<p>&nbsp;</p>");
-    // BattleScars and Idiosyncrasis end with a period, but Misspent Youth entries don't.
+    // BattleScars and Idiosyncrasis end with a period, but Misspent Youth entries don"t.
     descriptionLines.push(`${misspentYouth1} and ${misspentYouth2.charAt(0).toLowerCase()}${misspentYouth2.slice(1)}. ${battleScar} ${idiosyncrasy}`);
     descriptionLines.push("<p>&nbsp;</p>");
 
@@ -268,7 +268,7 @@ const updateActorWithScvm = async (actor, s) => {
     data.name = randomName();
     // Explicitly nuke all items before updating.
     // Before Foundry 0.8.x, actor.update() used to overwrite items,
-    // but now doesn't. Maybe because we're passing items: [item.data]?
+    // but now doesn"t. Maybe because we"re passing items: [item.data]?
     // Dunno.
     await actor.deleteEmbeddedDocuments("Item", [], {deleteAll: true});
     await actor.update(data);
