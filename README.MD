@@ -20,3 +20,5 @@ vastgrimm-foundry-vtt is an independent production community contributors. It is
 ## License
   * Content: [Vast Grimm Third Party License](https://vastgrimm.com/the-horde/) and [MÖRK BORG Third Party License](https://morkborg.com/license/)
   * Code: [MIT](https://en.wikipedia.org/wiki/MIT_License)
+
+[vast_grimm_horde_black_blue.pdf](https://github.com/fvtt-fria-ligan/vastgrimm-foundry-vtt/files/7205154/vast_grimm_horde_black_blue.pdf)
