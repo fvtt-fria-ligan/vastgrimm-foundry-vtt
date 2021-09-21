@@ -126,8 +126,6 @@
       "ammoPerUse": 0,
       "ammoType": "",
       "damageDie": "1d4",
-      "range": 0,
-      "rateOfFire": 1,
       "weaponType": "melee"
     }
   }
