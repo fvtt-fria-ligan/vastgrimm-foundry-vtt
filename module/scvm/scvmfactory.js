@@ -266,9 +266,10 @@ const createActorWithScvm = async (s) => {
 const updateActorWithScvm = async (actor, s) => {
     const data = scvmToActorData(s);
     data.name = randomName() + " " + randomName();
+    console.log(data);
     // Explicitly nuke all items before updating.
     // Before Foundry 0.8.x, actor.update() used to overwrite items,
-    // but now doesn"t. Maybe because we"re passing items: [item.data]?
+    // but now doesn't. Maybe because we're passing items: [item.data]?
     // Dunno.
     await actor.deleteEmbeddedDocuments("Item", [], {deleteAll: true});
     await actor.update(data);
@@ -280,6 +281,9 @@ const entitiesFromResults = async (results) => {
         const entity = await entityFromResult(result);
         if (entity) {            
             ents.push(entity);
+        } else {
+            console.log("No entity from result:");
+            console.log(result);
         }
     }
     return ents;
