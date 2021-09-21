@@ -157,7 +157,7 @@
   .vastgrimm .button {
     background: var(--foreground-color);
     color: var(--background-color);
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
   }
   #chat-controls {
     color: var(--foreground-color);
@@ -234,7 +234,7 @@
     border-bottom: none;
     background: var(--highlight-background-color);
     color: var(--highlight-foreground-color);
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
   }
   #client-settings select {
     color: var(--foreground-color);
@@ -291,12 +291,12 @@
   .dialog .dialog-buttons button {
     background: var(--foreground-color);
     color: var(--background-color);
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
   }
   .dialog .dialog-buttons button.default {
     background: var(--foreground-color);
     color: var(--background-color);
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
   }
   form .form-group select {
     color: var(--foreground-color);
@@ -339,7 +339,7 @@
   #settings button {
     color: var(--background-color);
     background: var(--foreground-color);
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
   }
   #sidebar {
     background: var(--sidebar-background-color);
@@ -367,14 +367,15 @@
     background: var(--sidebar-button-background-color);
     color: var(--sidebar-button-foreground-color);
     border-radius: 0;
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
+    font-size: 12px;
   }
   .sidebar-tab .directory-header .header-search input {
     background: var(--sidebar-button-background-color);
     color: var(--sidebar-button-foreground-color);
     border: 1px solid #252525;
     border-radius: 0;
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
   }
   .sidebar-tab .directory-header .header-search input[type="text"]:focus {
     box-shadow: 0 0 5px var(--highlight-background-color);
@@ -414,7 +415,7 @@
     line-height: 1.5;
   }
   .window-app.app.journal-sheet .window-content h1 {
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
     border-bottom: 2px solid #222222;
   }
   .window-app.app.journal-sheet .window-content h2 {
@@ -425,7 +426,7 @@
   }
   .journal-sheet form input[name="name"] {
     color: var(--background-color);
-    font-family: var(--h2-font);
+    font-family: var(--h3-font);
     font-size: 32px;
   }
   .journal-sheet form select {
