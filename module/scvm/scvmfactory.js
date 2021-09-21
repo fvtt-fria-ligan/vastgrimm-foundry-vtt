@@ -86,16 +86,16 @@ const rollScvmForClass = async (clazz) => {
     const eq2 = await entitiesFromResults(eqDraw2.results);
     const eq3 = await entitiesFromResults(eqDraw3.results);
 
-    // const ttTable = ccContent.find(i => i.name === 'Terribler Traits');
-    // const bbTable = ccContent.find(i => i.name === 'Brokener Bodies');
-    // const bhTable = ccContent.find(i => i.name === 'Badder Habits');
-    // const ttResults = await compendiumTableDrawMany(ttTable, 2);
-    // const bbDraw = await bbTable.draw({displayChat: false});
-    // const bhDraw = await bhTable.draw({displayChat: false});
-    // const terribleTrait1 = ttResults[0].data.text;
-    // const terribleTrait2 = ttResults[1].data.text;
-    // const brokenBody = bbDraw.results[0].data.text;
-    // const badHabit = bhDraw.results[0].data.text;
+    const myTable = ccContent.find(i => i.name === 'Misspent Youth');
+    const bsTable = ccContent.find(i => i.name === 'Battle Scars');
+    const iiTable = ccContent.find(i => i.name === 'Irritating Idiosyncrasies');
+    const myResults = await compendiumTableDrawMany(myTable, 2);
+    const bsDraw = await bsTable.draw({displayChat: false});
+    const iiDraw = await iiTable.draw({displayChat: false});
+    const misspentYouth1 = myResults[0].data.text;
+    const misspentYouth2 = myResults[1].data.text;
+    const battleScar = bsDraw.results[0].data.text;
+    const idiosyncrasy = iiDraw.results[0].data.text;
 
     // starting weapon
     let weapons = [];
@@ -135,10 +135,10 @@ const rollScvmForClass = async (clazz) => {
     // start accumulating character description, starting with the class description
     const descriptionLines = [];
     descriptionLines.push(clazz.data.data.description);
-    // descriptionLines.push("<p>&nbsp;</p>");
-    // // BrokenBodies and BadHabits end with a period, but TerribleTraits don't.
-    // descriptionLines.push(`${terribleTrait1} and ${terribleTrait2.charAt(0).toLowerCase()}${terribleTrait2.slice(1)}. ${brokenBody} ${badHabit}`);
-    // descriptionLines.push("<p>&nbsp;</p>");
+    descriptionLines.push("<p>&nbsp;</p>");
+    // BattleScars and Idiosyncrasis end with a period, but Misspent Youth entries don't.
+    descriptionLines.push(`${misspentYouth1} and ${misspentYouth2.charAt(0).toLowerCase()}${misspentYouth2.slice(1)}. ${battleScar} ${idiosyncrasy}`);
+    descriptionLines.push("<p>&nbsp;</p>");
 
     // class-specific starting rolls
     const startingRollItems = [];
