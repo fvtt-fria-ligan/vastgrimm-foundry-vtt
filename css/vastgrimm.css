@@ -1483,7 +1483,6 @@ a.inline-roll {
 }
 
 .vastgrimm .items-list .items-header .item-name {
-  /*padding-left: 5px;*/
   font-family: var(--h2-font);
   font-size: 24px;
 }
@@ -1549,7 +1548,7 @@ a.inline-roll {
   border-radius: 0;
   color: var(--background-color);
   flex: none;
-  font-family: var(--h2-font);
+  font-family: var(--h3-font);
   font-size: 20px;
   width: auto;
 }
