@@ -85,6 +85,8 @@ const rollScvmForClass = async (clazz) => {
     const eq1 = await entitiesFromResults(eqDraw1.results);
     const eq2 = await entitiesFromResults(eqDraw2.results);
     const eq3 = await entitiesFromResults(eqDraw3.results);
+    let allEq = [].concat(eq1, eq2, eq3);
+    const rolledTribute = allEq.filter(i => i.data.type === "tribute").length > 0;
 
     const myTable = ccContent.find(i => i.name === 'Misspent Youth');
     const bsTable = ccContent.find(i => i.name === 'Battle Scars');
@@ -100,7 +102,13 @@ const rollScvmForClass = async (clazz) => {
     // starting weapon
     let weapons = [];
     if (clazz.data.data.weaponTableDie) {
-        const weaponRoll = new Roll(clazz.data.data.weaponTableDie);
+        let weaponDie = clazz.data.data.weaponTableDie;
+        if (rolledTribute) {
+            if (weaponDie === "1d10" || weaponDie === "1d8") {
+                weaponDie = "1d6";
+            }
+        }        
+        const weaponRoll = new Roll(weaponDie);
         const weaponTable = ccContent.find(i => i.name === 'Weapons Table');
         const weaponDraw = await weaponTable.draw({roll: weaponRoll, displayChat: false});
         weapons = await entitiesFromResults(weaponDraw.results);
