@@ -765,7 +765,6 @@ export class VGActor extends Actor {
     const newPre = this._betterAbility(oldPre);
     const oldTou = this.data.data.abilities.toughness.value;
     const newTou = this._betterAbility(oldTou);
-    let newSilver = this.data.data.silver;
 
     let hpOutcome = this._abilityOutcome(game.i18n.localize('VG.HP'), oldHp, newHp);
     let strOutcome = this._abilityOutcome(game.i18n.localize('VG.AbilityStrength'), oldStr, newStr);
@@ -773,28 +772,9 @@ export class VGActor extends Actor {
     let preOutcome = this._abilityOutcome(game.i18n.localize('VG.AbilityPresence'), oldPre, newPre);
     let touOutcome = this._abilityOutcome(game.i18n.localize('VG.AbilityToughness'), oldTou, newTou);
 
-    // Left in the debris you find...
-    let debrisOutcome = null;
-    let scrollTableName = null;
-    const debrisRoll = new Roll("1d6", this.getRollData()).evaluate({async: false});
-    if (debrisRoll.total < 4) {
-      debrisOutcome = "Nothing";
-    } else if (debrisRoll.total === 4) {
-      const silverRoll = new Roll("3d10", this.getRollData()).evaluate({async: false});
-      debrisOutcome = `${silverRoll.total} silver`;
-      newSilver += silverRoll.total;
-    } else if (debrisRoll.total === 5) {
-      debrisOutcome = "an unclean scroll";
-      scrollTableName = "Unclean Tributes";
-    } else {
-      debrisOutcome = "a sacred scroll";
-      scrollTableName = "Sacred Tributes";
-    }
-
     // show a single chat message for everything
     const data = {
       agiOutcome,
-      debrisOutcome,
       hpOutcome,
       preOutcome,
       strOutcome,
@@ -807,14 +787,6 @@ export class VGActor extends Actor {
       speaker : ChatMessage.getSpeaker({actor: this}),
     });
 
-    if (scrollTableName) {
-      // roll a scroll
-      const pack = game.packs.get('vastgrimm.random-scrolls');
-      const content = await pack.getContent();
-      const table = content.find(i => i.name === scrollTableName);
-      await table.draw();
-    }
-
     // set new stats on the actor
     return this.update({
       ["data.abilities.strength.value"]: newStr,
@@ -822,7 +794,6 @@ export class VGActor extends Actor {
       ["data.abilities.presence.value"]: newPre,
       ["data.abilities.toughness.value"]: newTou,
       ["data.hp.max"]: newHp,
-      ["data.silver"]: newSilver,
     });
   }
 

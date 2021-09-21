@@ -158,7 +158,7 @@ export class VGCharacterSheet extends VGActorSheet {
     html
       .find(".favors-row span.rollable")
       .on("click", this._onOmensRoll.bind(this));
-    html.find(".improve-button").on("click", this._onGetBetter.bind(this));
+    html.find(".improve-button").on("click", this._onImprove.bind(this));
     // skills tab
     html.find(".skill-button").on("click", this._onSkillRoll.bind(this));
     // neuromancy tab
@@ -219,13 +219,13 @@ export class VGCharacterSheet extends VGActorSheet {
     restDialog.render(true);
   }
 
-  _onGetBetter(event) {
+  _onImprove(event) {
     event.preventDefault();
-    // confirm before doing get better
+    // confirm before doing Improvement
     let d = new Dialog({
       title: game.i18n.localize("VG.Improve"),
       content:
-        "<p>&nbsp;<p>The game master decides when a character should be improved.<p>It can be after completing a scenario, killing mighty foes, or bringing home treasure.<p>&nbsp;",
+        `<p>&nbsp;<p>${game.i18n.localize("VG.ImproveText")}<p>&nbsp;`,
       buttons: {
         cancel: {
           label: game.i18n.localize("VG.Cancel"),
