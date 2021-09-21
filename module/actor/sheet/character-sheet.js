@@ -251,6 +251,6 @@ export class VGCharacterSheet extends VGActorSheet {
 
   _onActivatePowerRoll(event) {
     event.preventDefault();
-    this.actor.wieldPower();
+    this.actor.activateTribute();
   }
 }

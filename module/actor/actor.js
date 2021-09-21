@@ -574,25 +574,25 @@ export class VGActor extends Actor {
     });
   }
 
-  async wieldPower() {
-    if (this.data.data.powerUses.value < 1) {
+  async activateTribute() {
+    if (this.data.data.neuromancyPoints.value < 1) {
       ui.notifications.warn(`${game.i18n.localize('VG.NoNeuromancyPointsRemaining')}!`);
       return;
     }
 
-    const wieldRoll = new Roll("d20+@abilities.presence.value", this.getRollData());
-    wieldRoll.evaluate({async: false});
-    await showDice(wieldRoll);
+    const activateRoll = new Roll("d20+@abilities.presence.value", this.getRollData());
+    activateRoll.evaluate({async: false});
+    await showDice(activateRoll);
 
-    const d20Result = wieldRoll.terms[0].results[0].result;
+    const d20Result = activateRoll.terms[0].results[0].result;
     const isFumble = (d20Result === 1);
     const isCrit = (d20Result === 20);
-    const wieldDR = 12;
+    const activateDR = 12;
 
     let wieldOutcome = null;
     let damageRoll = null;
     let takeDamage = null;
-    if (wieldRoll.total >= wieldDR) {
+    if (activateRoll.total >= activateDR) {
       // SUCCESS!!!
       wieldOutcome = game.i18n.localize(isCrit ? 'VG.CriticalSuccess' : 'VG.Success');
     } else {
@@ -606,9 +606,9 @@ export class VGActor extends Actor {
 
     const rollResult = {
       damageRoll,
-      wieldDR,
+      activateDR,
       wieldOutcome,
-      wieldRoll,
+      activateRoll,
       takeDamage,
     };
     const html = await renderTemplate(WIELD_POWER_ROLL_CARD_TEMPLATE, rollResult)
@@ -618,8 +618,8 @@ export class VGActor extends Actor {
       speaker : ChatMessage.getSpeaker({actor: this}),
     });
 
-    const newPowerUses = Math.max(0, this.data.data.powerUses.value - 1);
-    return this.update({["data.powerUses.value"]: newPowerUses});
+    const newPowerUses = Math.max(0, this.data.data.neuromancyPoints.value - 1);
+    return this.update({["data.neuromancyPoints.value"]: newPowerUses});
   }
 
   async useSkill(itemId) {
@@ -672,8 +672,8 @@ export class VGActor extends Actor {
       this.getRollData(),
       `${game.i18n.localize('VG.NeuromancyPoints')} ${game.i18n.localize('VG.PerDay')}`, 
       (roll) => ` ${game.i18n.localize('VG.NeuromancyPoints')}: ${Math.max(0, roll.total)}`);
-    const newUses = Math.max(0, roll.total);
-    return this.update({["data.powerUses"]: {max: newUses, value: newUses}});
+    const newPoints = Math.max(0, roll.total);
+    return this.update({["data.neuromancyPoints"]: {max: newPoints, value: newPoints}});
   }
 
   /**
