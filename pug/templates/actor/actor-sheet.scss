@@ -93,6 +93,7 @@
     width: 120px;
   }
   .vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .item-name {
+    flex: 1;
     font-size: 16px;
     margin-top: 5px;
   }
@@ -103,13 +104,12 @@
   .vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .versus-armor {
     margin-left: 10px;
   }
-  .vastgrimm.sheet.actor .sheet-body .combat-tab .weapon-list .item-field.handed {
-    text-align: right;
-    width: 30px;
-  }
   .vastgrimm.sheet.actor .sheet-body .combat-tab .weapon-list .item-field.damage-die {
     text-align: right;
-    width: 70px;
+  }
+  .vastgrimm.sheet.actor .sheet-body .combat-tab .weapon-list .item-field.weapon-type {
+    text-align: right;
+    width: 60px;
   }
   .vastgrimm.sheet.actor .sheet-body .combat-tab .attack-rule {
     text-align: center;
