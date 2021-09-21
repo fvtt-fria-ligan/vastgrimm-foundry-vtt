@@ -8,6 +8,7 @@
 "VG.AbilityStrengthAbbrev": "STR",
 "VG.AbilityToughness": "Toughness",
 "VG.AbilityToughnessAbbrev": "TOU",
+"VG.Activate": "Activate",
 "VG.ActivateTribute": "Activate a Tribute",
 "VG.ActivateTributeFumble": "Fumble - Roll a Cataclysmic Condemnation.",
 "VG.ActivateTributeText": "PRE DR12, or -d2 HP and no Neuromancy for 1 hr",
@@ -182,7 +183,7 @@
 "VG.WeaponTypeMelee": "Melee",
 "VG.WeaponTypeRanged": "Ranged",
 "VG.Weight": "Weight",
-"VG.Activate": "Activate",
+"VG.WurmSharesStrength": "The würm shares its strength! Heal 1 HP.",
 "VG.YouHaveNoSkills": "You have no Skills",
 "VG.YouHaveNoTributes": "You have no Tributes",
 

@@ -691,30 +691,27 @@ export class VGActor extends Actor {
       }
     } else if (restLength === "long") {
       let canRestore = true;
-      if (foodAndDrink === "starve") {
-        await this.rollStarvation();
-        canRestore = false;
-      }
-      if (infected) {
-        await this.rollInfection();
-        canRestore = false;
-      }
-      if (canRestore && foodAndDrink === "eat") {
+      if (foodAndDrink === "eat") {
         await this.rollHealHitPoints("d6");
         await this.rollNeuromancyPointsPerDay();
         if (this.data.data.favors.value === 0) {
           await this.rollOmens();
         }
-      } else if (canRestore && foodAndDrink === "donteat") {
+      } else if (infected) {
+        // wurm restores 1 hp each day
+        await this.wurmSharesStrength();
+      } else if (foodAndDrink === "donteat") {
         await this.showRestNoEffect();
+      } else if (foodAndDrink === "starve") {
+        await this.rollStarvation();
       }
     }
   }
 
   async showRestNoEffect() {
     const result = {
-      cardTitle: game.i18n.localize('VG.Rest'),
-      outcomeText: game.i18n.localize('VG.NoEffect'),
+      cardTitle: game.i18n.localize("VG.Rest"),
+      outcomeText: game.i18n.localize("VG.NoEffect"),
     };
     const html = await renderTemplate(OUTCOME_ONLY_ROLL_CARD_TEMPLATE, result);
     await ChatMessage.create({
@@ -728,8 +725,8 @@ export class VGActor extends Actor {
     const roll = await this._rollOutcome(
       dieRoll,
       this.getRollData(),
-      game.i18n.localize('VG.Rest'), 
-      (roll) => `${game.i18n.localize('VG.Heal')} ${roll.total} ${game.i18n.localize('VG.HP')}`);
+      game.i18n.localize("VG.Rest"), 
+      (roll) => `${game.i18n.localize("VG.Heal")} ${roll.total} ${game.i18n.localize("VG.HP")}`);
     const newHP = Math.min(this.data.data.hp.max, this.data.data.hp.value + roll.total);
     return this.update({["data.hp.value"]: newHP});
   }
@@ -738,19 +735,24 @@ export class VGActor extends Actor {
     const roll = await this._rollOutcome(
       "d4",
       this.getRollData(),
-      game.i18n.localize('VG.Starvation'), 
-      (roll) => `${game.i18n.localize('VG.Take')} ${roll.total} ${game.i18n.localize('VG.Damage')}`);
+      game.i18n.localize("VG.Starvation"), 
+      (roll) => `${game.i18n.localize("VG.Take")} ${roll.total} ${game.i18n.localize("VG.Damage")}`);
     const newHP = this.data.data.hp.value - roll.total;
     return this.update({["data.hp.value"]: newHP});
   }
 
-  async rollInfection() {
-    const roll = await this._rollOutcome(
-      "d6",
-      this.getRollData(),
-      game.i18n.localize('VG.Infection'), 
-      (roll) => `${game.i18n.localize('VG.Take')} ${roll.total} ${game.i18n.localize('VG.Damage')}`);
-    const newHP = this.data.data.hp.value - roll.total;
+  async wurmSharesStrength() {
+    const result = {
+      cardTitle: game.i18n.localize("VG.Rest"),
+      outcomeText: game.i18n.localize("VG.WurmSharesStrength"),
+    };
+    const html = await renderTemplate(OUTCOME_ONLY_ROLL_CARD_TEMPLATE, result);
+    await ChatMessage.create({
+      content : html,
+      sound : diceSound(),
+      speaker : ChatMessage.getSpeaker({actor: this}),
+    });
+    const newHP = Math.min(this.data.data.hp.max, this.data.data.hp.value + 1);
     return this.update({["data.hp.value"]: newHP});
   }
 
