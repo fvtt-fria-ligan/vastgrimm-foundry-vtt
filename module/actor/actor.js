@@ -684,7 +684,7 @@ export class VGActor extends Actor {
    */
   async rest(restLength, foodAndDrink, infected) {
     if (restLength === "short") {
-      if (foodAndDrink === "eat" && !infected) {
+      if (foodAndDrink === "eat") {
         await this.rollHealHitPoints("d4");
       } else {
         await this.showRestNoEffect();
