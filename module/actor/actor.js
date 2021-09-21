@@ -754,7 +754,7 @@ export class VGActor extends Actor {
     return this.update({["data.hp.value"]: newHP});
   }
 
-  async getBetter() {
+  async improve() {
     const oldHp = this.data.data.hp.max;
     const newHp = this._betterHp(oldHp);
     const oldStr = this.data.data.abilities.strength.value;

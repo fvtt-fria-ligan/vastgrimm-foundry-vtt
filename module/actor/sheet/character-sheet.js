@@ -233,7 +233,7 @@ export class VGCharacterSheet extends VGActorSheet {
         getbetter: {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize("VG.Improve"),
-          callback: () => this.actor.getBetter(),
+          callback: () => this.actor.improve(),
         },
       },
       default: "cancel",

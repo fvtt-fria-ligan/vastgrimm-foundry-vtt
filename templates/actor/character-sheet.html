@@ -265,7 +265,7 @@
                     </div>
                 </li>
                 <ol class="item-list">
-                    {{#each data.data.scrolls as |item id|}}
+                    {{#each data.data.tributes as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name item-edit rollable">{{item.name}}</h4>
@@ -278,7 +278,7 @@
                     </li>
                     {{/each}}
                 </ol>
-                {{#unless data.data.scrolls.length}}
+                {{#unless data.data.tributes.length}}
                     <div class="rule-text you-have-no">
                         {{localize 'VG.YouHaveNoTributes'}}
                     </div>

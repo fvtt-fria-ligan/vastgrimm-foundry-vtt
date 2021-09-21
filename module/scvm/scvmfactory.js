@@ -256,7 +256,7 @@ const scvmToActorData = (s) => {
 const createActorWithScvm = async (s) => {
     const data = scvmToActorData(s);
     // set some additional fields for new characters
-    data.name = randomName();
+    data.name = randomName() + " " + randomName();
     data.img = s.actorImg;
     // use VGActor.create() so we get default disposition, actor link, vision, etc
     const actor = await VGActor.create(data);
@@ -265,7 +265,7 @@ const createActorWithScvm = async (s) => {
 
 const updateActorWithScvm = async (actor, s) => {
     const data = scvmToActorData(s);
-    data.name = randomName();
+    data.name = randomName() + " " + randomName();
     // Explicitly nuke all items before updating.
     // Before Foundry 0.8.x, actor.update() used to overwrite items,
     // but now doesn"t. Maybe because we"re passing items: [item.data]?
@@ -289,23 +289,20 @@ const entityFromResult = async (result) => {
     // draw result type: text (0), entity (1), or compendium (2)
     // TODO: figure out how we want to handle an entity result
 
-    // TODO: handle scroll lookup / rolls
-    // TODO: can we make a recursive random scroll thingy
-
     if (result.data.type === 0) {
         // hack for not having recursive roll tables set up
         // TODO: set up recursive roll tables :P
-        if (result.data.text === "Roll on Random Unclean Tributes") {
-            const collection = game.packs.get("vastgrimm.random-scrolls");
+        if (result.data.text === "Random Hacked Tribute") {
+            const collection = game.packs.get("vastgrimm.character-creation");
             const content = await collection.getDocuments();
-            const table = content.find(i => i.name === "Unclean Tributes");
+            const table = content.find(i => i.name === "Hacked Tributes");
             const draw = await table.draw({displayChat: false});
             const items = await entitiesFromResults(draw.results);
             return items[0];
-        } else if (result.data.text === "Roll on Random Sacred Tributes") {
-            const collection = game.packs.get("vastgrimm.random-scrolls");
+        } else if (result.data.text === "Random Encrypted Tribute") {
+            const collection = game.packs.get("vastgrimm.character-creation");
             const content = await collection.getDocuments();
-            const table = content.find(i => i.name === "Sacred Tributes");
+            const table = content.find(i => i.name === "Encrypted Tributes");
             const draw = await table.draw({displayChat: false});
             const items = await entitiesFromResults(draw.results);
             return items[0];
