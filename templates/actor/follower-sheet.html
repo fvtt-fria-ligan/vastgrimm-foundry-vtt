@@ -59,8 +59,8 @@
 
             {{!-- Value --}}
             <div class="form-group">
-                <label>{{ localize "VG.FollowerValue" }}:</label>
-                <input type="text" name="data.value" value="{{data.data.value}}" placeholder="None" data-dtype="String" />
+                <label>{{ localize "VG.FollowerValues" }}:</label>
+                <input type="text" name="data.values" value="{{data.data.values}}" placeholder="None" data-dtype="String" />
             </div>
 
         </div>
@@ -82,8 +82,8 @@
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name">{{item.name}}</h4>
                         <div class="item-fields">
-                            <span class="item-field handed">{{item.data.handed}}H</span>
                             <span class="item-field damage-die">{{item.data.damageDie}}</span>
+                            <span class="item-field weapon-type">{{item.data.weaponType}}</span>
                         </div>
                         <div class="item-buttons">
                             <button type="button" class="item-button rollable attack-button"
@@ -164,9 +164,9 @@
         {{!-- Equipment Tab --}}
         <div class="tab equipment-tab" data-group="primary" data-tab="treasures">
             <div class="equipment-top-row">
-                <div class="silver">
-                    <span class="stat-label silver-label">{{ localize "VG.Credits" }}:</span>
-                    <input class="stat-input silver-input" name="data.silver" type="number" value="{{data.data.silver}}" data-dtype="Number" />  
+                <div class="credits">
+                    <span class="stat-label credits-label">{{ localize "VG.Credits" }}:</span>
+                    <input class="stat-input credits-input" name="data.credits" type="number" value="{{data.data.credits}}" data-dtype="Number" />  
                 </div>
             </div>
             <ol class="items-list equipment-list">

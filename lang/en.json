@@ -68,7 +68,11 @@
 "VG.Equipment": "Equipment",
 "VG.Failure": "Failure",
 "VG.Favors": "Favors",
+"VG.FollowerSpeciality": "Speciality",
+"VG.FollowerTrait": "Trait",
+"VG.FollowerValues": "Values",
 "VG.FoodAndDrink": "Food and Drink",
+"VG.GenerateCharacter": "Generate Character",
 "VG.Heal": "Heal",
 "VG.Helmet": "Helmet",
 "VG.HelmetUseText": "-1 damage, or break to ignore one attack",
@@ -187,17 +191,13 @@
 "VG.YouHaveNoSkills": "You have no Skills",
 "VG.YouHaveNoTributes": "You have no Tributes",
 
-"SETTINGS.VGBlackletter": "Blackletter",
-"SETTINGS.VGBlackOnWhiteBlack": "Black on white (black)",
-"SETTINGS.VGBlackOnYellowWhite": "Black on yellow (white)",
+"SETTINGS.VGSciFi": "Sci-Fi",
 "SETTINGS.VGColorScheme": "Color Scheme",
 "SETTINGS.VGColorSchemeHint": "Choose a color scheme for the UI.",
 "SETTINGS.VGFontScheme": "Font Scheme",
 "SETTINGS.VGFontSchemeHint": "Choose a font scheme for the UI.",
 "SETTINGS.VGFoundryDefault": "Foundry Default",
 "SETTINGS.VGLegible": "Legible",
-"SETTINGS.VGWhiteOnBlackPink": "White on black (pink)",
-"SETTINGS.VGWhiteOnBlackWhite": "White on black (white)",
-"SETTINGS.VGWhiteOnBlackYellow": "White on black (yellow)",
-"SETTINGS.VGWhiteOnPinkWhite": "White on pink (white)"
+"SETTINGS.VGWhiteOnBlackBlue": "White on black (blue)",
+"SETTINGS.VGWhiteOnBlackPink": "White on black (pink)"
 }

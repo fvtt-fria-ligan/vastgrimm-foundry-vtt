@@ -5,7 +5,7 @@
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-export async function createMorkBorgMacro(data, slot) {
+export async function createVastGrimmMacro(data, slot) {
 
   if (data.type !== "Item") {
     return;
@@ -14,7 +14,7 @@ export async function createMorkBorgMacro(data, slot) {
     return ui.notifications.warn("You can only create macro buttons for owned Items");
   }
   const item = data.data;
-  const supportedItemTypes = ["armor", "feat", "scroll", "helmet", "weapon"];
+  const supportedItemTypes = ["armor", "skill", "tribute", "helmet", "weapon"];
   if (!supportedItemTypes.includes(item.type)) {
     return ui.notifications.warn(`Macros only supported for item types: ${supportedItemTypes.join(', ')}`);
   }
@@ -68,9 +68,9 @@ export async function createMorkBorgMacro(data, slot) {
     actor.attack(item.data.id);
   } else if (item.data.type === "armor" || item.data.type === "helmet") {
     actor.defend();
-  } else if (item.data.type === "scroll") {
+  } else if (item.data.type === "tribute") {
     actor.activateTribute();
-  } else if (item.data.type === "feat") {
+  } else if (item.data.type === "skill") {
     actor.useSkill(item.data.id);
   }
 }

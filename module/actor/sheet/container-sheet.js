@@ -3,7 +3,7 @@ import VGActorSheet from "./actor-sheet.js";
 /**
  * @extends {ActorSheet}
  */
- export class VGActorSheetContainer extends VGActorSheet {
+ export class VGContainerSheet extends VGActorSheet {
 
   /** @override */
   static get defaultOptions() {

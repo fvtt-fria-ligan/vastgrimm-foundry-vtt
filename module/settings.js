@@ -12,33 +12,30 @@ export const registerSystemSettings = () => {
 
   /** UI Color scheme */
   game.settings.register("vastgrimm", "colorScheme", {
-    name: "SETTINGS.MBColorScheme",
-    hint: "SETTINGS.MBColorSchemeHint",
+    name: "SETTINGS.VGColorScheme",
+    hint: "SETTINGS.VGColorSchemeHint",
     scope: "client",
     config: true,
-    default: "whiteOnBlackYellow",
+    default: "whiteOnBlackPink",
     type: String,
     choices: {
-      "blackOnYellowWhite": "SETTINGS.MBBlackOnYellowWhite",
-      "blackOnWhiteBlack": "SETTINGS.MBBlackOnWhiteBlack",
-      "foundryDefault": "SETTINGS.MBFoundryDefault",
-      "whiteOnBlackYellow": "SETTINGS.MBWhiteOnBlackYellow",
-      "whiteOnBlackPink": "SETTINGS.MBWhiteOnBlackPink",
-      "whiteOnPinkWhite": "SETTINGS.MBWhiteOnPinkWhite",    
+      "foundryDefault": "SETTINGS.VGFoundryDefault",
+      "whiteOnBlackBlue": "SETTINGS.VGWhiteOnBlackBlue",
+      "whiteOnBlackPink": "SETTINGS.VGWhiteOnBlackPink",
     }
   });  
 
   /** UI Font scheme */
   game.settings.register("vastgrimm", "fontScheme", {
-    name: "SETTINGS.MBFontScheme",
-    hint: "SETTINGS.MBFontSchemeHint",
+    name: "SETTINGS.VGFontScheme",
+    hint: "SETTINGS.VGFontSchemeHint",
     scope: "client",
     config: true,
-    default: "blackletter",
+    default: "sci-fi",
     type: String,
     choices: {
-      "blackletter": "SETTINGS.MBBlackletter",
-      "legible": "SETTINGS.MBLegible",
+      "sci-fi": "SETTINGS.VGSciFi",
+      "legible": "SETTINGS.VGLegible",
     }
   });  
 

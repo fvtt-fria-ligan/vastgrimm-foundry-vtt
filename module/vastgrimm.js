@@ -4,24 +4,30 @@
 
 import { VGActor } from "./actor/actor.js";
 import { VGCharacterSheet } from "./actor/sheet/character-sheet.js";
+import { VGContainerSheet } from "./actor/sheet/container-sheet.js";
+import { VGCreatureSheet } from "./actor/sheet/creature-sheet.js";
+import { VGFollowerSheet } from "./actor/sheet/follower-sheet.js";
 import { VG } from "./config.js";
 import { VGItem } from "./item/item.js";
 import { VGItemSheet } from "./item/sheet/item-sheet.js";
+import { createVastGrimmMacro, rollItemMacro } from "./macros.js";
+import { migrateWorld } from "./migration.js";
+import ScvmDialog from "./scvm/scvm-dialog.js";
+import { registerSystemSettings } from "./settings.js";
 
 const VG_DOC_CLASS = "vastgrimm";
 
 Hooks.once("init", async function() {
   console.log("Initializing Vast Grimm system");
   
-  // Register System Settings
-  //registerSystemSettings();
+  registerSystemSettings();
 
   game.vastgrimm = {
     config: VG,
-    // createVastGrimmMacro,
+    createVastGrimmMacro,
     VGActor,
     VGItem,
-    //rollItemMacro,
+    rollItemMacro,
   };
 
   CONFIG.Actor.documentClass = VGActor;
@@ -36,8 +42,139 @@ Hooks.once("init", async function() {
     makeDefault: true,
     label: "VG.SheetClassCharacter"
   });
+  Actors.registerSheet(VG_DOC_CLASS, VGContainerSheet, {
+    types: ["container"],
+    makeDefault: true,
+    label: "VG.SheetClassContainer"
+  });
+  Actors.registerSheet(VG_DOC_CLASS, VGCreatureSheet, {
+    types: ["creature"],
+    makeDefault: true,
+    label: "VG.SheetClassCreature"
+  });    
+  Actors.registerSheet(VG_DOC_CLASS, VGFollowerSheet, {
+    types: ["follower"],
+    makeDefault: true,
+    label: "VG.SheetClassFollower"
+  });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(VG_DOC_CLASS, VGItemSheet, { makeDefault: true });  
+});
+
+/**
+ * Once the entire VTT framework is initialized, check to see if we should perform a data migration
+ */
+ Hooks.once("ready", () => {
+  maybeMigrateWorld();
+  applyFontsAndColors();
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+  Hooks.on("hotbarDrop", (bar, data, slot) => createVastGrimmMacro(data, slot));  
+});
+
+const maybeMigrateWorld = () => {
+  // implement when we need to do a migration
+};
+
+const applyFontsAndColors = () => {
+  const fontSchemeSetting = game.settings.get("vastgrimm", "fontScheme");
+  const fontScheme = CONFIG.VG.fontSchemes[fontSchemeSetting];
+  const colorSchemeSetting = game.settings.get("vastgrimm", "colorScheme");
+  const colorScheme = CONFIG.VG.colorSchemes[colorSchemeSetting];
+  const r = document.querySelector(":root");
+  r.style.setProperty("--window-background", colorScheme.windowBackground);
+  r.style.setProperty("--background-color", colorScheme.background);
+  r.style.setProperty("--foreground-color", colorScheme.foreground);
+  r.style.setProperty("--foreground-alt-color", colorScheme.foregroundAlt);
+  r.style.setProperty("--highlight-background-color", colorScheme.highlightBackground);
+  r.style.setProperty("--highlight-foreground-color", colorScheme.highlightForeground);
+  r.style.setProperty("--sidebar-background-color", colorScheme.sidebarBackground);
+  r.style.setProperty("--sidebar-foreground-color", colorScheme.sidebarForeground);
+  r.style.setProperty("--sidebar-button-background-color", colorScheme.sidebarButtonBackground);
+  r.style.setProperty("--sidebar-button-foreground-color", colorScheme.sidebarButtonForeground);
+  r.style.setProperty("--chat-font", fontScheme.chat);
+  r.style.setProperty("--chat-info-font", fontScheme.chatInfo);
+  r.style.setProperty("--h1-font", fontScheme.h1);
+  r.style.setProperty("--h2-font", fontScheme.h2);
+  r.style.setProperty("--h3-font", fontScheme.h3);
+  r.style.setProperty("--item-font", fontScheme.item);
+};
+
+Hooks.on('dropActorSheetData', async (actor, actorSheet, dropped) => {
+  // Handle one-only Class item
+  if (dropped.type === "Item" && dropped.pack) {
+    const packName = dropped.pack.split(".")[1];
+    if (packName.startsWith("class-")) {
+      // Dropping a new class, so nuke any pre-existing class item(s),
+      // to enforce that a character only has one class item at a time.
+      const classes = actor.items.filter(i => i.data.type === "class");
+      const deletions = classes.map(i => i.id);
+      await actor.deleteEmbeddedDocuments("Item", deletions);
+    }
+  }
+  // TODO: test this when dropping a Class item from sidebar, rather than from compendium
+
+  // Handle container actor destructive drag-drop
+  if (dropped.type === "Item" && dropped.data && dropped.data._id) {
+    const sourceActor = dropped.tokenId ? game.actors.tokens[dropped.tokenId] : game.actors.get(dropped.actorId);
+    if (sourceActor && actor.id !== sourceActor.id && 
+      (sourceActor.data.type === "container" || actor.data.type === "container")) {
+      // either the source or target actor is a container,
+      // so delete the item from the source
+      await sourceActor.deleteEmbeddedDocuments("Item", [dropped.data._id]);
+    }
+  }
+});
+
+Hooks.on('createActor', async (actor, options, userId) => {
+  // give Characters a default class
+  if (actor.data.type === "character" && game.packs) {
+    const hasAClass = actor.items.filter(i => i.data.type === "class").length > 0;
+    if (!hasAClass) {
+      const pack = game.packs.get("vastgrimm.class-treacherous-merc");
+      if (!pack) {
+        console.error("Could not find compendium vastgrimm.class-treacherous-merc");
+        return;
+      }
+      const index = await pack.getIndex();
+      const entry = index.find(e => e.name === "Treacherous Merc");
+      if (!entry) {
+        console.error("Could not find Treacherous Merc class in compendium.");
+        return;
+      }
+      const entity = await pack.getDocument(entry._id);
+      if (!entity) {
+        console.error("Could not get document for Treacherous class.");
+        return;
+      }
+      await actor.createEmbeddedDocuments("Item", [duplicate(entity.data)]);
+    }
+  }
+});
+
+Hooks.on('renderActorDirectory', (app,  html, data) => {
+  if (game.user.can("ACTOR_CREATE")) {
+    // only show the Generate Character button to users who can create actors
+    const section = document.createElement('header');
+    section.classList.add('scvmfactory');
+    section.classList.add('directory-header');
+    // Add menu before directory header
+    const dirHeader = html[0].querySelector('.directory-header');
+    dirHeader.parentNode.insertBefore(section, dirHeader);
+    section.insertAdjacentHTML('afterbegin',`
+      <div class="header-actions action-buttons flexrow">
+        <button class="create-scvm-button"><i class="fas fa-skull"></i>${game.i18n.localize("VG.GenerateCharacter")}</button>
+      </div>
+      `);
+    section.querySelector('.create-scvm-button').addEventListener('click', (ev) => {
+      new ScvmDialog().render(true);
+    });  
+  }
+});
+
+Hooks.on('renderCombatTracker', (tracker, html) => {
+  const partyInitiativeButton = `<a class="combat-control" title="${game.i18n.localize('MB.RollPartyInitiative')}" dataControl="rollParty"><i class="fas fa-dice-six"></i></a>`;
+  html.find("header").find("nav").last().prepend(partyInitiativeButton);
+  html.find("a[dataControl=rollParty]").click(ev => { rollPartyInitiative() });
 });
 
 // Handlebars helpers

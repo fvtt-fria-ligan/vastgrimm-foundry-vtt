@@ -36,30 +36,6 @@ VG.armorTiers = {
 };
 
 VG.colorSchemes = {
-  "blackOnYellowWhite": {
-    "background": "#ffe900",
-    "foreground": "#000000",
-    "foregroundAlt": "#808080",
-    "highlightBackground": "#ffffff",
-    "highlightForeground": "#000000",
-    "sidebarBackground": "#ffe900",
-    "sidebarForeground": "000000",
-    "sidebarButtonBackground": "#000000",
-    "sidebarButtonForeground": "#ffe900",
-    "windowBackground": "#ffe900"
-  },
-  "blackOnWhiteBlack": {
-    "background": "#ffffff",
-    "foreground": "#000000",
-    "foregroundAlt": "#808080",
-    "highlightBackground": "#000000",
-    "highlightForeground": "#ffffff",
-    "sidebarBackground": "#ffffff",
-    "sidebarForeground": "#000000",
-    "sidebarButtonBackground": "#000000",
-    "sidebarButtonForeground": "#ffffff",
-    "windowBackground": "#ffffff"
-  },
   "foundryDefault": {
     "background": "#f0f0e0",
     "foreground": "#191813",
@@ -72,42 +48,30 @@ VG.colorSchemes = {
     "sidebarButtonForeground": "#000000",
     "windowBackground": "url(../ui/parchment.jpg) repeat"
   },
-  "whiteOnBlackYellow": {
+  "whiteOnBlackBlue": {
     "background": "#000000",
     "foreground": "#ffffff",
-    "foregroundAlt": "#ffe900",
-    "highlightBackground": "#ffe900",
+    "foregroundAlt": "#00aaea",
+    "highlightBackground": "#00aaea",
     "highlightForeground": "#000000",
     "sidebarBackground": "#000000",
     "sidebarForeground": "#ffffff",
-    "sidebarButtonBackground": "#ffffff",
-    "sidebarButtonForeground": "#000000",
+    "sidebarButtonBackground": "#000000",
+    "sidebarButtonForeground": "#ffffff",
     "windowBackground": "#000000"
   },
   "whiteOnBlackPink": {
     "background": "#000000",
     "foreground": "#ffffff",
-    "foregroundAlt": "#ff3eb5",
-    "highlightBackground": "#ff3eb5",
+    "foregroundAlt": "#FF3EB5",
+    "highlightBackground": "#FF3EB5",
     "highlightForeground": "#000000",
     "sidebarBackground": "#000000",
     "sidebarForeground": "#ffffff",
-    "sidebarButtonBackground": "#ffffff",
-    "sidebarButtonForeground": "#000000",
+    "sidebarButtonBackground": "#000000",
+    "sidebarButtonForeground": "#ffffff",
     "windowBackground": "#000000"
   },
-  "whiteOnPinkWhite": {
-    "background": "#ff3eb5",
-    "foreground": "#ffffff",
-    "foregroundAlt": "#000000",
-    "highlightBackground": "#ffffff",
-    "highlightForeground": "#000000",
-    "sidebarBackground": "#ff3eb5",
-    "sidebarForeground": "#ffffff",
-    "sidebarButtonBackground": "#ffffff",
-    "sidebarButtonForeground": "#ff3eb5",
-    "windowBackground": "#ff3eb5"
-  }
 };
 
 VG.flagScope = "vastgrimm";  // must match system name
@@ -120,27 +84,22 @@ VG.flags = {
 }
 
 VG.fontSchemes = {
-  "blackletter": {
-    "chat": "Alegreya",
-    "chatInfo": "Oswald",
-    "h1": "Blood Crow",
-    "h2": "FetteTrumpDeutsch",
-    "h3": "Old Cupboard",
+  "sci-fi": {
+    "chat": "helvetica",
+    "chatInfo": "helvetica",
+    "h1": "Takota",
+    "h2": "Lazenby Computer",
+    "h3": "Audiowide",
     "item": "Special Elite"
   },
   "legible": {
-    "chat": "Alegreya",
-    "chatInfo": "Oswald",
-    "h1": "Blood Crow",
-    "h2": "Calling Code Regular",
-    "h3": "Old Cupboard",
-    "item": "Lato"
+    "chat": "helvetica",
+    "chatInfo": "helvetica",
+    "h1": "helvetica",
+    "h2": "helvetica",
+    "h3": "helvetica",
+    "item": "helvetica"
   }
-};
-
-VG.handed = {
-  1: "VG.HandedOne",
-  2: "VG.HandedTwo"
 };
 
 VG.itemTypes = {

@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "creature", "ship"],
+    "types": ["character", "container", "creature", "follower", "ship"],
     "templates": {
       "common": {
         "abilities": {
@@ -43,6 +43,14 @@
       },
       "credits": 0
     },
+    "container": {
+      "capacity": {
+        "max": 0,
+        "value": 0
+      },
+      "description": "",
+      "price": 0
+    },    
     "creature": {
       "templates": ["common"],
       "armor": "",
@@ -50,7 +58,18 @@
       "morale": 7,
       "special": "",
       "gp": ""
-    }
+    },
+    "follower": {
+      "templates": ["common"],
+      "credits": 0,
+      "morale": 7,
+      "speciality": "",
+      "trait": "",
+      "values": ""
+    },
+    "ship": {
+      "templates": ["common"]
+    }    
   },
   "Item": {
     "types": [

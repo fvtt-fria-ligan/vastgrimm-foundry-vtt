@@ -17,12 +17,26 @@
       "entity": "RollTable"
     },
     {
+      "name": "class-manchine",
+      "label": "Class - Manchine",
+      "system": "vastgrimm",
+      "path": "./packs/class-manchine.db",
+      "entity": "Item"
+    },
+    {
       "name": "class-treacherous-merc",
       "label": "Class - Treacherous Merc",
       "system": "vastgrimm",
       "path": "./packs/class-treacherous-merc.db",
       "entity": "Item"
     },
+    {
+      "name": "containers",
+      "label": "Containers",
+      "system": "vastgrimm",
+      "path": "./packs/containers.db",
+      "entity": "Actor"
+    },    
     {
       "name": "equipment-armor",
       "label": "Equipment - Armor",
@@ -44,6 +58,20 @@
       "path": "./packs/equipment-weapons.db",
       "entity": "Item"
     },
+    {
+      "name": "followers",
+      "label": "Followers",
+      "system": "vastgrimm",
+      "path": "./packs/followers.db",
+      "entity": "Actor"
+    },
+    {
+      "name": "rolls-manchine",
+      "label": "Rolls - Manchine",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-manchine.db",
+      "entity": "RollTable"
+    },    
     {
       "name": "rolls-treacherous-merc",
       "label": "Rolls - Treacherous Merc",

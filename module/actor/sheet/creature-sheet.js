@@ -3,7 +3,7 @@ import VGActorSheet from "./actor-sheet.js";
 /**
  * @extends {ActorSheet}
  */
-export class VGActorSheetCreature extends VGActorSheet {
+export class VGCreatureSheet extends VGActorSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {

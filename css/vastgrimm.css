@@ -1402,11 +1402,11 @@ a.inline-roll {
   flex-direction: row;
 }
 
-.vastgrimm.sheet.actor .sheet-body .silver {
+.vastgrimm.sheet.actor .sheet-body .credits {
   flex: 0 0 200px;
 }
 
-.vastgrimm.sheet.actor .sheet-body .silver-input {
+.vastgrimm.sheet.actor .sheet-body .credits-input {
   width: 70px;
 }
 
@@ -1463,6 +1463,48 @@ a.inline-roll {
 }
 
 .vastgrimm.sheet.actor.creature .sheet-header .hitpoints-row {
+  flex: 0 0 35px;
+  margin-bottom: 10px;
+  margin-left: 14px;
+}
+.vastgrimm.sheet.actor.follower .sheet-header {
+  margin-top: 0;
+  flex: 0 0 90px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.vastgrimm.sheet.actor.follower .sheet-header .header-col1 {
+  flex: 0 0 200px;
+}
+
+.vastgrimm.sheet.actor.follower .sheet-header .header-col2 {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: 5px;
+}
+
+.vastgrimm.sheet.actor.follower .sheet-header .profile-img {
+  height: 200px;
+  width: 200px;
+}
+
+.vastgrimm.sheet.actor.follower .sheet-header .name-row {
+  flex: 0 0 45px;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  width: 100%;
+}
+
+.vastgrimm.sheet.actor.follower .sheet-header input[type=text].follower-name {
+  height: 45px;
+}
+
+.vastgrimm.sheet.actor.follower .sheet-header .hitpoints-row {
   flex: 0 0 35px;
   margin-bottom: 10px;
   margin-left: 14px;
@@ -1561,88 +1603,6 @@ a.inline-roll {
   color: gray;
 }
 /* ====================== */
-/* Roll Cards */
-/* ====================== */
-.roll-card {
-  border: 1px solid var(--highlight-background-color);
-}
-
-.roll-card .card-title {
-  background: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
-  font-family: var(--h2-font);
-  font-size: 20px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.roll-card .item-row {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.roll-card .item-row span.item-name {
-  color: var(--foreground-color);
-  font-family: var(--item-font);
-  font-size: 14px;
-}
-
-.roll-card .roll-title {
-  font-family: var(--chat-font);
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-transform: capitalize;
-}
-
-.roll-card .roll-result {
-  border: 1px solid gray;
-  font-family: var(--chat-font);
-  font-size: 18px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-.roll-card .roll-result span {
-  color: var(--foreground-color);
-  font-size: 20px;
-}
-
-.roll-card .outcome-text {
-  font-family: var(--h3-font);
-  font-size: 20px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.roll-card .reaction-text {
-  font-family: var(--h3-font);
-  font-size: 20px;
-  text-align: center;
-}
-
-.roll-card .outcome-text .attack-outcome,
-.roll-card .outcome-text .defend-outcome {
-  margin-left: 10px;
-}
-
-.roll-card .outcome-text .attack-outcome,
-.roll-card .outcome-text .defend-outcome,
-.roll-card .outcome-text .take-damage {
-  background-color: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-.dr-modifier {
-  margin-bottom: 5px;
-  text-align: center;
-}
-/* ====================== */
 /* Attack/Defend Custom Dialogs */
 /* ====================== */
 .custom-dialog .form-group {
@@ -1736,6 +1696,88 @@ a.inline-roll {
 
 .scvm-dialog .class-name {
   text-transform: capitalize;
+}
+/* ====================== */
+/* Roll Cards */
+/* ====================== */
+.roll-card {
+  border: 1px solid var(--highlight-background-color);
+}
+
+.roll-card .card-title {
+  background: var(--highlight-background-color);
+  color: var(--highlight-foreground-color);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.roll-card .item-row {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.roll-card .item-row span.item-name {
+  color: var(--foreground-color);
+  font-family: var(--item-font);
+  font-size: 14px;
+}
+
+.roll-card .roll-title {
+  font-family: var(--chat-font);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.roll-card .roll-result {
+  border: 1px solid gray;
+  font-family: var(--chat-font);
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.roll-card .roll-result span {
+  color: var(--foreground-color);
+  font-size: 20px;
+}
+
+.roll-card .outcome-text {
+  font-family: var(--h3-font);
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.roll-card .reaction-text {
+  font-family: var(--h3-font);
+  font-size: 20px;
+  text-align: center;
+}
+
+.roll-card .outcome-text .attack-outcome,
+.roll-card .outcome-text .defend-outcome {
+  margin-left: 10px;
+}
+
+.roll-card .outcome-text .attack-outcome,
+.roll-card .outcome-text .defend-outcome,
+.roll-card .outcome-text .take-damage {
+  background-color: var(--highlight-background-color);
+  color: var(--highlight-foreground-color);
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.dr-modifier {
+  margin-bottom: 5px;
+  text-align: center;
 }
 /* ====================== */
 /* Container sheet */
