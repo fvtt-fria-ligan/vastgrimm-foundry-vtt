@@ -132,7 +132,7 @@
     },
     "pharmaceutical": {
       "templates": ["baseEquipment"],
-      "addiction": ""
+      "addiction": 0
     },    
     "skill": {
       "description": "",

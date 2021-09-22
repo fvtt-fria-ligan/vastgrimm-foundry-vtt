@@ -136,6 +136,7 @@ VG.itemEquipmentTypes = [
   VG.itemTypes.container,
   VG.itemTypes.helmet,
   VG.itemTypes.misc,
+  VG.itemTypes.pharmaceutical,
   VG.itemTypes.tribute,
   VG.itemTypes.weapon,
 ];

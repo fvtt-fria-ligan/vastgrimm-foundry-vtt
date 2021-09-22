@@ -52,6 +52,13 @@
       "entity": "Item"
     },
     {
+      "name": "equipment-pharmaceuticals",
+      "label": "Equipment - Pharmaceuticals",
+      "system": "vastgrimm",
+      "path": "./packs/equipment-pharmaceuticals.db",
+      "entity": "Item"
+    },
+    {
       "name": "equipment-ship",
       "label": "Equipment - Ship",
       "system": "vastgrimm",

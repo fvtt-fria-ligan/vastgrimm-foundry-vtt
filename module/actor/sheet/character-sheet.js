@@ -69,9 +69,9 @@ export class VGCharacterSheet extends VGActorSheet {
     let containers = [];
 
     for (let i of sheetData.items) {
-      let item = i.data;
       i.img = i.img || DEFAULT_TOKEN;
 
+      let item = i.data;
       item.equippable =
         i.type === CONFIG.VG.itemTypes.armor ||
         i.type === CONFIG.VG.itemTypes.helmet ||
