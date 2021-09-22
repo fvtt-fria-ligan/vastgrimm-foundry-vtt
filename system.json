@@ -52,6 +52,13 @@
       "entity": "Item"
     },
     {
+      "name": "equipment-ship",
+      "label": "Equipment - Ship",
+      "system": "vastgrimm",
+      "path": "./packs/equipment-ship.db",
+      "entity": "Item"
+    },
+    {
       "name": "equipment-weapons",
       "label": "Equipment - Weapons",
       "system": "vastgrimm",
@@ -78,6 +85,13 @@
       "system": "vastgrimm",
       "path": "./packs/rolls-treacherous-merc.db",
       "entity": "RollTable"
+    },
+    {
+      "name": "ships",
+      "label": "Ships",
+      "system": "vastgrimm",
+      "path": "./packs/ships.db",
+      "entity": "Actor"
     },
     {
       "name": "tributes",

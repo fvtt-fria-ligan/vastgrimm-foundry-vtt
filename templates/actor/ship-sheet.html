@@ -8,7 +8,7 @@
         </div>
         <div class="header-col2">
             <div class="name-row">
-                <input class="actor-name follower-name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'VG.Name' }}"/>
+                <input class="actor-name ship-name" name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'VG.Name' }}"/>
             </div>
             <div class="hitpoints-row">
                 <span class="stat-label">{{ localize "VG.HitPoints" }}:</span>
@@ -17,7 +17,6 @@
                 <input class="stat-input" name="data.hp.max" type="number" value="{{data.data.hp.max}}" data-dtype="Number"/>
             </div>
             <div class="buttons-row">
-                <button type="button" class="roll-button morale rollable">{{localize "VG.Morale"}}</button>
             </div>
         </div>      
     </header>
@@ -36,33 +35,26 @@
         <div class="tab" data-group="primary" data-tab="description">
             {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
         </div>
-
+        
         {{!-- Details Tab --}}
         <div class="tab" data-group="primary" data-tab="details">
-            {{!-- Morale --}}
+            {{!-- Price --}}
             <div class="form-group">
-                <label>{{ localize "VG.Morale" }}:</label>
-                <input name="data.morale" type="text" value="{{data.data.morale}}" placeholder="10" data-dtype="Number"/>
-            </div>
-
-            {{!-- Trait --}}
+                <label>{{ localize "VG.ItemPrice" }}:</label>
+                <input type="number" name="data.price" value="{{data.data.price}}" placeholder="0" data-dtype="Number" />
+            </div> 
+            
+            {{!-- Astrosec per day --}}
             <div class="form-group">
-                <label>{{ localize "VG.FollowerTrait" }}:</label>
-                <input type="text" name="data.trait" value="{{data.data.trait}}" placeholder="None" data-dtype="String" />
-            </div>
+                <label>{{ localize "VG.AstrosecPerDay" }}:</label>
+                <input type="number" name="data.astrosecPerDay" value="{{data.data.astrosecPerDay}}" placeholder="0" data-dtype="Number" />
+            </div> 
 
-            {{!-- Speciality --}}
+            {{!-- Piloting DR --}}
             <div class="form-group">
-                <label>{{ localize "VG.FollowerSpeciality" }}:</label>
-                <input type="text" name="data.speciality" value="{{data.data.speciality}}" placeholder="None" data-dtype="String" />
-            </div>
-
-            {{!-- Values --}}
-            <div class="form-group">
-                <label>{{ localize "VG.FollowerValues" }}:</label>
-                <input type="text" name="data.values" value="{{data.data.values}}" placeholder="None" data-dtype="String" />
-            </div>
-
+                <label>{{ localize "VG.PilotingDR" }}:</label>
+                <input type="number" name="data.pilotingDR" value="{{data.data.pilotingDR}}" placeholder="0" data-dtype="Number" />
+            </div> 
         </div>
 
         {{!-- Combat Tab --}}
@@ -132,20 +124,6 @@
                         </div>
                     </li>
                     {{/if}}
-                    {{#if data.equippedHelmet}}
-                    <li class="item flexrow" data-item-id="{{data.data.equippedHelmet._id}}">
-                        <img src="{{data.data.equippedHelmet.img}}" title="{{data.data.equippedHelmet.name}}" width="24" height="24" />
-                        <h4 class="item-name">{{data.data.equippedHelmet.name}}</h4>
-                        <div class="item-buttons">
-                            <span class="rule-text helmet-rule">{{localize 'VG.HelmetUseText'}}</span>
-                        </div>
-                        <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedHelmet.data.toggleClass}}" title='{{data.data.equippedHelmet.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
-                            <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                            <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                        </div>
-                    </li>
-                    {{/if}}
                 </ol>  
                 <div class="underarmor-row">
                     <div class="incoming-attack">
@@ -163,12 +141,6 @@
 
         {{!-- Equipment Tab --}}
         <div class="tab equipment-tab" data-group="primary" data-tab="equipment">
-            <div class="equipment-top-row">
-                <div class="credits">
-                    <span class="stat-label credits-label">{{ localize "VG.Credits" }}:</span>
-                    <input class="stat-input credits-input" name="data.credits" type="number" value="{{data.data.credits}}" data-dtype="Number" />  
-                </div>
-            </div>
             <ol class="items-list equipment-list">
                 <li class="items-header flexrow">
                     <h3 class="item-name flexrow">{{localize "VG.Equipment"}}</h3>

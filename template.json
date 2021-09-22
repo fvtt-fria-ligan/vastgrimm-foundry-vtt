@@ -68,7 +68,10 @@
       "values": ""
     },
     "ship": {
-      "templates": ["common"]
+      "templates": ["common"],
+      "astrosecPerDay": 0,
+      "pilotingDR": 12,
+      "price": 0
     }    
   },
   "Item": {

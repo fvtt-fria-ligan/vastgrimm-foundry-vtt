@@ -7,6 +7,7 @@ import { VGCharacterSheet } from "./actor/sheet/character-sheet.js";
 import { VGContainerSheet } from "./actor/sheet/container-sheet.js";
 import { VGCreatureSheet } from "./actor/sheet/creature-sheet.js";
 import { VGFollowerSheet } from "./actor/sheet/follower-sheet.js";
+import { VGShipSheet } from "./actor/sheet/ship-sheet.js";
 import { VG } from "./config.js";
 import { VGItem } from "./item/item.js";
 import { VGItemSheet } from "./item/sheet/item-sheet.js";
@@ -57,6 +58,11 @@ Hooks.once("init", async function() {
     makeDefault: true,
     label: "VG.SheetClassFollower"
   });
+  Actors.registerSheet(VG_DOC_CLASS, VGShipSheet, {
+    types: ["ship"],
+    makeDefault: true,
+    label: "VG.SheetClassShip"
+  });  
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(VG_DOC_CLASS, VGItemSheet, { makeDefault: true });  
 });
