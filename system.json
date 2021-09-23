@@ -31,6 +31,13 @@
       "entity": "Item"
     },
     {
+      "name": "class-soul-survivor",
+      "label": "Class - Soul Survivor",
+      "system": "vastgrimm",
+      "path": "./packs/class-soul-survivor.db",
+      "entity": "Item"
+    },    
+    {
       "name": "containers",
       "label": "Containers",
       "system": "vastgrimm",
@@ -91,6 +98,13 @@
       "label": "Rolls - Manchine",
       "system": "vastgrimm",
       "path": "./packs/rolls-manchine.db",
+      "entity": "RollTable"
+    },
+    {
+      "name": "rolls-soul-survivor",
+      "label": "Rolls - Soul Survivor",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-soul-survivor.db",
       "entity": "RollTable"
     },    
     {
