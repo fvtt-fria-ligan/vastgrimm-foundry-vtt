@@ -24,17 +24,31 @@
       "entity": "Item"
     },
     {
+      "name": "class-devout",
+      "label": "Class - Devout",
+      "system": "vastgrimm",
+      "path": "./packs/class-devout.db",
+      "entity": "Item"
+    },    
+    {
+      "name": "class-emoorbot",
+      "label": "Class - Emo|Bot",
+      "system": "vastgrimm",
+      "path": "./packs/class-emoorbot.db",
+      "entity": "Item"
+    },
+    {
+      "name": "class-harvester",
+      "label": "Class - Harvester",
+      "system": "vastgrimm",
+      "path": "./packs/class-harvester.db",
+      "entity": "Item"
+    },        
+    {
       "name": "class-manchine",
       "label": "Class - Manchine",
       "system": "vastgrimm",
       "path": "./packs/class-manchine.db",
-      "entity": "Item"
-    },
-    {
-      "name": "class-treacherous-merc",
-      "label": "Class - Treacherous Merc",
-      "system": "vastgrimm",
-      "path": "./packs/class-treacherous-merc.db",
       "entity": "Item"
     },
     {
@@ -44,6 +58,20 @@
       "path": "./packs/class-soul-survivor.db",
       "entity": "Item"
     },    
+    {
+      "name": "class-treacherous-merc",
+      "label": "Class - Treacherous Merc",
+      "system": "vastgrimm",
+      "path": "./packs/class-treacherous-merc.db",
+      "entity": "Item"
+    },
+    {
+      "name": "class-twisted-biochemist",
+      "label": "Class - Twisted Biochemist",
+      "system": "vastgrimm",
+      "path": "./packs/class-twisted-biochemist.db",
+      "entity": "Item"
+    },     
     {
       "name": "containers",
       "label": "Containers",
@@ -101,6 +129,27 @@
       "entity": "Item"
     },
     {
+      "name": "rolls-devout",
+      "label": "Rolls - Devout",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-devout.db",
+      "entity": "RollTable"
+    },    
+    {
+      "name": "rolls-emoorbot",
+      "label": "Rolls - Emo|Bot",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-emoorbot.db",
+      "entity": "RollTable"
+    },    
+    {
+      "name": "rolls-harvester",
+      "label": "Rolls - Harvester",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-harvester.db",
+      "entity": "RollTable"
+    },    
+    {
       "name": "rolls-lost-technomaniac",
       "label": "Rolls - Lost Technomaniac",
       "system": "vastgrimm",
@@ -128,6 +177,13 @@
       "path": "./packs/rolls-treacherous-merc.db",
       "entity": "RollTable"
     },
+    {
+      "name": "rolls-twisted-biochemist",
+      "label": "Rolls - Twisted Biochemist",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-twisted-biochemist.db",
+      "entity": "RollTable"
+    },    
     {
       "name": "ships",
       "label": "Ships",
