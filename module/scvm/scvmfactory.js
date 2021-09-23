@@ -73,21 +73,8 @@ const rollScvmForClass = async (clazz) => {
     const hitPoints = Math.max(1, hpRoll.total + toughness);
     const neuromancyPoints = Math.max(0, neuromancyPointsRoll.total + presence);
 
-    // 3 starting equipment tables
     const ccPack = game.packs.get("vastgrimm.character-creation");
     const ccContent = await ccPack.getDocuments();
-    const equipTable1 = ccContent.find(i => i.name === "Starting Equipment - 1");
-    const equipTable2 = ccContent.find(i => i.name === "Starting Equipment - 2");
-    const equipTable3 = ccContent.find(i => i.name === "Starting Equipment - 3");
-    const eqDraw1 = await equipTable1.draw({displayChat: false});
-    const eqDraw2 = await equipTable2.draw({displayChat: false});
-    const eqDraw3 = await equipTable3.draw({displayChat: false});
-    const eq1 = await entitiesFromResults(eqDraw1.results);
-    const eq2 = await entitiesFromResults(eqDraw2.results);
-    const eq3 = await entitiesFromResults(eqDraw3.results);
-    let allEq = [].concat(eq1, eq2, eq3);
-    const rolledTribute = allEq.filter(i => i.data.type === "tribute").length > 0;
-
     const myTable = ccContent.find(i => i.name === "Misspent Youth");
     const bsTable = ccContent.find(i => i.name === "Battle Scars");
     const iiTable = ccContent.find(i => i.name === "Irritating Idiosyncrasies");
@@ -98,47 +85,6 @@ const rollScvmForClass = async (clazz) => {
     const misspentYouth2 = myResults[1].data.text;
     const battleScar = bsDraw.results[0].data.text;
     const idiosyncrasy = iiDraw.results[0].data.text;
-
-    // starting weapon
-    let weapons = [];
-    if (clazz.data.data.weaponTableDie) {
-        let weaponDie = clazz.data.data.weaponTableDie;
-        if (rolledTribute) {
-            if (weaponDie === "1d10" || weaponDie === "1d8") {
-                weaponDie = "1d6";
-            }
-        }        
-        const weaponRoll = new Roll(weaponDie);
-        const weaponTable = ccContent.find(i => i.name === "Weapons Table");
-        const weaponDraw = await weaponTable.draw({roll: weaponRoll, displayChat: false});
-        weapons = await entitiesFromResults(weaponDraw.results);
-    }
-
-    // starting armor
-    let armors = [];
-    if (clazz.data.data.armorTableDie) {
-        const armorRoll = new Roll(clazz.data.data.armorTableDie);
-        const armorTable = ccContent.find(i => i.name === "Armor Table");
-        const armorDraw = await armorTable.draw({roll: armorRoll, displayChat: false});
-        armors = await entitiesFromResults(armorDraw.results);
-    }
-
-    // class-specific starting items
-    const startingItems = [];
-    if (clazz.data.data.startingItems) {
-        const lines = clazz.data.data.startingItems.split("\n");
-        for (const line of lines) {
-            const [packName, itemName] = line.split(",");
-            const pack = game.packs.get(packName);
-            if (pack) {
-                const content = await pack.getDocuments();
-                const item = content.find(i => i.data.name === itemName);
-                if (item) {
-                    startingItems.push(item);
-                }    
-            }
-        }
-    }
 
     // start accumulating character description, starting with the class description
     const descriptionLines = [];
@@ -186,9 +132,53 @@ const rollScvmForClass = async (clazz) => {
             }
         }
     }
+    
+    // class-specific starting items
+    const startingItems = [];
+    if (clazz.data.data.startingItems) {
+        const lines = clazz.data.data.startingItems.split("\n");
+        for (const line of lines) {
+            const [packName, itemName] = line.split(",");
+            const pack = game.packs.get(packName);
+            if (pack) {
+                const content = await pack.getDocuments();
+                const item = content.find(i => i.data.name === itemName);
+                if (item) {
+                    startingItems.push(item);
+                }    
+            }
+        }
+    }
+
+    // TODO: pay attention to tributes in startingItems, too?
+    const rolledTribute = startingRollItems.filter(i => i.data.type === "tribute").length > 0;
+
+    // starting weapon
+    let weapons = [];
+    if (clazz.data.data.weaponTableDie) {
+        let weaponDie = clazz.data.data.weaponTableDie;
+        if (rolledTribute) {
+            if (weaponDie === "1d10" || weaponDie === "1d8") {
+                weaponDie = "1d6";
+            }
+        }        
+        const weaponRoll = new Roll(weaponDie);
+        const weaponTable = ccContent.find(i => i.name === "Weapons Table");
+        const weaponDraw = await weaponTable.draw({roll: weaponRoll, displayChat: false});
+        weapons = await entitiesFromResults(weaponDraw.results);
+    }
+
+    // starting armor
+    let armors = [];
+    if (clazz.data.data.armorTableDie) {
+        const armorRoll = new Roll(clazz.data.data.armorTableDie);
+        const armorTable = ccContent.find(i => i.name === "Armor Table");
+        const armorDraw = await armorTable.draw({roll: armorRoll, displayChat: false});
+        armors = await entitiesFromResults(armorDraw.results);
+    }
 
     // all new entities
-    const ents = [].concat([clazz], eq1, eq2, eq3, weapons, armors, startingItems, startingRollItems);
+    const ents = [].concat([clazz], weapons, armors, startingItems, startingRollItems);
 
     // add items as owned items
     const items = ents.filter(e => e instanceof VGItem);

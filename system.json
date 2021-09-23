@@ -17,6 +17,13 @@
       "entity": "RollTable"
     },
     {
+      "name": "class-lost-technomaniac",
+      "label": "Class - Lost Technomaniac",
+      "system": "vastgrimm",
+      "path": "./packs/class-lost-technomaniac.db",
+      "entity": "Item"
+    },
+    {
       "name": "class-manchine",
       "label": "Class - Manchine",
       "system": "vastgrimm",
@@ -93,6 +100,13 @@
       "path": "./packs/parasites.db",
       "entity": "Item"
     },
+    {
+      "name": "rolls-lost-technomaniac",
+      "label": "Rolls - Lost Technomaniac",
+      "system": "vastgrimm",
+      "path": "./packs/rolls-lost-technomaniac.db",
+      "entity": "RollTable"
+    },    
     {
       "name": "rolls-manchine",
       "label": "Rolls - Manchine",
