@@ -80,6 +80,13 @@
       "entity": "Actor"
     },
     {
+      "name": "parasites",
+      "label": "Parasites",
+      "system": "vastgrimm",
+      "path": "./packs/parasites.db",
+      "entity": "Item"
+    },
+    {
       "name": "rolls-manchine",
       "label": "Rolls - Manchine",
       "system": "vastgrimm",
