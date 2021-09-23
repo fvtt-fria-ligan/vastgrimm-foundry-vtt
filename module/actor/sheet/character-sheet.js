@@ -10,7 +10,7 @@ export class VGCharacterSheet extends VGActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["vastgrimm", "sheet", "actor", "character"],
       template: "systems/vastgrimm/templates/actor/character-sheet.html",
-      width: 800,
+      width: 820,
       height: 690,
       tabs: [
         {

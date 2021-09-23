@@ -13,7 +13,7 @@
             {{!-- we are cheating a bit here, using the 'item' class usually used on LI elements,
              so we can get the item _id to be found by the common click handler --}}
             <div class="classname-row item" data-item-id="{{data.data.class._id}}">
-                <img class="classimg" src="{{data.data.class.img}}" title="{{data.data.class.name}}" width="24" height="24" />
+                <div class="stat-label">{{ localize "VG.Class" }}:</div>
                 <label class="classname item-edit rollable">{{data.data.class.name}}</label>
                 <div class="item-controls">
                     <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>

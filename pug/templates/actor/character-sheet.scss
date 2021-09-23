@@ -73,11 +73,9 @@
   margin-bottom: 7px;
   width: 100%;
 }
-.vastgrimm.sheet.actor.character .sheet-header .classname-row img.classimg {
-  height: 24px;
-  width: 24px;
-  flex: 0 0 24px;
-  margin-right: 5px;
+.vastgrimm.sheet.actor.character .sheet-header .classname-row .stat-label {
+  // TODO: fix vertical alignment in a better way
+  padding-top: 5px;
 }
 .vastgrimm.sheet.actor.character .sheet-header .classname-row label.classname {
   font-family: var(--h3-font);
@@ -88,8 +86,8 @@
   flex: 0 0 35px;
   text-align: right;
   margin-right: 0;
-  /* TODO: fix vertical alignment in a better way */
-  padding-top: 6px;
+  // TODO: fix vertical alignment in a better way
+  padding-top: 12px;
 }
 .vastgrimm.sheet.actor.character .sheet-header .hitpoints-row {
   display: flex;
