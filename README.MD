@@ -2,7 +2,7 @@
 
 An unoffical, community-supported system for playing [Vast Grimm](https://vastgrimm.com/) on [Foundry VTT](http://foundryvtt.com/).
 
-vastgrimm-foundry-vtt is an independent production community contributors. It is not affiliated with Infinite Black or Creature Curation. It is published under the [Vast Grimm Third Party License](https://vastgrimm.com/the-horde/).
+vastgrimm-foundry-vtt is an independent production by community contributors. It is not affiliated with Infinite Black or Creature Curation. It is published under the [Vast Grimm Third Party License](https://vastgrimm.com/the-horde/).
 
 ![Screen Shot 2021-09-21 at 3 27 15 PM](https://user-images.githubusercontent.com/189172/134242815-502262e9-152b-4e16-8c0f-6fa9f942a1ef.png)
 
