@@ -99,7 +99,7 @@
       "system": "vastgrimm",
       "path": "./packs/equipment-misc.db",
       "entity": "Item"
-    },
+    },    
     {
       "name": "equipment-pharmaceuticals",
       "label": "Equipment - Pharmaceuticals",
@@ -114,6 +114,13 @@
       "path": "./packs/equipment-ship.db",
       "entity": "Item"
     },
+    {
+      "name": "equipment-starting",
+      "label": "Equipment - Starting",
+      "system": "vastgrimm",
+      "path": "./packs/equipment-starting.db",
+      "entity": "Item"
+    }, 
     {
       "name": "equipment-weapons",
       "label": "Equipment - Weapons",
