@@ -843,17 +843,20 @@ export class VGActor extends Actor {
     let outcomeLines = [];
     let additionalRolls = [];
     if (brokenRoll.total === 1) {
+      // fall unconscious
       const unconsciousRoll = new Roll("1d4").evaluate({async: false});
       const s = unconsciousRoll.total > 1 ? "s" : "";
       const hpRoll = new Roll("1d4").evaluate({async: false});
       outcomeLines = [`Fall unconscious`, `for ${unconsciousRoll.total} round${s},`, `awaken with ${hpRoll.total} HP.`];
       additionalRolls = [unconsciousRoll, hpRoll];
     } else if (brokenRoll.total === 2) {
+      // severed limb or lost eye
       const limbRoll = new Roll("1d6").evaluate({async: false});
       const actRoll = new Roll("1d4").evaluate({async: false});
       const hpRoll = new Roll("1d4").evaluate({async: false});
       const s = actRoll.total > 1 ? "s" : "";
       if (limbRoll.total <= 5) {
+        // severed limb
         outcomeLines = [
           "Severed limb,",
           "reduce Agility",
@@ -861,6 +864,7 @@ export class VGActor extends Actor {
           `Can't act for ${actRoll.total} round${s} then become active`, `with ${hpRoll.total} HP.`
         ];
       } else {
+        // lost eye
         outcomeLines = [
           "Lost eye,",
           "reduce Presence",
@@ -870,6 +874,7 @@ export class VGActor extends Actor {
       }
       additionalRolls = [limbRoll, actRoll, hpRoll];
     } else if (brokenRoll.total === 3) {
+      // hemorrhage
       const hemorrhageRoll = new Roll("1d2").evaluate({async: false}); 
       const s = hemorrhageRoll.total > 1 ? "s" : "";
       outcomeLines = [
@@ -883,7 +888,19 @@ export class VGActor extends Actor {
       }
       additionalRolls = [hemorrhageRoll];
     } else {
-      outcomeLines = [`You are dead.`];
+      // loss of eye or death
+      const deathRoll = new Roll("1d4").evaluate({async: false}); 
+      if (deathRoll.total <= 2) {
+        // loss of eye
+        outcomeLines = [
+          "Loss of eye,",
+          "reduce Presence",
+          "permanently by 1.",
+        ];
+      } else {
+        // death
+        outcomeLines = ["You are very dead."];
+      }
     }
 
     const data = {
