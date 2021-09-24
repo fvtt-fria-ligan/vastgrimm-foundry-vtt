@@ -31,10 +31,10 @@
       "entity": "Item"
     },    
     {
-      "name": "class-emoorbot",
-      "label": "Class - Emo|Bot",
+      "name": "class-emobot",
+      "label": "Class - EmoBot",
       "system": "vastgrimm",
-      "path": "./packs/class-emoorbot.db",
+      "path": "./packs/class-emobot.db",
       "entity": "Item"
     },
     {
@@ -78,7 +78,14 @@
       "system": "vastgrimm",
       "path": "./packs/containers.db",
       "entity": "Actor"
-    },    
+    },
+    {
+      "name": "creatures",
+      "label": "Creatures",
+      "system": "vastgrimm",
+      "path": "./packs/creatures.db",
+      "entity": "Actor"
+    },
     {
       "name": "equipment-armor",
       "label": "Equipment - Armor",
@@ -136,10 +143,10 @@
       "entity": "RollTable"
     },    
     {
-      "name": "rolls-emoorbot",
-      "label": "Rolls - Emo|Bot",
+      "name": "rolls-emobot",
+      "label": "Rolls - EmoBot",
       "system": "vastgrimm",
-      "path": "./packs/rolls-emoorbot.db",
+      "path": "./packs/rolls-emobot.db",
       "entity": "RollTable"
     },    
     {
