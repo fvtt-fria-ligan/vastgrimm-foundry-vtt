@@ -130,6 +130,9 @@
     "misc": {
       "templates": ["baseEquipment"]
     },
+    "parasite": {
+      "description": ""
+    },       
     "pharmaceutical": {
       "templates": ["baseEquipment"],
       "addiction": 0
