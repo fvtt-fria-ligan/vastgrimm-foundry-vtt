@@ -18,6 +18,8 @@ vastgrimm-foundry-vtt is an independent production community contributors. It is
 ## Credits
 
   * Vast Grimm is copyright Infinite Black and Creature Curation.
+  * Explicit permission has been given by the Vast Grimm authors for inclusion of the following game content:
+  character classes and generation tables, equipment (including weapons, armor, pharmaceuticals, ships, and misc), tributes, followers, parasites, and creatures.
 
 ## License
   * Content: [Vast Grimm Third Party License](https://vastgrimm.com/the-horde/) and [MÖRK BORG Third Party License](https://morkborg.com/license/)
