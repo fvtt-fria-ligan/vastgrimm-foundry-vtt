@@ -46,7 +46,7 @@
     },        
     {
       "name": "class-manchine",
-      "label": "Class - Manchine",
+      "label": "Class - MAnchiNe",
       "system": "vastgrimm",
       "path": "./packs/class-manchine.db",
       "entity": "Item"
