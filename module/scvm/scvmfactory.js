@@ -56,7 +56,11 @@ export const classItemFromPack = async (packName) => {
 const rollScvmForClass = async (clazz) => {
     console.log(`Creating new ${clazz.data.name}`);
 
-    const creditsRoll = new Roll(clazz.data.data.startingCredits).evaluate({async: false});
+    let credits = 0;
+    if (clazz.data.data.startingCredits) {
+        const creditsRoll = new Roll(clazz.data.data.startingCredits).evaluate({async: false});
+        credits = creditsRoll.total;
+    }
     const favorsRoll = new Roll(clazz.data.data.favorDie).evaluate({async: false});
     const hpRoll = new Roll(clazz.data.data.startingHitPoints).evaluate({async: false});
     const neuromancyPointsRoll = new Roll("1d4").evaluate({async: false});
@@ -112,9 +116,17 @@ const rollScvmForClass = async (clazz) => {
                     const results = await compendiumTableDrawMany(table, numRolls);
                     for (const result of results) {
                         // draw result type: text (0), entity (1), or compendium (2)
-                        if (result.data.type === 0) {
-                            // text
-                            descriptionLines.push(`<p>${table.data.name}: ${result.data.text}</p>`);
+                        if (result.data.type === 0 && result.data.text) {
+                            // non-blank text
+                            if (result.data.text === "Random Hacked Tribute") {
+                                const tribute = await randomHackedTribute();
+                                startingRollItems.push(tribute);
+                            } else if (result.data.text === "Random Encrypted Tribute") {
+                                const tribute = await randomEncryptedTribute();
+                                startingRollItems.push(tribute);
+                            } else {
+                                descriptionLines.push(`<p>${table.data.name}: ${result.data.text}</p>`);
+                            }
                         } else if (result.data.type === 1) {
                             // entity
                             // TODO: what do we want to do here?
@@ -197,7 +209,7 @@ const rollScvmForClass = async (clazz) => {
     return {
         actorImg: clazz.img,
         agility,
-        credits: creditsRoll.total,
+        credits,
         description: descriptionLines.join(""),
         favors: favorsRoll.total,
         hitPoints,
@@ -279,6 +291,24 @@ const entitiesFromResults = async (results) => {
     return ents;
 }
 
+const randomHackedTribute = async () => {
+    const collection = game.packs.get("vastgrimm.character-creation");
+    const content = await collection.getDocuments();
+    const table = content.find(i => i.name === "Hacked Tributes");
+    const draw = await table.draw({displayChat: false});
+    const items = await entitiesFromResults(draw.results);
+    return items[0];
+};
+
+const randomEncryptedTribute = async () => {
+    const collection = game.packs.get("vastgrimm.character-creation");
+    const content = await collection.getDocuments();
+    const table = content.find(i => i.name === "Encrypted Tributes");
+    const draw = await table.draw({displayChat: false});
+    const items = await entitiesFromResults(draw.results);
+    return items[0];
+};
+
 const entityFromResult = async (result) => {
     // draw result type: text (0), entity (1), or compendium (2)
     // TODO: figure out how we want to handle an entity result
@@ -287,19 +317,9 @@ const entityFromResult = async (result) => {
         // hack for not having recursive roll tables set up
         // TODO: set up recursive roll tables :P
         if (result.data.text === "Random Hacked Tribute") {
-            const collection = game.packs.get("vastgrimm.character-creation");
-            const content = await collection.getDocuments();
-            const table = content.find(i => i.name === "Hacked Tributes");
-            const draw = await table.draw({displayChat: false});
-            const items = await entitiesFromResults(draw.results);
-            return items[0];
+            return randomHackedTribute();
         } else if (result.data.text === "Random Encrypted Tribute") {
-            const collection = game.packs.get("vastgrimm.character-creation");
-            const content = await collection.getDocuments();
-            const table = content.find(i => i.name === "Encrypted Tributes");
-            const draw = await table.draw({displayChat: false});
-            const items = await entitiesFromResults(draw.results);
-            return items[0];
+            return randomEncryptedTribute();
         }
     } else if (result.data.type === 2) {
         // grab the item from the compendium
