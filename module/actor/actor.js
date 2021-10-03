@@ -1,6 +1,7 @@
 import { addShowDicePromise, diceSound, showDice } from "../dice.js";
 import ScvmDialog from "../scvm/scvm-dialog.js";
 
+const ACTIVATE_TRIBUTE_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/activate-tribute-roll-card.html";
 const ATTACK_DIALOG_TEMPLATE = "systems/vastgrimm/templates/dialog/attack-dialog.html";
 const ATTACK_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/attack-roll-card.html";
 const BROKEN_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/broken-roll-card.html";
@@ -12,7 +13,6 @@ const OUTCOME_ONLY_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/outcom
 const OUTCOME_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/outcome-roll-card.html";
 const REACTION_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/reaction-roll-card.html";
 const TEST_ABILITY_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/test-ability-roll-card.html";
-const WIELD_POWER_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/activate-tribute-roll-card.html";
 
 /**
  * @extends {Actor}
@@ -589,15 +589,15 @@ export class VGActor extends Actor {
     const isCrit = (d20Result === 20);
     const activateDR = 12;
 
-    let wieldOutcome = null;
+    let activateOutcome = null;
     let damageRoll = null;
     let takeDamage = null;
     if (activateRoll.total >= activateDR) {
       // SUCCESS!!!
-      wieldOutcome = game.i18n.localize(isCrit ? 'VG.CriticalSuccess' : 'VG.Success');
+      activateOutcome = game.i18n.localize(isCrit ? 'VG.CriticalSuccess' : 'VG.Success');
     } else {
       // FAILURE
-      wieldOutcome = game.i18n.localize(isFumble ? 'VG.ActivateTributeFumble' : 'VG.Failure');
+      activateOutcome = game.i18n.localize(isFumble ? 'VG.ActivateTributeFumble' : 'VG.Failure');
       damageRoll = new Roll("1d2", this.getRollData());
       damageRoll.evaluate({async: false});
       await showDice(damageRoll);
@@ -605,13 +605,13 @@ export class VGActor extends Actor {
     }
 
     const rollResult = {
-      damageRoll,
       activateDR,
-      wieldOutcome,
+      activateOutcome,
       activateRoll,
+      damageRoll,
       takeDamage,
     };
-    const html = await renderTemplate(WIELD_POWER_ROLL_CARD_TEMPLATE, rollResult)
+    const html = await renderTemplate(ACTIVATE_TRIBUTE_ROLL_CARD_TEMPLATE, rollResult)
     ChatMessage.create({
       content : html,
       sound : diceSound(),

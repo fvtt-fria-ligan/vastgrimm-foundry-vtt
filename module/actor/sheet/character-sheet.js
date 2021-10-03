@@ -164,7 +164,7 @@ export class VGCharacterSheet extends VGActorSheet {
     // neuromancy tab
     html
       .find(".activate-tribute-button")
-      .on("click", this._onActivatePowerRoll.bind(this));
+      .on("click", this._onActivateTributeRoll.bind(this));
     html
       .find(".neuromancy-per-day-text")
       .on("click", this._onNeuromancyPointsPerDayRoll.bind(this));
@@ -249,7 +249,7 @@ export class VGCharacterSheet extends VGActorSheet {
     this.actor.useSkill(itemId);
   }
 
-  _onActivatePowerRoll(event) {
+  _onActivateTributeRoll(event) {
     event.preventDefault();
     this.actor.activateTribute();
   }
