@@ -136,6 +136,13 @@
       "entity": "Actor"
     },
     {
+      "name": "macros-twisted-biochemist",
+      "label": "Macros - Twisted Biochemist",
+      "system": "vastgrimm",
+      "path": "./packs/macros-twisted-biochemist.db",
+      "entity": "Macro"
+    },     
+    {
       "name": "parasites",
       "label": "Parasites",
       "system": "vastgrimm",
