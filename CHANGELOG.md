@@ -1,3 +1,6 @@
+# 0.2.0
+- Added rollMacro field to Skill.
+
 # 0.1.3
 - Fixed activate tribute roll card.
 - Fixed typo in Footlocker name.
