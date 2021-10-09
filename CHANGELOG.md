@@ -1,5 +1,6 @@
 # 0.2.0
 - Added rollMacro field to Skill.
+- Added macro for daily creation to Twisted Biochemist chemistry Skill.
 
 # 0.1.3
 - Fixed activate tribute roll card.
