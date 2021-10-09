@@ -140,7 +140,8 @@
     "skill": {
       "description": "",
       "rollFormula": "",
-      "rollLabel": ""
+      "rollLabel": "",
+      "rollMacro": ""
     },
     "tribute": {
       "templates": ["baseEquipment"],
