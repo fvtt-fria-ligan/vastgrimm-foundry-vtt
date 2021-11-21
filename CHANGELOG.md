@@ -1,3 +1,6 @@
+# 0.3.0
+- New token assets.
+
 # 0.2.0
 - Added rollMacro field to Skill.
 - Added macro for daily creation to Twisted Biochemist chemistry Skill.
