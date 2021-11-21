@@ -4,6 +4,9 @@ An unoffical, community-supported system for playing [Vast Grimm](https://vastgr
 
 vastgrimm-foundry-vtt is an independent production by community contributors. It is not affiliated with Infinite Black or Creature Curation. It is published under the [Vast Grimm Third Party License](https://vastgrimm.com/the-horde/).
 
+
+![Latest Release Download Count](https://img.shields.io/github/downloads/fvtt-fria-ligan/vastgrimm-foundry-vtt/latest/system.zip)
+
 ![Screen Shot 2021-09-21 at 3 27 15 PM](https://user-images.githubusercontent.com/189172/134242815-502262e9-152b-4e16-8c0f-6fa9f942a1ef.png)
 
 ## Getting Started
