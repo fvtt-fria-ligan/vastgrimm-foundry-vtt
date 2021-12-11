@@ -12,7 +12,6 @@ import { VG } from "./config.js";
 import { VGItem } from "./item/item.js";
 import { VGItemSheet } from "./item/sheet/item-sheet.js";
 import { createVastGrimmMacro, rollItemMacro } from "./macros.js";
-import { migrateWorld } from "./migration.js";
 import ScvmDialog from "./scvm/scvm-dialog.js";
 import { registerSystemSettings } from "./settings.js";
 
@@ -71,15 +70,10 @@ Hooks.once("init", async function() {
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
  Hooks.once("ready", () => {
-  maybeMigrateWorld();
   applyFontsAndColors();
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => createVastGrimmMacro(data, slot));  
 });
-
-const maybeMigrateWorld = () => {
-  // implement when we need to do a migration
-};
 
 const applyFontsAndColors = () => {
   const fontSchemeSetting = game.settings.get("vastgrimm", "fontScheme");
@@ -162,12 +156,12 @@ Hooks.on('createActor', async (actor, options, userId) => {
         console.error("Could not find Treacherous Merc class in compendium.");
         return;
       }
-      const entity = await pack.getDocument(entry._id);
-      if (!entity) {
+      const doc = await pack.getDocument(entry._id);
+      if (!doc) {
         console.error("Could not get document for Treacherous class.");
         return;
       }
-      await actor.createEmbeddedDocuments("Item", [duplicate(entity.data)]);
+      await actor.createEmbeddedDocuments("Item", [duplicate(doc.data)]);
     }
   }
 });

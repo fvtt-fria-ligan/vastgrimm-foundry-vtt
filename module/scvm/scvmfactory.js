@@ -115,7 +115,7 @@ const rollScvmForClass = async (clazz) => {
                     // const results = tableDraw.results;
                     const results = await compendiumTableDrawMany(table, numRolls);
                     for (const result of results) {
-                        // draw result type: text (0), entity (1), or compendium (2)
+                        // draw result type: text (0), document (1), or compendium (2)
                         if (result.data.type === 0 && result.data.text) {
                             // non-blank text
                             if (result.data.text === "Random Hacked Tribute") {
@@ -128,12 +128,12 @@ const rollScvmForClass = async (clazz) => {
                                 descriptionLines.push(`<p>${table.data.name}: ${result.data.text}</p>`);
                             }
                         } else if (result.data.type === 1) {
-                            // entity
+                            // document
                             // TODO: what do we want to do here?
                         } else if (result.data.type === 2) {
                             // compendium
-                            const entity = await entityFromResult(result);
-                            startingRollItems.push(entity);
+                            const doc = await docFromResult(result);
+                            startingRollItems.push(doc);
                         }
                     }
                 } else {
@@ -177,7 +177,7 @@ const rollScvmForClass = async (clazz) => {
         const weaponRoll = new Roll(weaponDie);
         const weaponTable = ccContent.find(i => i.name === "Weapons Table");
         const weaponDraw = await weaponTable.draw({roll: weaponRoll, displayChat: false});
-        weapons = await entitiesFromResults(weaponDraw.results);
+        weapons = await docsFromResults(weaponDraw.results);
     }
 
     // starting armor
@@ -186,17 +186,17 @@ const rollScvmForClass = async (clazz) => {
         const armorRoll = new Roll(clazz.data.data.armorTableDie);
         const armorTable = ccContent.find(i => i.name === "Armor Table");
         const armorDraw = await armorTable.draw({roll: armorRoll, displayChat: false});
-        armors = await entitiesFromResults(armorDraw.results);
+        armors = await docsFromResults(armorDraw.results);
     }
 
-    // all new entities
-    const ents = [].concat([clazz], weapons, armors, startingItems, startingRollItems);
+    // all new documents
+    const allDocs = [].concat([clazz], weapons, armors, startingItems, startingRollItems);
 
     // add items as owned items
-    const items = ents.filter(e => e instanceof VGItem);
+    const items = allDocs.filter(e => e instanceof VGItem);
 
-    // for other non-item entities, just add some description text
-    const nonItems = ents.filter(e => !(e instanceof VGItem));
+    // for other non-item documents, just add some description text
+    const nonItems = allDocs.filter(e => !(e instanceof VGItem));
     for (const nonItem of nonItems) {
         if (nonItem && nonItem.data && nonItem.data.type) {
             const upperType = nonItem.data.type.toUpperCase();
@@ -277,18 +277,18 @@ const updateActorWithScvm = async (actor, s) => {
     await actor.update(data);
 };
 
-const entitiesFromResults = async (results) => {
-    const ents = [];
+const docsFromResults = async (results) => {
+    const docs = [];
     for (let result of results) {
-        const entity = await entityFromResult(result);
-        if (entity) {            
-            ents.push(entity);
+        const doc = await docFromResult(result);
+        if (doc) {            
+            docs.push(doc);
         } else {
-            console.log("No entity from result:");
+            console.log("No document from result:");
             console.log(result);
         }
     }
-    return ents;
+    return docs;
 }
 
 const randomHackedTribute = async () => {
@@ -296,7 +296,7 @@ const randomHackedTribute = async () => {
     const content = await collection.getDocuments();
     const table = content.find(i => i.name === "Hacked Tributes");
     const draw = await table.draw({displayChat: false});
-    const items = await entitiesFromResults(draw.results);
+    const items = await docsFromResults(draw.results);
     return items[0];
 };
 
@@ -305,13 +305,13 @@ const randomEncryptedTribute = async () => {
     const content = await collection.getDocuments();
     const table = content.find(i => i.name === "Encrypted Tributes");
     const draw = await table.draw({displayChat: false});
-    const items = await entitiesFromResults(draw.results);
+    const items = await docsFromResults(draw.results);
     return items[0];
 };
 
-const entityFromResult = async (result) => {
-    // draw result type: text (0), entity (1), or compendium (2)
-    // TODO: figure out how we want to handle an entity result
+const docFromResult = async (result) => {
+    // draw result type: text (0), document (1), or compendium (2)
+    // TODO: figure out how we want to handle a document result
 
     if (result.data.type === 0) {
         // hack for not having recursive roll tables set up
@@ -326,11 +326,11 @@ const entityFromResult = async (result) => {
         const collection = game.packs.get(result.data.collection);
 
         if (collection) {
-            // TODO: should we use pack.getEntity(entryId) ?
-            // const item = await collection.getEntity(result._id);
+            // TODO: should we use pack.getDocument(entryId) ?
+            // const item = await collection.getDocument(result._id);
             const content = await collection.getDocuments();
-            const entity = content.find(i => i.name === result.data.text);
-            return entity;
+            const doc = content.find(i => i.name === result.data.text);
+            return doc;
         } else {
             console.log("Could not find collection for result:");
             console.log(result);

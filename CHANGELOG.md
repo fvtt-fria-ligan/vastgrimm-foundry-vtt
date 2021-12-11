@@ -1,3 +1,6 @@
+# 0.4.0 
+- Made Vast Grimm compatible with Foundry v9.
+
 # 0.3.0
 - New token assets.
 
