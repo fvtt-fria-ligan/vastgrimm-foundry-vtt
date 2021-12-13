@@ -235,6 +235,7 @@
   "secondaryTokenAttribute": null,
   "minimumCoreVersion": "0.8.9",
   "compatibleCoreVersion": "9",
+  "url": "https://github.com/fvtt-fria-ligan/vastgrimm-foundry-vtt",
   "manifest": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.json",  
   "download": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.zip"
 }
