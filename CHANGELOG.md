@@ -1,3 +1,7 @@
+# 0.5.0
+- Improve various displayed formula and formatting in roll cards.
+- Set url in system.json for better system info display.
+
 # 0.4.0 
 - Made Vast Grimm compatible with Foundry v9.
 

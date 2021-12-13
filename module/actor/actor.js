@@ -122,13 +122,14 @@ export class VGActor extends Actor {
     return total;
   }
 
-  async _testAbility(ability, abilityKey, drModifiers) {
+  async _testAbility(ability, abilityKey, abilityAbbrevKey, drModifiers) {
     let abilityRoll = new Roll(`1d20+@abilities.${ability}.value`, this.getRollData());
     abilityRoll.evaluate({async: false});
     await showDice(abilityRoll);
     const rollResult = {
-      abilityKey: abilityKey,
+      abilityKey,
       abilityRoll,
+      displayFormula: `1d20 + ${game.i18n.localize(abilityAbbrevKey)}`,
       drModifiers,
     }
     const html = await renderTemplate(TEST_ABILITY_ROLL_CARD_TEMPLATE, rollResult)
@@ -144,7 +145,7 @@ export class VGActor extends Actor {
     if (this.isEncumbered()) {
       drModifiers.push(`${game.i18n.localize('VG.Encumbered')}: ${game.i18n.localize('VG.DR')} +2`);
     }
-    await this._testAbility("strength", "VG.AbilityStrength", drModifiers);
+    await this._testAbility("strength", "VG.AbilityStrength", "VG.AbilityStrengthAbbrev", drModifiers);
   }
 
   async testAgility() {
@@ -159,15 +160,15 @@ export class VGActor extends Actor {
     if (this.isEncumbered()) {
       drModifiers.push(`${game.i18n.localize('VG.Encumbered')}: ${game.i18n.localize('VG.DR')} +2`);
     }
-    await this._testAbility("agility", "VG.AbilityAgility", drModifiers);
+    await this._testAbility("agility", "VG.AbilityAgility", "VG.AbilityAgilityAbbrev", drModifiers);
   }
 
   async testPresence() {
-    await this._testAbility("presence", "VG.AbilityPresence", null);
+    await this._testAbility("presence", "VG.AbilityPresence", "VG.AbilityPresenceAbbrev", null);
   }
 
   async testToughness() {
-    await this._testAbility("toughness", "VG.AbilityToughness", null);
+    await this._testAbility("toughness", "VG.AbilityToughness", "VG.AbilityToughnessAbbrev", null);
   }
 
   /**
@@ -271,11 +272,13 @@ export class VGActor extends Actor {
       attackOutcome = game.i18n.localize(isFumble ? 'VG.AttackFumbleText' : 'VG.Miss');
     }
 
-    // TODO: decide key in handlebars/template?
+    // TODO: decide keys in handlebars/template?
+    const abilityAbbrevKey = isRanged ? "VG.AbilityPresenceAbbrev" : "VG.AbilityStrengthAbbrev";    
     const weaponTypeKey = isRanged ? 'VG.WeaponTypeRanged' : 'VG.WeaponTypeMelee';
     const rollResult = {
       actor: this,
       attackDR,
+      attackFormula: `1d20 + ${game.i18n.localize(abilityAbbrevKey)}`,      
       attackRoll,
       attackOutcome,
       damageRoll,      
@@ -429,7 +432,7 @@ export class VGActor extends Actor {
       if (isFumble) {
         defendOutcome = game.i18n.localize('VG.DefendFumbleText');
       } else {
-        defendOutcome = game.i18n.localize('VG.Hit');
+        defendOutcome = game.i18n.localize('VG.YouAreHit');
       }
 
       // roll 2: incoming damage
@@ -470,6 +473,7 @@ export class VGActor extends Actor {
       armorRoll,
       damageRoll,
       defendDR,
+      defendFormula: `1d20 + ${game.i18n.localize("VG.AbilityAgilityAbbrev")}`,
       defendOutcome,
       defendRoll,
       items,
@@ -606,6 +610,7 @@ export class VGActor extends Actor {
 
     const rollResult = {
       activateDR,
+      activateFormula: `1d20 + ${game.i18n.localize("VG.AbilityPresenceAbbrev")}`,
       activateOutcome,
       activateRoll,
       damageRoll,
@@ -664,7 +669,7 @@ export class VGActor extends Actor {
     }    
   }
 
-  async _rollOutcome(dieRoll, rollData, cardTitle, outcomeTextFn) {
+  async _rollOutcome(dieRoll, rollData, cardTitle, outcomeTextFn, rollFormula=null) {
     let roll = new Roll(dieRoll, rollData);
     roll.evaluate({async: false});
     await showDice(roll);
@@ -672,6 +677,7 @@ export class VGActor extends Actor {
       cardTitle: cardTitle,
       outcomeText: outcomeTextFn(roll),
       roll,
+      rollFormula: rollFormula ?? roll.formula,
     };
     const html = await renderTemplate(OUTCOME_ROLL_CARD_TEMPLATE, rollResult)
     ChatMessage.create({
@@ -701,7 +707,8 @@ export class VGActor extends Actor {
       "d4+@abilities.presence.value",
       this.getRollData(),
       `${game.i18n.localize('VG.NeuromancyPoints')} ${game.i18n.localize('VG.PerDay')}`, 
-      (roll) => ` ${game.i18n.localize('VG.NeuromancyPoints')}: ${Math.max(0, roll.total)}`);
+      (roll) => ` ${game.i18n.localize('VG.NeuromancyPoints')}: ${Math.max(0, roll.total)}`,
+      `1d4 + ${game.i18n.localize("VG.AbilityPresenceAbbrev")}`);
     const newPoints = Math.max(0, roll.total);
     return this.update({["data.neuromancyPoints"]: {max: newPoints, value: newPoints}});
   }
