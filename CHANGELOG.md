@@ -1,3 +1,6 @@
+# 0.5.1
+- Fix add / delete item calls for Foundry v9.
+
 # 0.5.0
 - Improve various displayed formula and formatting in roll cards.
 - Set url in system.json for better system info display.
