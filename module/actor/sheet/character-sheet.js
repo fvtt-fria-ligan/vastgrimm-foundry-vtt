@@ -30,7 +30,7 @@ export class VGCharacterSheet extends VGActorSheet {
     data.config = CONFIG.MB;
 
     // Ability Scores
-    for (let [a, abl] of Object.entries(data.data.abilities)) {
+    for (const [a, abl] of Object.entries(data.data.abilities)) {
       const translationKey = CONFIG.VG.abilities[a];
       abl.label = game.i18n.localize(translationKey);
     }
@@ -68,7 +68,7 @@ export class VGCharacterSheet extends VGActorSheet {
     let tributes = [];
     let containers = [];
 
-    for (let i of sheetData.items) {
+    for (const i of sheetData.items) {
       i.img = i.img || DEFAULT_TOKEN;
 
       let item = i.data;

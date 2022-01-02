@@ -279,7 +279,7 @@ const updateActorWithScvm = async (actor, s) => {
 
 const docsFromResults = async (results) => {
     const docs = [];
-    for (let result of results) {
+    for (const result of results) {
         const doc = await docFromResult(result);
         if (doc) {            
             docs.push(doc);

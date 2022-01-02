@@ -39,7 +39,7 @@ export class VGShipSheet extends VGActorSheet {
     let equippedArmor = null;
     let equippedWeapons = [];
 
-    for (let i of sheetData.items) {
+    for (const i of sheetData.items) {
       let item = i.data;
       i.img = i.img || DEFAULT_TOKEN;
 
