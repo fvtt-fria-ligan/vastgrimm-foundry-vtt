@@ -12,9 +12,9 @@
             </div>
             <div class="hitpoints-row">
                 <span class="stat-label">{{ localize "VG.HitPoints" }}:</span>
-                <input class="stat-input" name="data.hp.value" type="number" value="{{data.data.hp.value}}" data-dtype="Number"/>
+                <input class="stat-input" name="system.hp.value" type="number" value="{{data.system.hp.value}}" data-dtype="Number"/>
                 /
-                <input class="stat-input" name="data.hp.max" type="number" value="{{data.data.hp.max}}" data-dtype="Number"/>
+                <input class="stat-input" name="system.hp.max" type="number" value="{{data.system.hp.max}}" data-dtype="Number"/>
             </div>
             <div class="buttons-row">
                 <button type="button" class="roll-button morale rollable">{{localize "VG.Morale"}}</button>
@@ -34,7 +34,7 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor data.system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Details Tab --}}
@@ -42,25 +42,25 @@
             {{!-- Morale --}}
             <div class="form-group">
                 <label>{{ localize "VG.Morale" }}:</label>
-                <input name="data.morale" type="text" value="{{data.data.morale}}" placeholder="10" data-dtype="Number"/>
+                <input name="system.morale" type="text" value="{{data.system.morale}}" placeholder="10" data-dtype="Number"/>
             </div>
 
             {{!-- Trait --}}
             <div class="form-group">
                 <label>{{ localize "VG.FollowerTrait" }}:</label>
-                <input type="text" name="data.trait" value="{{data.data.trait}}" placeholder="None" data-dtype="String" />
+                <input type="text" name="system.trait" value="{{data.system.trait}}" placeholder="None" data-dtype="String" />
             </div>
 
             {{!-- Speciality --}}
             <div class="form-group">
                 <label>{{ localize "VG.FollowerSpeciality" }}:</label>
-                <input type="text" name="data.speciality" value="{{data.data.speciality}}" placeholder="None" data-dtype="String" />
+                <input type="text" name="system.speciality" value="{{data.system.speciality}}" placeholder="None" data-dtype="String" />
             </div>
 
             {{!-- Values --}}
             <div class="form-group">
                 <label>{{ localize "VG.FollowerValues" }}:</label>
-                <input type="text" name="data.values" value="{{data.data.values}}" placeholder="None" data-dtype="String" />
+                <input type="text" name="system.values" value="{{data.system.values}}" placeholder="None" data-dtype="String" />
             </div>
 
         </div>
@@ -77,20 +77,20 @@
                     <h3 class="item-name flexrow">{{localize "VG.ItemTypeWeaponPlural"}}</h3>
                 </li>            
                 <ol class="item-list weapon-list">
-                    {{#each data.data.equippedWeapons as |item id|}}
+                    {{#each data.system.equippedWeapons as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name">{{item.name}}</h4>
                         <div class="item-fields">
-                            <span class="item-field damage-die">{{item.data.damageDie}}</span>
-                            <span class="item-field weapon-type">{{item.data.weaponType}}</span>
+                            <span class="item-field damage-die">{{item.system.damageDie}}</span>
+                            <span class="item-field weapon-type">{{item.system.weaponType}}</span>
                         </div>
                         <div class="item-buttons">
                             <button type="button" class="item-button rollable attack-button"
                                     title="{{localize 'VG.Attack'}}">{{localize 'VG.Attack'}}</button>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{item.system.toggleClass}}" title='{{item.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
@@ -108,39 +108,39 @@
                     </div>
                 </li>   
                 <ol class="item-list armor-list">
-                    {{#if data.data.equippedArmor}}
-                    <li class="item flexrow" data-item-id="{{data.equippedArmor._id}}">
-                        <img src="{{data.data.equippedArmor.img}}" title="{{data.data.equippedArmor.name}}" width="24" height="24" />
-                        <h4 class="item-name">{{data.data.equippedArmor.name}}</h4>
+                    {{#if data.system.equippedArmor}}
+                    <li class="item flexrow" data-item-id="{{system.equippedArmor._id}}">
+                        <img src="{{data.system.equippedArmor.img}}" title="{{data.system.equippedArmor.name}}" width="24" height="24" />
+                        <h4 class="item-name">{{data.system.equippedArmor.name}}</h4>
                         <div class="item-buttons">
                             <div class="armor-tiers">
                                 <div class="tiers">
                                     <label class="stat-label tier-label">{{ localize "VG.Tier" }}:</label>
                                     <ul class="tiers">
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="0" {{#ifEq data.data.equippedArmor.data.tier.value 0}}checked{{/ifEq}}/><span class="tier-num">0</span><span class="tier-dmg">-0</span></label></li>
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="1" {{#ifEq data.data.equippedArmor.data.tier.value 1}}checked{{/ifEq}}/><span class="tier-num">1</span><span class="tier-dmg">-d2</span></label></li>
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="2" {{#ifEq data.data.equippedArmor.data.tier.value 2}}checked{{/ifEq}} {{#ifLt data.data.equippedArmor.data.tier.max 2}}disabled="true"{{/ifLt}}/><span class="tier-num">2</span><span class="tier-dmg">-d4</span></label></li>
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="3" {{#ifEq data.data.equippedArmor.data.tier.value 3}}checked{{/ifEq}} {{#ifLt data.data.equippedArmor.data.tier.max 3}}disabled="true"{{/ifLt}}/><span class="tier-num">3</span><span class="tier-dmg">-d6</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="0" {{#ifEq data.system.equippedArmor.system.tier.value 0}}checked{{/ifEq}}/><span class="tier-num">0</span><span class="tier-dmg">-0</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="1" {{#ifEq data.system.equippedArmor.system.tier.value 1}}checked{{/ifEq}}/><span class="tier-num">1</span><span class="tier-dmg">-d2</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="2" {{#ifEq data.system.equippedArmor.system.tier.value 2}}checked{{/ifEq}} {{#ifLt data.system.equippedArmor.system.tier.max 2}}disabled="true"{{/ifLt}}/><span class="tier-num">2</span><span class="tier-dmg">-d4</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="3" {{#ifEq data.system.equippedArmor.system.tier.value 3}}checked{{/ifEq}} {{#ifLt data.system.equippedArmor.system.tier.max 3}}disabled="true"{{/ifLt}}/><span class="tier-num">3</span><span class="tier-dmg">-d6</span></label></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedArmor.data.toggleClass}}" title='{{data.data.equippedArmor.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{data.system.equippedArmor.system.toggleClass}}" title='{{data.system.equippedArmor.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
                     </li>
                     {{/if}}
-                    {{#if data.equippedHelmet}}
-                    <li class="item flexrow" data-item-id="{{data.data.equippedHelmet._id}}">
-                        <img src="{{data.data.equippedHelmet.img}}" title="{{data.data.equippedHelmet.name}}" width="24" height="24" />
-                        <h4 class="item-name">{{data.data.equippedHelmet.name}}</h4>
+                    {{#if data.system.equippedHelmet}}
+                    <li class="item flexrow" data-item-id="{{data.system.equippedHelmet._id}}">
+                        <img src="{{data.system.equippedHelmet.img}}" title="{{data.system.equippedHelmet.name}}" width="24" height="24" />
+                        <h4 class="item-name">{{data.system.equippedHelmet.name}}</h4>
                         <div class="item-buttons">
                             <span class="rule-text helmet-rule">{{localize 'VG.HelmetUseText'}}</span>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedHelmet.data.toggleClass}}" title='{{data.data.equippedHelmet.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{data.system.equippedHelmet.system.toggleClass}}" title='{{data.system.equippedHelmet.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
@@ -166,7 +166,7 @@
             <div class="equipment-top-row">
                 <div class="credits">
                     <span class="stat-label credits-label">{{ localize "VG.Credits" }}:</span>
-                    <input class="stat-input credits-input" name="data.credits" type="number" value="{{data.data.credits}}" data-dtype="Number" />  
+                    <input class="stat-input credits-input" name="system.credits" type="number" value="{{data.system.credits}}" data-dtype="Number" />  
                 </div>
             </div>
             <ol class="items-list equipment-list">
@@ -179,29 +179,29 @@
                     </div>
                 </li>
                 <ol class="item-list">
-                    {{#each data.data.equipment as |item id|}}
+                    {{#each data.system.equipment as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name item-edit rollable">
                             {{item.name}}
                             {{#ifEq item.type 'container'}}
-                              ({{localize 'VG.ContainerHolds'}} {{item.data.capacity}})
+                              ({{localize 'VG.ContainerHolds'}} {{item.system.capacity}})
                             {{/ifEq}}
-                            {{#ifGt item.data.quantity 1}}
-                              ({{item.data.quantity}})
+                            {{#ifGt item.system.quantity 1}}
+                              ({{item.system.quantity}})
                             {{/ifGt}}
                         </h4>
                         <div class="item-buttons">
                         </div>
                         <div class="item-controls">
-                            {{#ifEq item.type 'misc'}}
-                                <a class="item-control item-qty-plus" title="Add Quantity"><i class="fas fa-plus"></i></a>
+                            {{#if item.system.canPlusMinus}}                            
+                              <a class="item-control item-qty-plus" title="Add Quantity"><i class="fas fa-plus"></i></a>
                                 &nbsp;
                                 <a class="item-control item-qty-minus" title="Subtract Quantity"><i class="fas fa-minus"></i></a>
                                 &nbsp;
-                            {{/ifEq}}
-                            {{#if item.data.equippable}}
-                                <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            {{/if}}
+                            {{#if item.system.equippable}}
+                                <a class="item-control item-toggle {{item.system.toggleClass}}" title='{{item.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             {{/if}}
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>

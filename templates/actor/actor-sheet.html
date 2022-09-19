@@ -10,7 +10,7 @@
         <div>
            SECTION 0. ITEM INFORMATION </div>
         <div class="item-name">
-          <input class="item-name" name="data.name" type="text" value="{{data.name}}" placeholder="Item Name" spellcheck="false"/>
+          <input class="item-name" name="system.name" type="text" value="{{system.name}}" placeholder="Item Name" spellcheck="false"/>
         </div>
       </div>
     </div>
@@ -18,13 +18,13 @@
   <nav class="sheet-tabs tabs" data-group="primary"><a class="item" data-tab="notes">{{ localize 'DIS.TabNotes' }}</a><a class="item" data-tab="data">{{ localize 'DIS.TabData' }}</a></nav>
   <section class="sheet-body"> 
     <div class="tab notes-tab" data-group="primary" data-tab="notes">
-      <div class="notes-wrapper">{{editor content=data.data.notes target="data.notes" button=true owner=owner editable=editable}}</div>
+      <div class="notes-wrapper">{{editor data.system.notes target="system.notes" button=true owner=owner editable=editable}}</div>
     </div>
     <div class="tab data-tab" data-group="primary" data-tab="data">
       <div class="data-wrapper">
         <div class="form-group"> 
           <label>Foo Field </label>
-          <input type="number" name="data.fooField" value="{{data.data.fooField}}" placeholder="1" data-dtype="Number"/>
+          <input type="number" name="system.fooField" value="{{data.system.fooField}}" placeholder="1" data-dtype="Number"/>
         </div>
       </div>
     </div>

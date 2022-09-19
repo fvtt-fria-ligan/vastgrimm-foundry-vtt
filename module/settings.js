@@ -22,7 +22,10 @@ export const registerSystemSettings = () => {
       "foundryDefault": "SETTINGS.VGFoundryDefault",
       "whiteOnBlackBlue": "SETTINGS.VGWhiteOnBlackBlue",
       "whiteOnBlackPink": "SETTINGS.VGWhiteOnBlackPink",
-    }
+    },
+    onChange: () => {
+      location.reload();
+    },    
   });  
 
   /** UI Font scheme */
@@ -36,7 +39,10 @@ export const registerSystemSettings = () => {
     choices: {
       "sci-fi": "SETTINGS.VGSciFi",
       "legible": "SETTINGS.VGLegible",
-    }
+    },
+    onChange: () => {
+      location.reload();
+    },    
   });  
 
 };

@@ -23,7 +23,7 @@ import VGActorSheet from "./actor-sheet.js";
     const superData = super.getData();
     const data = superData.data;
     data.config = CONFIG.VG;
-    if (this.actor.data.type == 'container') {
+    if (this.actor.type == 'container') {
       this._prepareContainerItems(data);
     }
     return superData;
@@ -45,8 +45,8 @@ import VGActorSheet from "./actor-sheet.js";
       }
     }
     equipment.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-    sheetData.data.equipment = equipment;
-    sheetData.data.containerSpace = this._containerSpace(sheetData);
+    sheetData.system.equipment = equipment;
+    sheetData.system.containerSpace = this._containerSpace(sheetData);
   }
 
   _containerSpace(sheetData) {

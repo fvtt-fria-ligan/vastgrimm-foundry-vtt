@@ -8,7 +8,7 @@
                 <input name="name" type="text" value="{{item.name}}" placeholder="{{ localize 'VG.ItemName' }}"/>
             </h1>
             <div class="item-subtitle">
-                <h4 class="item-type">{{ data.data.localizedTributeType }}</h4>
+                <h4 class="item-type">{{data.system.localizedTributeType }}</h4>
             </div>
         </div>
     </header>
@@ -23,7 +23,7 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor data.system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Details Tab --}}
@@ -32,32 +32,32 @@
             {{!-- Price --}}
             <div class="form-group">
                 <label>{{ localize "VG.ItemPrice" }}:</label>
-                <input type="number" name="data.price" value="{{data.data.price}}" placeholder="0" data-dtype="Number" />
+                <input type="number" name="system.price" value="{{data.system.price}}" placeholder="0" data-dtype="Number" />
             </div> 
 
             {{!-- Weight --}}
             <div class="form-group">
                 <label>{{ localize "VG.Weight" }}:</label>
-                <input type="number" name="data.weight" value="{{data.data.weight}}" placeholder="1" data-dtype="Number" />
+                <input type="number" name="system.weight" value="{{data.system.weight}}" placeholder="1" data-dtype="Number" />
             </div> 
 
             {{!-- Volume --}}
             <div class="form-group">
                 <label>{{ localize "VG.Volume" }}:</label>
-                <input type="number" name="data.volume" value="{{data.data.volume}}" placeholder="1" data-dtype="Number" />
+                <input type="number" name="system.volume" value="{{data.system.volume}}" placeholder="1" data-dtype="Number" />
             </div> 
 
             {{!-- Quantity --}}
             <div class="form-group">
                 <label>{{ localize "VG.Quantity" }}:</label>
-                <input type="number" name="data.quantity" value="{{data.data.quantity}}" placeholder="1" data-dtype="Number" />
+                <input type="number" name="system.quantity" value="{{data.system.quantity}}" placeholder="1" data-dtype="Number" />
             </div> 
 
             {{!-- Tribute type --}}
             <div class="form-group">
                 <label>{{ localize "VG.TributeType" }}:</label>
-                <select name="data.scrollType">
-                    {{#select data.data.type}}
+                <select name="system.scrollType">
+                    {{#selectdata.system.type}}
                         {{#each config.tributeTypes as |name value|}}
                             <option value="{{value}}">{{localize name}}</option>
                         {{/each}}

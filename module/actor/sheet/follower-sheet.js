@@ -1,5 +1,7 @@
 import VGActorSheet from "./actor-sheet.js";
 
+const byName = (a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
+
 /**
  * @extends {ActorSheet}
  */
@@ -23,7 +25,7 @@ export class VGFollowerSheet extends VGActorSheet {
     const superData = super.getData();
     const data = superData.data;
     data.config = CONFIG.VG;
-    if (this.actor.data.type == 'follower') {
+    if (this.actor.type == 'follower') {
       this._prepareFollowerItems(data);
     }
     return superData;
@@ -44,7 +46,7 @@ export class VGFollowerSheet extends VGActorSheet {
     let containers = [];
 
     for (const i of sheetData.items) {
-      let item = i.data;
+      let item = i.system;
       i.img = i.img || DEFAULT_TOKEN;
 
       item.equippable = (i.type === 'armor' || i.type === 'helmet' || i.type === 'weapon');
@@ -80,10 +82,14 @@ export class VGFollowerSheet extends VGActorSheet {
     equippedWeapons.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
     // Assign to new properties
-    sheetData.data.equipment = equipment;
-    sheetData.data.equippedArmor = equippedArmor;
-    sheetData.data.equippedHelmet = equippedHelmet;
-    sheetData.data.equippedWeapons = equippedWeapons;
+    sheetData.system.equipment = equipment;
+    sheetData.system.equippedArmor = equippedArmor;
+    sheetData.system.equippedHelmet = equippedHelmet;
+    sheetData.system.equippedWeapons = equippedWeapons;
+
+    sheetData.system.ammo = sheetData.items
+      .filter((item) => item.type === CONFIG.MB.itemTypes.ammo)
+      .sort(byName);    
   }
 
   /** @override */

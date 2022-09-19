@@ -203,10 +203,20 @@ export default class VGActorSheet extends ActorSheet {
   _onDefendRoll(event) {
     event.preventDefault();
     const sheetData = this.getData();
-    const armorItemId = sheetData.data.equippedArmor ? sheetData.data.equippedArmor.id : null;
-    const helmetItemId = sheetData.data.equippedHelmet ? sheetData.data.equippedHelmet.id : null;
+    const armorItemId = sheetData.system.equippedArmor ? sheetData.system.equippedArmor.id : null;
+    const helmetItemId = sheetData.system.equippedHelmet ? sheetData.system.equippedHelmet.id : null;
     this.actor.defend(armorItemId, helmetItemId);
   }
+
+  async _onAmmoSelect(event) {
+    event.preventDefault();
+    const select = $(event.currentTarget);
+    const weapon = this.actor.items.get(select.data("itemId"));
+    //const ammo = this.actor.items.get(select.val());
+    if (weapon) {
+      await weapon.update({ ["data.ammoId"]: select.val() });
+    }
+  }  
  }
 
 /**

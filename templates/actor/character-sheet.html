@@ -12,9 +12,9 @@
             </div>
             {{!-- we are cheating a bit here, using the 'item' class usually used on LI elements,
              so we can get the item _id to be found by the common click handler --}}
-            <div class="classname-row item" data-item-id="{{data.data.class._id}}">
+            <div class="classname-row item" data-item-id="{{data.system.class._id}}">
                 <div class="stat-label">{{ localize "VG.Class" }}:</div>
-                <label class="classname item-edit rollable">{{data.data.class.name}}</label>
+                <label class="classname item-edit rollable">{{data.system.class.name}}</label>
                 <div class="item-controls">
                     <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                     <a class="item-control item-scvmify" title="Obliterate"><i class="fas fa-skull"></i></a>
@@ -23,9 +23,9 @@
             <div class="hitpoints-row">
                 <div class="hp-entries">
                     <span class="stat-label">{{ localize "VG.HP" }}:</span>
-                    <input class="stat-input" name="data.hp.value" type="number" value="{{data.data.hp.value}}" data-dtype="Number"/>
+                    <input class="stat-input" name="system.hp.value" type="number" value="{{data.system.hp.value}}" data-dtype="Number"/>
                     /
-                    <input class="stat-input" name="data.hp.max" type="number" value="{{data.data.hp.max}}" data-dtype="Number"/>
+                    <input class="stat-input" name="system.hp.max" type="number" value="{{data.system.hp.max}}" data-dtype="Number"/>
                 </div>
                 <div class="rest-buttons">
                     <button type="button" class="button item-button broken-button rollable" title="{{localize 'VG.Broken'}}">{{localize 'VG.Broken'}}</button>
@@ -34,8 +34,8 @@
             </div>
             <div class="favors-row">
                 <span class="stat-label">{{ localize "VG.Favors" }}:</span>
-                <input class="stat-input" name="data.favors.value" type="number" value="{{data.data.favors.value}}" data-dtype="Number"/>
-                <span class="rule-text favor-rule rollable">{{data.data.class.data.favorDie}} {{ localize "VG.PerRest"}}</span>
+                <input class="stat-input" name="system.favors.value" type="number" value="{{data.system.favors.value}}" data-dtype="Number"/>
+                <span class="rule-text favor-rule rollable">{{data.system.class.system.favorDie}} {{ localize "VG.PerRest"}}</span>
                 <!--
                 <div class="rest-buttons">
                 -->
@@ -44,14 +44,14 @@
             <div class="torments-row">
                 <label class="stat-label torments-label">{{ localize "VG.Torments" }}:</label>
                 <ul class="torments">
-                    <li><label><input type="radio" name="data.torments.value" value="0" data-dtype="Number" {{#ifEq data.data.torments.value 0}}checked{{/ifEq}}/><span>0</span></label></li>                  
-                    <li><label><input type="radio" name="data.torments.value" value="1" data-dtype="Number" {{#ifEq data.data.torments.value 1}}checked{{/ifEq}}/><span>1</span></label></li>                  
-                    <li><label><input type="radio" name="data.torments.value" value="2" data-dtype="Number" {{#ifEq data.data.torments.value 2}}checked{{/ifEq}}/><span>2</span></label></li>                  
-                    <li><label><input type="radio" name="data.torments.value" value="3" data-dtype="Number" {{#ifEq data.data.torments.value 3}}checked{{/ifEq}}/><span>3</span></label></li>                  
-                    <li><label><input type="radio" name="data.torments.value" value="4" data-dtype="Number" {{#ifEq data.data.torments.value 4}}checked{{/ifEq}}/><span>4</span></label></li>                  
-                    <li><label><input type="radio" name="data.torments.value" value="5" data-dtype="Number" {{#ifEq data.data.torments.value 5}}checked{{/ifEq}}/><span>5</span></label></li>                  
-                    <li><label><input type="radio" name="data.torments.value" value="6" data-dtype="Number" {{#ifEq data.data.torments.value 6}}checked{{/ifEq}}/><span>6</span></label></li>                  
-                    <li><label><input type="radio" name="data.torments.value" value="7" data-dtype="Number" {{#ifEq data.data.torments.value 7}}checked{{/ifEq}}/><span>X</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="0" data-dtype="Number" {{#ifEq data.system.torments.value 0}}checked{{/ifEq}}/><span>0</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="1" data-dtype="Number" {{#ifEq data.system.torments.value 1}}checked{{/ifEq}}/><span>1</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="2" data-dtype="Number" {{#ifEq data.system.torments.value 2}}checked{{/ifEq}}/><span>2</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="3" data-dtype="Number" {{#ifEq data.system.torments.value 3}}checked{{/ifEq}}/><span>3</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="4" data-dtype="Number" {{#ifEq data.system.torments.value 4}}checked{{/ifEq}}/><span>4</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="5" data-dtype="Number" {{#ifEq data.system.torments.value 5}}checked{{/ifEq}}/><span>5</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="6" data-dtype="Number" {{#ifEq data.system.torments.value 6}}checked{{/ifEq}}/><span>6</span></label></li>                  
+                    <li><label><input type="radio" name="system.torments.value" value="7" data-dtype="Number" {{#ifEq data.system.torments.value 7}}checked{{/ifEq}}/><span>X</span></label></li>                  
                 </ul>
             </div>
         </div>
@@ -59,19 +59,19 @@
         </div>
         <div class="header-col3">
           <div class="ability-row">
-            <input class="ability-input" type="text" name="data.abilities.strength.value" value="{{numberFormat data.data.abilities.strength.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
+            <input class="ability-input" type="text" name="system.abilities.strength.value" value="{{numberFormatdata.system.abilities.strength.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
             <span class="ability-label rollable strength">{{ localize 'VG.AbilityStrengthAbbrev' }}</span>
           </div>
           <div class="ability-row">
-            <input class="ability-input" type="text" name="data.abilities.agility.value" value="{{numberFormat data.data.abilities.agility.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
+            <input class="ability-input" type="text" name="system.abilities.agility.value" value="{{numberFormatdata.system.abilities.agility.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
             <span class="ability-label rollable agility">{{ localize 'VG.AbilityAgilityAbbrev' }}</span>
           </div>
           <div class="ability-row">
-            <input class="ability-input" type="text" name="data.abilities.presence.value" value="{{numberFormat data.data.abilities.presence.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
+            <input class="ability-input" type="text" name="system.abilities.presence.value" value="{{numberFormatdata.system.abilities.presence.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
             <span class="ability-label rollable presence">{{ localize 'VG.AbilityPresenceAbbrev' }}</span>
           </div>
           <div class="ability-row">
-            <input class="ability-input" type="text" name="data.abilities.toughness.value" value="{{numberFormat data.data.abilities.toughness.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
+            <input class="ability-input" type="text" name="system.abilities.toughness.value" value="{{numberFormatdata.system.abilities.toughness.value decimals=0 sign=true}}" data-dtype="Number" size="3" />
             <span class="ability-label rollable toughness">{{ localize 'VG.AbilityToughnessAbbrev' }}</span>
           </div>
         </div>
@@ -91,7 +91,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab class-tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor data.system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Skillz Tab --}}
@@ -105,14 +105,14 @@
                 </li>
                 --}}
                 <ol class="item-list">
-                    {{#each data.data.skills as |item id|}}
+                    {{#each data.system.skills as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name item-edit rollable">{{item.name}}</h4>
                         <div class="item-buttons">
-                            {{#if item.data.rollLabel}}
-                                <button type="button" class="item-button rollable skill-button" data-roll="{{item.data.rollFormula}}" data-label="{{item.data.rollLabel}}"
-                                        title="{{item.data.rollLabel}}">{{item.data.rollLabel}}</button>
+                            {{#if item.system.rollLabel}}
+                                <button type="button" class="item-button rollable skill-button" data-roll="{{item.system.rollFormula}}" data-label="{{item.system.rollLabel}}"
+                                        title="{{item.system.rollLabel}}">{{item.system.rollLabel}}</button>
                             {{/if}}
                         </div>
                         <div class="item-controls">
@@ -122,7 +122,7 @@
                     </li>
                     {{/each}}
                 </ol>
-                {{#unless data.data.skills.length}}
+                {{#unless data.system.skills.length}}
                     <div class="rule-text you-have-no">
                         {{localize 'VG.YouHaveNoSkills'}}
                     </div>
@@ -137,32 +137,54 @@
                 <button type="button" class="button item-button rollable initiative-button legion-initiative-button" title="{{localize 'VG.Legion'}}">{{localize "VG.Legion"}}</button>
                 <button type="button" class="button item-button rollable initiative-button individual-initiative-button" title="{{localize 'VG.IndividualI'}}">{{localize "VG.Individual"}}</button>
             </div>
+
+            {{!-- Weapons --}}
             <ol class="items-list inventory-list">
                 <li class="items-header flexrow">
                     <h3 class="item-name flexrow">{{localize "VG.ItemTypeWeaponPlural"}}</h3>
                 </li>
                 <ol class="item-list weapon-list">
-                    {{#each data.data.equippedWeapons as |item id|}}
+                    {{#each data.system.equippedWeapons as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
-                        <h4 class="item-name item-edit rollable">{{item.name}}</h4>
+                        <div class="weapon-name-col">
+                          <h4 class="item-name item-edit rollable">{{item.name}}</h4>
+                          {{#if item.system.usesAmmo}}
+                          <div class="ammo-select-col">
+                            <select
+                              class="ammo-select"
+                              name="selectedAmmo-{{item._id}}"
+                              data-dtype="Number"
+                              data-item-id="{{item._id}}"
+                            >
+                              {{#select item.system.ammoId}}
+                              <option value="">{{localize 'MB.ItemTypeAmmo'}}</option>
+                              {{#each ../data.system.ammo as |ammo ammoId|}}
+                              <option value="{{ammo._id}}">
+                                {{ammo.name}} ({{ammo.system.quantity}})
+                              </option>
+                              {{/each}} {{/select}}
+                            </select>
+                          </div>
+                          {{/if}}
+                        </div>                        
                         <div class="item-fields">
-                            <span class="item-field damage-die">{{item.data.damageDie}}</span>
-                            <span class="item-field weapon-type">{{item.data.weaponType}}</span>
+                            <span class="item-field damage-die">{{item.system.damageDie}}</span>
+                            <span class="item-field weapon-type">{{item.system.weaponType}}</span>
                         </div>
                         <div class="item-buttons">
                             <button type="button" class="item-button rollable attack-button" data-roll="d20+@abilities.strength.value" data-label="attack_{{item._id}}"
                                     title="{{localize 'VG.Attack'}}">{{localize 'VG.Attack'}}</button>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{item.system.toggleClass}}" title='{{item.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
                     </li>
                     {{/each}}
                 </ol>
-                {{#if data.data.equippedWeapons.length}}
+                {{#if data.system.equippedWeapons.length}}
                     <div class="rule-text attack-rule">
                         {{localize 'VG.AttackCritText'}}
                         {{localize 'VG.AttackFumbleText'}}
@@ -173,52 +195,54 @@
                     </div>
                 {{/if}}
                 <div class="combat-gutter"></div>
+
+                {{!-- Armor --}}
                 <li class="items-header flexrow">
                     <h3 class="item-name flexrow">{{localize "VG.ItemTypeArmorPlural"}}</h3>
                     <div class="item-controls flexrow">
                     </div>
                 </li>
                 <ol class="item-list armor-list">
-                    {{#if data.data.equippedArmor}}
-                    <li class="item flexrow" data-item-id="{{data.data.equippedArmor._id}}">
-                        <img src="{{data.data.equippedArmor.img}}" title="{{data.equippedArmor.name}}" width="24" height="24" />
-                        <h4 class="item-name item-edit rollable">{{data.data.equippedArmor.name}}</h4>
+                    {{#if data.system.equippedArmor}}
+                    <li class="item flexrow" data-item-id="{{data.system.equippedArmor._id}}">
+                        <img src="{{data.system.equippedArmor.img}}" title="{{system.equippedArmor.name}}" width="24" height="24" />
+                        <h4 class="item-name item-edit rollable">{{data.system.equippedArmor.name}}</h4>
                         <div class="item-buttons">
                             <div class="armor-tiers">
                                 <div class="tiers">
                                     <label class="stat-label tier-label">{{ localize "VG.Tier" }}:</label>
                                     <ul class="tiers">
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="0" {{#ifEq data.data.equippedArmor.data.tier.value 0}}checked{{/ifEq}}/><span class="tier-num">0</span><span class="tier-dmg">-0</span></label></li>
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="1" {{#ifEq data.data.equippedArmor.data.tier.value 1}}checked{{/ifEq}}/><span class="tier-num">1</span><span class="tier-dmg">-d2</span></label></li>
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="2" {{#ifEq data.data.equippedArmor.data.tier.value 2}}checked{{/ifEq}} {{#ifLt data.data.equippedArmor.data.tier.max 2}}disabled="true"{{/ifLt}}/><span class="tier-num">2</span><span class="tier-dmg">-d4</span></label></li>
-                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="3" {{#ifEq data.data.equippedArmor.data.tier.value 3}}checked{{/ifEq}} {{#ifLt data.data.equippedArmor.data.tier.max 3}}disabled="true"{{/ifLt}}/><span class="tier-num">3</span><span class="tier-dmg">-d6</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="0" {{#ifEq data.system.equippedArmor.system.tier.value 0}}checked{{/ifEq}}/><span class="tier-num">0</span><span class="tier-dmg">-0</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="1" {{#ifEq data.system.equippedArmor.system.tier.value 1}}checked{{/ifEq}}/><span class="tier-num">1</span><span class="tier-dmg">-d2</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="2" {{#ifEq data.system.equippedArmor.system.tier.value 2}}checked{{/ifEq}} {{#ifLt data.system.equippedArmor.system.tier.max 2}}disabled="true"{{/ifLt}}/><span class="tier-num">2</span><span class="tier-dmg">-d4</span></label></li>
+                                        <li><label><input class="tier-radio" type="radio" name="tier.value" value="3" {{#ifEq data.system.equippedArmor.system.tier.value 3}}checked{{/ifEq}} {{#ifLt data.system.equippedArmor.system.tier.max 3}}disabled="true"{{/ifLt}}/><span class="tier-num">3</span><span class="tier-dmg">-d6</span></label></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedArmor.data.toggleClass}}" title='{{data.data.equippedArmor.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{data.system.equippedArmor.system.toggleClass}}" title='{{data.system.equippedArmor.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
                     </li>
                     {{/if}}
-                    {{#if data.data.equippedHelmet}}
-                    <li class="item flexrow" data-item-id="{{data.data.equippedHelmet._id}}">
-                        <img src="{{data.data.equippedHelmet.img}}" title="{{data.data.equippedHelmet.name}}" width="24" height="24" />
-                        <h4 class="item-name item-edit rollable">{{data.data.equippedHelmet.name}}</h4>
+                    {{#if data.system.equippedHelmet}}
+                    <li class="item flexrow" data-item-id="{{data.system.equippedHelmet._id}}">
+                        <img src="{{data.system.equippedHelmet.img}}" title="{{data.system.equippedHelmet.name}}" width="24" height="24" />
+                        <h4 class="item-name item-edit rollable">{{data.system.equippedHelmet.name}}</h4>
                         <div class="item-buttons">
                             <span class="rule-text helmet-rule">{{localize 'VG.HelmetUseText'}}</span>
                         </div>
                         <div class="item-controls">
-                            <a class="item-control item-toggle {{data.data.equippedHelmet.data.toggleClass}}" title='{{data.data.equippedHelmet.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            <a class="item-control item-toggle {{data.system.equippedHelmet.system.toggleClass}}" title='{{data.system.equippedHelmet.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                         </div>
                     </li>
                     {{/if}}
-                    {{#unless data.data.equippedArmor}}
-                      {{#unless data.data.equippedHelmet}}
+                    {{#unless data.system.equippedArmor}}
+                      {{#unless data.system.equippedHelmet}}
                         <div class="rule-text you-have-no">
                             {{localize 'VG.EquipArmorToAbsorb'}}
                         </div>
@@ -253,7 +277,7 @@
                 <div class="uses-remaining">
                     <div>
                         <label class="stat-label uses-remaining-label">{{localize "VG.NeuromancyPoints"}}:</label>
-                        <input class="stat-input" name="data.neuromancyPoints.value" type="number" value="{{data.data.neuromancyPoints.value}}" data-dtype="Number" />
+                        <input class="stat-input" name="system.neuromancyPoints.value" type="number" value="{{data.system.neuromancyPoints.value}}" data-dtype="Number" />
                     </div>
                     <span class="rule-text rollable neuromancy-per-day-text">{{localize "VG.NeuromancyPointsPerDayText"}}</span>
                 </div>
@@ -265,7 +289,7 @@
                     </div>
                 </li>
                 <ol class="item-list">
-                    {{#each data.data.tributes as |item id|}}
+                    {{#each data.system.tributes as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name item-edit rollable">{{item.name}}</h4>
@@ -278,7 +302,7 @@
                     </li>
                     {{/each}}
                 </ol>
-                {{#unless data.data.tributes.length}}
+                {{#unless data.system.tributes.length}}
                     <div class="rule-text you-have-no">
                         {{localize 'VG.YouHaveNoTributes'}}
                     </div>
@@ -291,21 +315,21 @@
             <div class="equipment-top-row">
                 <div class="credits">
                     <span class="stat-label credits-label">{{ localize "VG.Credits" }}:</span>
-                    <input class="stat-input credits-input" name="data.credits" type="number" value="{{data.data.credits}}" data-dtype="Number" />  
+                    <input class="stat-input credits-input" name="system.credits" type="number" value="{{data.system.credits}}" data-dtype="Number" />  
                 </div>
                 <div class="carry-block">
                     <div>
                         <span class="stat-label carrying-label">{{ localize "VG.Carrying" }}:</span>
-                        <span class="stat-value">{{data.data.carryingCount}}</span>
+                        <span class="stat-value">{{data.system.carryingCount}}</span>
                         /
-                        <span class="stat-value">{{data.data.carryingCapacity}}</span>
+                        <span class="stat-value">{{data.system.carryingCapacity}}</span>
                         <span class="stat-label container-label">{{ localize "VG.ContainerAmountIn" }}:</span>
-                        <span class="stat-value">{{data.data.containerSpace}}</span>
+                        <span class="stat-value">{{data.system.containerSpace}}</span>
                         /
-                        <span class="stat-value">{{data.data.containerCapacity}}</span>
+                        <span class="stat-value">{{data.system.containerCapacity}}</span>
                     </div>
                     <div>
-                        <span class="rule-text {{data.data.encumberedClass}}">
+                        <span class="rule-text {{data.system.encumberedClass}}">
                             {{localize 'VG.CarryingRule'}}
                         </span>
                     </div>
@@ -321,29 +345,29 @@
                     </div>
                 </li>
                 <ol class="item-list">
-                    {{#each data.data.equipment as |item id|}}
+                    {{#each data.system.equipment as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name item-edit rollable">
                             {{item.name}}
                             {{#ifEq item.type 'container'}}
-                              ({{localize 'VG.ContainerHolds'}} {{item.data.capacity}})
+                              ({{localize 'VG.ContainerHolds'}} {{item.system.capacity}})
                             {{/ifEq}}
-                            {{#ifGt item.data.quantity 1}}
-                              ({{item.data.quantity}})
+                            {{#ifGt item.system.quantity 1}}
+                              ({{item.system.quantity}})
                             {{/ifGt}}
                         </h4>
                         <div class="item-buttons">
                         </div>
                         <div class="item-controls">
-                            {{#ifEq item.type 'misc'}}
+                            {{#if item.system.canPlusMinus}}                            
                                 <a class="item-control item-qty-plus" title="Add Quantity"><i class="fas fa-plus"></i></a>
                                 &nbsp;
                                 <a class="item-control item-qty-minus" title="Subtract Quantity"><i class="fas fa-minus"></i></a>
                                 &nbsp;
-                            {{/ifEq}}
-                            {{#if item.data.equippable}}
-                                <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            {{/if}}
+                            {{#if item.system.equippable}}
+                                <a class="item-control item-toggle {{item.system.toggleClass}}" title='{{item.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             {{/if}}
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>

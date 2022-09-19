@@ -103,6 +103,7 @@ VG.fontSchemes = {
 };
 
 VG.itemTypes = {
+  ammo: "ammo",
   armor: "armor",
   class: "class",
   consumable: "consumable",
@@ -117,6 +118,7 @@ VG.itemTypes = {
 };
 
 VG.itemTypeKeys = {
+  "ammo": "VG.ItemTypeAmmo",
   "armor": "VG.ItemTypeArmor",
   "class": "VG.ItemTypeClass",
   "container": "VG.ItemTypeContainer",
@@ -131,6 +133,7 @@ VG.itemTypeKeys = {
 
 // these Item types are "equipment"
 VG.itemEquipmentTypes = [
+  VG.itemTypes.ammo,
   VG.itemTypes.armor,
   VG.itemTypes.consumable,
   VG.itemTypes.container,
@@ -140,6 +143,8 @@ VG.itemEquipmentTypes = [
   VG.itemTypes.tribute,
   VG.itemTypes.weapon,
 ];
+
+VG.plusMinusItemTypes = [VG.itemTypes.ammo, VG.itemTypes.misc];
 
 VG.tributeTypes = {
   "encrypted": "VG.TributeTypeEncrypted",

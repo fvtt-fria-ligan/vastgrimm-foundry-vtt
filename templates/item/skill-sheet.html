@@ -23,7 +23,7 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor data.system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Details Tab --}}
@@ -32,19 +32,19 @@
             {{!-- Roll Label --}}
             <div class="form-group">
                 <label>{{ localize "VG.RollLabel" }}:</label>
-                <input type="text" name="data.rollLabel" value="{{data.data.rollLabel}}" placeholder="" data-dtype="String" />
+                <input type="text" name="system.rollLabel" value="{{data.system.rollLabel}}" placeholder="" data-dtype="String" />
             </div>
 
             {{!-- Roll Formula --}}
             <div class="form-group">
                 <label>{{ localize "VG.RollFormula" }}:</label>
-                <input type="text" name="data.rollFormula" value="{{data.data.rollFormula}}" placeholder="" data-dtype="String" />
+                <input type="text" name="system.rollFormula" value="{{data.system.rollFormula}}" placeholder="" data-dtype="String" />
             </div>
 
             {{!-- Roll Macro --}}
             <div class="form-group">
                 <label>{{ localize "VG.RollMacro" }}:</label>
-                <input type="text" name="data.rollMacro" value="{{data.data.rollMacro}}" placeholder="" data-dtype="String" />
+                <input type="text" name="system.rollMacro" value="{{data.system.rollMacro}}" placeholder="" data-dtype="String" />
             </div>
 
         </div>        

@@ -12,9 +12,9 @@
             </div>
             <div class="hitpoints-row">
                 <span class="stat-label">{{ localize "VG.HitPoints" }}:</span>
-                <input class="stat-input" name="data.hp.value" type="number" value="{{data.data.hp.value}}" data-dtype="Number"/>
+                <input class="stat-input" name="system.hp.value" type="number" value="{{data.system.hp.value}}" data-dtype="Number"/>
                 /
-                <input class="stat-input" name="data.hp.max" type="number" value="{{data.data.hp.max}}" data-dtype="Number"/>
+                <input class="stat-input" name="system.hp.max" type="number" value="{{data.system.hp.max}}" data-dtype="Number"/>
             </div>
             <div class="buttons-row">
                 <button type="button" class="roll-button reaction rollable">{{localize "VG.Reaction"}}</button>
@@ -34,7 +34,7 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor data.system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Details Tab --}}
@@ -43,31 +43,31 @@
             {{!-- Morale --}}
             <div class="form-group">
                 <label>{{ localize "VG.Morale" }}:</label>
-                <input name="data.morale" type="text" value="{{data.data.morale}}" placeholder="" data-dtype="Number"/>
+                <input name="system.morale" type="text" value="{{data.system.morale}}" placeholder="" data-dtype="Number"/>
             </div>
 
             {{!-- Armor --}}
             <div class="form-group">
                 <label>{{ localize "VG.CreatureArmor" }}:</label>
-                <input type="text" name="data.armor" value="{{data.data.armor}}" placeholder="" data-dtype="String" />
+                <input type="text" name="system.armor" value="{{data.system.armor}}" placeholder="" data-dtype="String" />
             </div>
 
             {{!-- Attack --}}
             <div class="form-group">
                 <label>{{ localize "VG.CreatureAttack" }}:</label>
-                <input type="text" name="data.attack" value="{{data.data.attack}}" placeholder="" data-dtype="String" />
+                <input type="text" name="system.attack" value="{{data.system.attack}}" placeholder="" data-dtype="String" />
             </div> 
 
             {{!-- Special --}}
             <div class="form-group">
                 <label>{{ localize "VG.CreatureSpecial" }}:</label>
-                <textarea name="data.special" rows="10">{{data.data.special}}</textarea>
+                <textarea name="system.special" rows="10">{{data.system.special}}</textarea>
             </div>
 
             {{!-- GP --}}
             <div class="form-group">
                 <label>{{ localize "VG.GP" }}:</label>
-                <input type="text" name="data.gp" value="{{data.data.gp}}" placeholder="" data-dtype="String" />
+                <input type="text" name="system.gp" value="{{data.system.gp}}" placeholder="" data-dtype="String" />
             </div>             
         </div>
     </section>

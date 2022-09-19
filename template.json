@@ -76,7 +76,7 @@
   },
   "Item": {
     "types": [
-      "armor", "consumable", "class", "container", "helmet", 
+      "ammo", "armor", "consumable", "class", "container", "helmet", 
       "misc", "parasite", "pharmaceutical", "skill", "tribute", "weapon"],
     "templates": {
       "baseEquipment": {
@@ -88,6 +88,9 @@
         "weight": 1
       }
     },
+    "ammo": {
+      "templates": ["baseEquipment"]
+    },    
     "armor": {
       "templates": ["baseEquipment"],
       "tier": {

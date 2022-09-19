@@ -15,9 +15,9 @@
             </div>
             <div class="holding-row">
                 <span class="stat-label container-label">{{ localize "VG.ContainerHolding" }}:</span>
-                <span class="stat-value">{{data.data.containerSpace}}</span>
+                <span class="stat-value">{{data.system.containerSpace}}</span>
                 /
-                <span class="stat-value">{{data.data.capacity.max}}</span>    
+                <span class="stat-value">{{data.system.capacity.max}}</span>    
             </div>
         </div>      
     </header>
@@ -33,18 +33,18 @@
     <section class="sheet-body">
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+            {{editor data.system.description target="system.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Details Tab --}}
         <div class="tab" data-group="primary" data-tab="details">
             <div class="form-group">
                 <label>{{ localize "VG.ItemPrice" }}:</label>
-                <input type="text" name="data.price" value="{{data.data.price}}" placeholder="2" data-dtype="Number" />
+                <input type="text" name="system.price" value="{{data.system.price}}" placeholder="2" data-dtype="Number" />
             </div> 
             <div class="form-group">
                 <label>{{ localize "VG.ItemCapacity" }}:</label>
-                <input name="data.capacity.max" type="text" value="{{data.data.capacity.max}}" placeholder="10" data-dtype="Number"/>
+                <input name="system.capacity.max" type="text" value="{{data.system.capacity.max}}" placeholder="10" data-dtype="Number"/>
             </div>
         </div>
 
@@ -60,16 +60,16 @@
                     </div>
                 </li>
                 <ol class="item-list">
-                    {{#each data.data.equipment as |item id|}}
+                    {{#each data.system.equipment as |item id|}}
                     <li class="item flexrow" data-item-id="{{item._id}}">
                         <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
                         <h4 class="item-name item-edit rollable">
                             {{item.name}}
                             {{#ifEq item.type 'container'}}
-                              ({{localize 'VG.ContainerHolds'}} {{item.data.capacity}})
+                              ({{localize 'VG.ContainerHolds'}} {{item.system.capacity}})
                             {{/ifEq}}
-                            {{#ifGt item.data.quantity 1}}
-                              ({{item.data.quantity}})
+                            {{#ifGt item.system.quantity 1}}
+                              ({{item.system.quantity}})
                             {{/ifGt}}
                         </h4>
                         <div class="item-buttons">
@@ -81,8 +81,8 @@
                                 <a class="item-control item-qty-minus" title="Subtract Quantity"><i class="fas fa-minus"></i></a>
                                 &nbsp;
                             {{/ifEq}}
-                            {{#if item.data.equippable}}
-                                <a class="item-control item-toggle {{item.data.toggleClass}}" title='{{item.data.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
+                            {{#if item.system.equippable}}
+                                <a class="item-control item-toggle {{item.system.toggleClass}}" title='{{item.system.toggleTitle}}'><i class="fas fa-shield-alt"></i></a>
                             {{/if}}
                             <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                             <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>

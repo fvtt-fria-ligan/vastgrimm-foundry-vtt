@@ -13,7 +13,7 @@ form(class="{{cssClass}}")
   
   section.sheet-body 
     div(class="tab description-tab" data-group="primary" data-tab="description")
-        | {{editor content=data.data.description target="data.description" button=true owner=owner editable=true}}
+        | {{editor data.data.description target="data.description" button=true owner=owner editable=true}}
 
     div(class="tab details-tab" data-group="primary" data-tab="details")
       .form-group

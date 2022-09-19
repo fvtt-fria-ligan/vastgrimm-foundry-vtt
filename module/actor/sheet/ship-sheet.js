@@ -71,9 +71,9 @@ export class VGShipSheet extends VGActorSheet {
     equippedWeapons.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
     // Assign to new properties
-    sheetData.data.equipment = equipment;
-    sheetData.data.equippedArmor = equippedArmor;
-    sheetData.data.equippedWeapons = equippedWeapons;
+    sheetData.system.equipment = equipment;
+    sheetData.system.equippedArmor = equippedArmor;
+    sheetData.system.equippedWeapons = equippedWeapons;
   }
 
   /** @override */

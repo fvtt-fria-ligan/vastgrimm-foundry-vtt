@@ -30,14 +30,14 @@ export class VGCharacterSheet extends VGActorSheet {
     data.config = CONFIG.MB;
 
     // Ability Scores
-    for (const [a, abl] of Object.entries(data.data.abilities)) {
+    for (const [a, abl] of Object.entries(data.system.abilities)) {
       const translationKey = CONFIG.VG.abilities[a];
       abl.label = game.i18n.localize(translationKey);
     }
 
     // Prepare items.
     // TODO: should preparing items move into the MBActor class?
-    if (this.actor.data.type == "character") {
+    if (this.actor.type == "character") {
       this._prepareCharacterItems(data);
     }
 
@@ -52,10 +52,10 @@ export class VGCharacterSheet extends VGActorSheet {
    */
   _prepareCharacterItems(sheetData) {
     const byName = (a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
-    sheetData.data.skills = sheetData.items
+    sheetData.system.skills = sheetData.items
       .filter((item) => item.type === CONFIG.VG.itemTypes.skill)
       .sort(byName);
-    sheetData.data.class = sheetData.items.filter(
+    sheetData.system.class = sheetData.items.filter(
       (item) => item.type === CONFIG.VG.itemTypes.class
     )[0];
 
@@ -71,7 +71,7 @@ export class VGCharacterSheet extends VGActorSheet {
     for (const i of sheetData.items) {
       i.img = i.img || DEFAULT_TOKEN;
 
-      let item = i.data;
+      let item = i.system;
       item.equippable =
         i.type === CONFIG.VG.itemTypes.armor ||
         i.type === CONFIG.VG.itemTypes.helmet ||
@@ -116,20 +116,24 @@ export class VGCharacterSheet extends VGActorSheet {
     );
 
     // Assign to new properties
-    sheetData.data.equipment = equipment;
-    sheetData.data.equippedArmor = equippedArmor;
-    sheetData.data.equippedHelmet = equippedHelmet;
-    sheetData.data.equippedWeapons = equippedWeapons;
-    sheetData.data.tributes = tributes;
+    sheetData.system.equipment = equipment;
+    sheetData.system.equippedArmor = equippedArmor;
+    sheetData.system.equippedHelmet = equippedHelmet;
+    sheetData.system.equippedWeapons = equippedWeapons;
+    sheetData.system.tributes = tributes;
 
-    sheetData.data.containerSpace = this.actor.containerSpace();
-    sheetData.data.containerCapacity = this.actor.containerCapacity();
+    sheetData.system.containerSpace = this.actor.containerSpace();
+    sheetData.system.containerCapacity = this.actor.containerCapacity();
     // TODO: rename to carryingWeight?
-    sheetData.data.carryingCount = this.actor.carryingWeight();
-    sheetData.data.carryingCapacity = this.actor.normalCarryingCapacity();
+    sheetData.system.carryingCount = this.actor.carryingWeight();
+    sheetData.system.carryingCapacity = this.actor.normalCarryingCapacity();
     const isEncumbered = this.actor.isEncumbered();
-    sheetData.data.encumbered = isEncumbered;
-    sheetData.data.encumberedClass = isEncumbered ? "encumbered" : "";
+    sheetData.system.encumbered = isEncumbered;
+    sheetData.system.encumberedClass = isEncumbered ? "encumbered" : "";
+
+    sheetData.system.ammo = sheetData.items
+      .filter((item) => item.type === CONFIG.VG.itemTypes.ammo)
+      .sort(byName);    
   }
 
   /** @override */
@@ -168,6 +172,7 @@ export class VGCharacterSheet extends VGActorSheet {
     html
       .find(".neuromancy-per-day-text")
       .on("click", this._onNeuromancyPointsPerDayRoll.bind(this));
+    html.find("select.ammo-select").on("change", this._onAmmoSelect.bind(this));      
   }
 
   _onStrengthRoll(event) {
