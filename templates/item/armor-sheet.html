@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label>{{ localize "VG.ArmorCurrentTier" }}:</label>
                 <select name="system.tier.value" data-dtype="Number">
-                    {{#selectdata.system.tier.value}}
+                    {{#select data.system.tier.value}}
                         {{#each config.armorTiers as |tierObj tierNum|}}
                             <option value="{{tierNum}}">{{tierNum}} ({{localize tierObj.key}})</option>
                         {{/each}}
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label>{{ localize "VG.ArmorMaxTier" }}:</label>
                 <select name="system.tier.max" data-dtype="Number">
-                    {{#selectdata.system.tier.max}}
+                    {{#select data.system.tier.max}}
                         {{#each config.armorTiers as |tierObj tierNum|}}
                             <option value="{{tierNum}}">{{tierNum}} ({{localize tierObj.key}})</option>
                         {{/each}}

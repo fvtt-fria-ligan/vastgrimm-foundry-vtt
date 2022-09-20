@@ -25,9 +25,9 @@ export class VGItemSheet extends ItemSheet {
   /** @override */
   get template() {
     const path = "systems/vastgrimm/templates/item";
-    if (Object.keys(VG.itemTypeKeys).includes(this.item.data.type)) {
+    if (Object.keys(VG.itemTypeKeys).includes(this.item.type)) {
       // specific item-type sheet
-      return `${path}/${this.item.data.type}-sheet.html`;
+      return `${path}/${this.item.type}-sheet.html`;
     } else {
       // generic item sheet
       return `${path}/item-sheet.html`;
@@ -36,15 +36,15 @@ export class VGItemSheet extends ItemSheet {
 
   /** @override */
   async getData(options) {
-    const data = super.getData(options);
+    const superData = super.getData(options);
     // TODO: should config live elsewhere?
-    data.config = CONFIG.VG;
-    if (data.data.data.tributeType) {
-      data.data.data.localizedtributeType = game.i18n.localize(
-        VG.tributeTypes[data.data.data.tributeType]
+    superData.config = CONFIG.VG;
+    if (superData.data.system.tributeType) {
+      superData.data.system.localizedtributeType = game.i18n.localize(
+        VG.tributeTypes[superData.data.system.tributeType]
       );
     }
-    return data;
+    return superData;
   }
 
   /** @override */

@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label>{{ localize "VG.ItemWeaponType" }}:</label>
                 <select name="system.weaponType">
-                    {{#selectdata.system.weaponType}}
+                    {{#select data.system.weaponType}}
                     {{#each config.weaponTypes as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                     {{/each}}
