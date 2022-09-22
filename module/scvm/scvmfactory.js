@@ -27,7 +27,7 @@ const pickRandomClass = async () => {
     // TODO: debugging hardcodes
     const pack = game.packs.get(packName);
     let content = await pack.getDocuments();
-    return content.find(i => i.data.type === "class");
+    return content.find(i => i.type === "class");
 };
 
 export const findClassPacks = () => {
@@ -50,28 +50,28 @@ export const findClassPacks = () => {
 export const classItemFromPack = async (packName) => { 
     const pack = game.packs.get(packName); 
     const content = await pack.getDocuments(); 
-    return content.find(i => i.data.type === "class");
+    return content.find(i => i.type === "class");
 };
 
 const rollScvmForClass = async (clazz) => {
-    console.log(`Creating new ${clazz.data.name}`);
+    console.log(`Creating new ${clazz.name}`);
 
     let credits = 0;
-    if (clazz.data.data.startingCredits) {
-        const creditsRoll = new Roll(clazz.data.data.startingCredits).evaluate({async: false});
+    if (clazz.system.startingCredits) {
+        const creditsRoll = new Roll(clazz.system.startingCredits).evaluate({async: false});
         credits = creditsRoll.total;
     }
-    const favorsRoll = new Roll(clazz.data.data.favorDie).evaluate({async: false});
-    const hpRoll = new Roll(clazz.data.data.startingHitPoints).evaluate({async: false});
+    const favorsRoll = new Roll(clazz.system.favorDie).evaluate({async: false});
+    const hpRoll = new Roll(clazz.system.startingHitPoints).evaluate({async: false});
     const neuromancyPointsRoll = new Roll("1d4").evaluate({async: false});
 
-    const strRoll = new Roll(clazz.data.data.startingStrength).evaluate({async: false});
+    const strRoll = new Roll(clazz.system.startingStrength).evaluate({async: false});
     const strength = abilityBonus(strRoll.total);
-    const agiRoll = new Roll(clazz.data.data.startingAgility).evaluate({async: false});
+    const agiRoll = new Roll(clazz.system.startingAgility).evaluate({async: false});
     const agility = abilityBonus(agiRoll.total);
-    const preRoll = new Roll(clazz.data.data.startingPresence).evaluate({async: false});
+    const preRoll = new Roll(clazz.system.startingPresence).evaluate({async: false});
     const presence = abilityBonus(preRoll.total);
-    const touRoll = new Roll(clazz.data.data.startingToughness).evaluate({async: false});
+    const touRoll = new Roll(clazz.system.startingToughness).evaluate({async: false});
     const toughness = abilityBonus(touRoll.total);
 
     const hitPoints = Math.max(1, hpRoll.total + toughness);
@@ -85,14 +85,14 @@ const rollScvmForClass = async (clazz) => {
     const myResults = await compendiumTableDrawMany(myTable, 2);
     const bsDraw = await bsTable.draw({displayChat: false});
     const iiDraw = await iiTable.draw({displayChat: false});
-    const misspentYouth1 = myResults[0].data.text;
-    const misspentYouth2 = myResults[1].data.text;
-    const battleScar = bsDraw.results[0].data.text;
-    const idiosyncrasy = iiDraw.results[0].data.text;
+    const misspentYouth1 = myResults[0].text;
+    const misspentYouth2 = myResults[1].text;
+    const battleScar = bsDraw.results[0].text;
+    const idiosyncrasy = iiDraw.results[0].text;
 
     // start accumulating character description, starting with the class description
     const descriptionLines = [];
-    descriptionLines.push(clazz.data.data.description);
+    descriptionLines.push(clazz.system.description);
     descriptionLines.push("<p>&nbsp;</p>");
     // BattleScars and Idiosyncrasis end with a period, but Misspent Youth entries don"t.
     descriptionLines.push(`${misspentYouth1} and ${misspentYouth2.charAt(0).toLowerCase()}${misspentYouth2.slice(1)}. ${battleScar} ${idiosyncrasy}`);
@@ -100,8 +100,8 @@ const rollScvmForClass = async (clazz) => {
 
     // class-specific starting rolls
     const startingRollItems = [];
-    if (clazz.data.data.startingRolls) {
-        const lines = clazz.data.data.startingRolls.split("\n");
+    if (clazz.system.startingRolls) {
+        const lines = clazz.system.startingRolls.split("\n");
         for (const line of lines) {
             const [packName, tableName, rolls] = line.split(",");
             // assume 1 roll unless otherwise specified in the csv
@@ -116,21 +116,21 @@ const rollScvmForClass = async (clazz) => {
                     const results = await compendiumTableDrawMany(table, numRolls);
                     for (const result of results) {
                         // draw result type: text (0), document (1), or compendium (2)
-                        if (result.data.type === 0 && result.data.text) {
+                        if (result.type === 0 && result.text) {
                             // non-blank text
-                            if (result.data.text === "Random Hacked Tribute") {
+                            if (result.text === "Random Hacked Tribute") {
                                 const tribute = await randomHackedTribute();
                                 startingRollItems.push(tribute);
-                            } else if (result.data.text === "Random Encrypted Tribute") {
+                            } else if (result.text === "Random Encrypted Tribute") {
                                 const tribute = await randomEncryptedTribute();
                                 startingRollItems.push(tribute);
                             } else {
-                                descriptionLines.push(`<p>${table.data.name}: ${result.data.text}</p>`);
+                                descriptionLines.push(`<p>${table.name}: ${result.text}</p>`);
                             }
-                        } else if (result.data.type === 1) {
+                        } else if (result.type === 1) {
                             // document
                             // TODO: what do we want to do here?
-                        } else if (result.data.type === 2) {
+                        } else if (result.type === 2) {
                             // compendium
                             const doc = await docFromResult(result);
                             startingRollItems.push(doc);
@@ -147,14 +147,14 @@ const rollScvmForClass = async (clazz) => {
     
     // class-specific starting items
     const startingItems = [];
-    if (clazz.data.data.startingItems) {
-        const lines = clazz.data.data.startingItems.split("\n");
+    if (clazz.system.startingItems) {
+        const lines = clazz.system.startingItems.split("\n");
         for (const line of lines) {
             const [packName, itemName] = line.split(",");
             const pack = game.packs.get(packName);
             if (pack) {
                 const content = await pack.getDocuments();
-                const item = content.find(i => i.data.name === itemName);
+                const item = content.find(i => i.name === itemName);
                 if (item) {
                     startingItems.push(item);
                 }    
@@ -163,12 +163,12 @@ const rollScvmForClass = async (clazz) => {
     }
 
     // TODO: pay attention to tributes in startingItems, too?
-    const rolledTribute = startingRollItems.filter(i => i.data.type === "tribute").length > 0;
+    const rolledTribute = startingRollItems.filter(i => i.type === "tribute").length > 0;
 
     // starting weapon
     let weapons = [];
-    if (clazz.data.data.weaponTableDie) {
-        let weaponDie = clazz.data.data.weaponTableDie;
+    if (clazz.system.weaponTableDie) {
+        let weaponDie = clazz.system.weaponTableDie;
         if (rolledTribute) {
             if (weaponDie === "1d10" || weaponDie === "1d8") {
                 weaponDie = "1d6";
@@ -182,8 +182,8 @@ const rollScvmForClass = async (clazz) => {
 
     // starting armor
     let armors = [];
-    if (clazz.data.data.armorTableDie) {
-        const armorRoll = new Roll(clazz.data.data.armorTableDie);
+    if (clazz.system.armorTableDie) {
+        const armorRoll = new Roll(clazz.system.armorTableDie);
         const armorTable = ccContent.find(i => i.name === "Armor Table");
         const armorDraw = await armorTable.draw({roll: armorRoll, displayChat: false});
         armors = await docsFromResults(armorDraw.results);
@@ -198,9 +198,9 @@ const rollScvmForClass = async (clazz) => {
     // for other non-item documents, just add some description text
     const nonItems = allDocs.filter(e => !(e instanceof VGItem));
     for (const nonItem of nonItems) {
-        if (nonItem && nonItem.data && nonItem.data.type) {
-            const upperType = nonItem.data.type.toUpperCase();
-            descriptionLines.push(`<p>&nbsp;</p><p>${upperType}: ${nonItem.data.name}</p>`);
+        if (nonItem && nonItem.type) {
+            const upperType = nonItem.type.toUpperCase();
+            descriptionLines.push(`<p>&nbsp;</p><p>${upperType}: ${nonItem.name}</p>`);
         } else {
             console.log(`Skipping non-item ${nonItem}`);
         }
@@ -213,7 +213,7 @@ const rollScvmForClass = async (clazz) => {
         description: descriptionLines.join(""),
         favors: favorsRoll.total,
         hitPoints,
-        items: items.map(i => i.data),
+        items: items.map(i => simpleData(i)),
         neuromancyPoints,
         presence,
         strength,
@@ -222,12 +222,18 @@ const rollScvmForClass = async (clazz) => {
     };
 }
 
+const simpleData = (item) => {
+  return {
+    img: item.img,
+    name: item.name,
+    system: item.system,
+    type: item.type,
+  };
+};
+
 const scvmToActorData = (s) => {
     return {
         type: "character",
-        // TODO: do we need to set folder or sort?
-        // folder: folder.data._id,
-        // sort: 12000,
         data: {
             abilities: {
                 strength: { value: s.strength },
@@ -268,7 +274,6 @@ const createActorWithScvm = async (s) => {
 const updateActorWithScvm = async (actor, s) => {
     const data = scvmToActorData(s);
     data.name = randomName() + " " + randomName();
-    console.log(data);
     // Explicitly nuke all items before updating.
     // Before Foundry 0.8.x, actor.update() used to overwrite items,
     // but now doesn't. Maybe because we're passing items: [item.data]?
@@ -313,23 +318,23 @@ const docFromResult = async (result) => {
     // draw result type: text (0), document (1), or compendium (2)
     // TODO: figure out how we want to handle a document result
 
-    if (result.data.type === 0) {
+    if (result.type === 0) {
         // hack for not having recursive roll tables set up
         // TODO: set up recursive roll tables :P
-        if (result.data.text === "Random Hacked Tribute") {
+        if (result.text === "Random Hacked Tribute") {
             return randomHackedTribute();
-        } else if (result.data.text === "Random Encrypted Tribute") {
+        } else if (result.text === "Random Encrypted Tribute") {
             return randomEncryptedTribute();
         }
-    } else if (result.data.type === 2) {
+    } else if (result.type === 2) {
         // grab the item from the compendium
-        const collection = game.packs.get(result.data.collection);
+        const collection = game.packs.get(result.documentCollection);
 
         if (collection) {
             // TODO: should we use pack.getDocument(entryId) ?
             // const item = await collection.getDocument(result._id);
             const content = await collection.getDocuments();
-            const doc = content.find(i => i.name === result.data.text);
+            const doc = content.find(i => i.name === result.text);
             return doc;
         } else {
             console.log("Could not find collection for result:");

@@ -143,7 +143,7 @@ Hooks.on('dropActorSheetData', async (actor, actorSheet, dropped) => {
 Hooks.on('createActor', async (actor, options, userId) => {
   // give Characters a default class
   if (actor.type === "character" && game.packs) {
-    const hasAClass = actor.items.filter(i => i.data.type === "class").length > 0;
+    const hasAClass = actor.items.filter(i => i.type === "class").length > 0;
     if (!hasAClass) {
       const pack = game.packs.get("vastgrimm.class-treacherous-merc");
       if (!pack) {

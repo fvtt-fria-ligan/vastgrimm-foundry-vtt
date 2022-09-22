@@ -20,7 +20,7 @@ const TEST_ABILITY_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/test-a
 export class VGActor extends Actor {
   /** @override */
   static async create(data, options={}) {
-    data.token = data.token || {};
+    data.prototypeToken = data.prototypeToken || {};
     let defaults = {};
     if (data.type === "character") {
       defaults = {
@@ -41,7 +41,7 @@ export class VGActor extends Actor {
         vision: false,
       };
     }
-    mergeObject(data.token, defaults, {overwrite: false});
+    mergeObject(data.prototypeToken, defaults, {overwrite: false});
     return super.create(data, options);
   }
 
@@ -58,7 +58,7 @@ export class VGActor extends Actor {
 
   _firstEquipped(itemType) {
     for (const item of this.data.items) {
-      if (item.type === itemType && item.data.system.equipped) {
+      if (item.type === itemType && item.system.equipped) {
         return item;
       }
     }
@@ -84,8 +84,8 @@ export class VGActor extends Actor {
   carryingWeight() {
     let total = 0;
     for (const item of this.items) {
-      if (CONFIG.VG.itemEquipmentTypes.includes(item.type) && item.data.system.weight) {
-        const roundedWeight = Math.ceil(item.data.system.weight * item.data.system.quantity);
+      if (CONFIG.VG.itemEquipmentTypes.includes(item.type) && item.system.weight) {
+        const roundedWeight = Math.ceil(item.system.weight * item.system.quantity);
         total += roundedWeight;
       }
     }
@@ -100,10 +100,10 @@ export class VGActor extends Actor {
     let total = 0;
     for (const item of this.items) {
       if (CONFIG.VG.itemEquipmentTypes.includes(item.type) && 
-          item.data.type !== 'container' &&
-          !item.data.system.equipped &&
-          item.data.system.volume) {  
-          const roundedSpace = Math.ceil(item.data.system.volume * item.data.system.quantity);
+          item.type !== 'container' &&
+          !item.system.equipped &&
+          item.system.volume) {  
+          const roundedSpace = Math.ceil(item.system.volume * item.system.quantity);
           total += roundedSpace;
       }
     }
@@ -113,8 +113,8 @@ export class VGActor extends Actor {
   containerCapacity() {
     let total = 0;
     for (const item of this.items) {
-      if (item.type === 'container' && item.data.system.capacity) {
-        total += item.data.system.capacity;
+      if (item.type === 'container' && item.system.capacity) {
+        total += item.system.capacity;
       }
     }
     return total;
@@ -150,7 +150,7 @@ export class VGActor extends Actor {
     let drModifiers = [];
     const armor = this.equippedArmor();
     if (armor) {
-      const armorTier = CONFIG.VG.armorTiers[armor.data.system.tier.max];
+      const armorTier = CONFIG.VG.armorTiers[armor.system.tier.max];
       if (armorTier.agilityModifier) {
         drModifiers.push(`${armor.name}: ${game.i18n.localize('VG.DR')} +${armorTier.agilityModifier}`);
       }
@@ -294,8 +294,8 @@ export class VGActor extends Actor {
   }
 
   async _decrementWeaponAmmo(weapon) {
-    if (weapon.data.system.ammoId) {
-      const ammo = this.items.get(weapon.data.system.ammoId);
+    if (weapon.system.ammoId) {
+      const ammo = this.items.get(weapon.system.ammoId);
       if (ammo) {
         const attr = "data.quantity";
         const currQuantity = getProperty(ammo.data, attr);
@@ -341,7 +341,7 @@ export class VGActor extends Actor {
     if (armor) {
       // armor defense adjustment is based on its max tier, not current
       // TODO: maxTier is getting stored as a string
-      const maxTier = parseInt(armor.data.system.tier.max);
+      const maxTier = parseInt(armor.system.tier.max);
       const defenseModifier = CONFIG.VG.armorTiers[maxTier].defenseModifier;
       if (defenseModifier) { 
         drModifiers.push(`${armor.name}: ${game.i18n.localize('VG.DR')} +${defenseModifier}`);       
@@ -386,7 +386,7 @@ export class VGActor extends Actor {
     const armor = this.equippedArmor();
     if (armor) {
       // TODO: maxTier is getting stored as a string
-      const maxTier = parseInt(armor.data.system.tier.max);
+      const maxTier = parseInt(armor.system.tier.max);
       const defenseModifier = CONFIG.VG.armorTiers[maxTier].defenseModifier;
       if (defenseModifier) { 
         drModifier += defenseModifier;
@@ -469,7 +469,7 @@ export class VGActor extends Actor {
       // roll 3: damage reduction from equipped armor and helmet
       let damageReductionDie = "";
       if (armor) {
-        damageReductionDie = CONFIG.VG.armorTiers[armor.data.system.tier.value].damageReductionDie;
+        damageReductionDie = CONFIG.VG.armorTiers[armor.system.tier.value].damageReductionDie;
         items.push(armor);
       }    
       if (helmet) {
@@ -524,7 +524,7 @@ export class VGActor extends Actor {
     await showDice(moraleRoll);
 
     let outcomeRoll = null;
-    if (moraleRoll.total > this.data.system.morale) {
+    if (moraleRoll.total > this.system.morale) {
       outcomeRoll = new Roll("1d6", actorRollData);
       outcomeRoll.evaluate({async: false});
       await showDice(outcomeRoll);
@@ -599,7 +599,7 @@ export class VGActor extends Actor {
   }
 
   async activateTribute() {
-    if (this.data.system.neuromancyPoints.value < 1) {
+    if (this.system.neuromancyPoints.value < 1) {
       ui.notifications.warn(`${game.i18n.localize('VG.NoNeuromancyPointsRemaining')}!`);
       return;
     }
@@ -643,21 +643,21 @@ export class VGActor extends Actor {
       speaker : ChatMessage.getSpeaker({actor: this}),
     });
 
-    const newPowerUses = Math.max(0, this.data.system.neuromancyPoints.value - 1);
+    const newPowerUses = Math.max(0, this.system.neuromancyPoints.value - 1);
     return this.update({["data.neuromancyPoints.value"]: newPowerUses});
   }
 
   async useSkill(itemId) {
     const item = this.items.get(itemId);
-    if (!item || !item.data.system.rollLabel) {
+    if (!item || !item.system.rollLabel) {
       return;
     }
 
-    if (item.data.system.rollMacro) {
+    if (item.system.rollMacro) {
       // roll macro
-      if (item.data.system.rollMacro.includes(",")) {
+      if (item.system.rollMacro.includes(",")) {
         // assume it's a CSV string for {pack},{macro name}
-        const [packName, macroName] = item.data.system.rollMacro.split(",");
+        const [packName, macroName] = item.system.rollMacro.split(",");
         const pack = game.packs.get(packName);
         if (pack) {
             const content = await pack.getDocuments();
@@ -672,19 +672,19 @@ export class VGActor extends Actor {
         }
       } else {
         // assume it's the name of a macro in the current world/game
-        const macro = game.macros.find(m => m.name === item.data.system.rollMacro);
+        const macro = game.macros.find(m => m.name === item.system.rollMacro);
         if (macro) {
           macro.execute();
         } else {
-          console.log(`Could not find macro ${item.data.system.rollMacro}.`);
+          console.log(`Could not find macro ${item.system.rollMacro}.`);
         }
       }
-    } else if (item.data.system.rollFormula) {
+    } else if (item.system.rollFormula) {
       // roll formula
       await this._rollOutcome(
-        item.data.system.rollFormula,
+        item.system.rollFormula,
         this.getRollData(),
-        item.data.system.rollLabel,
+        item.system.rollLabel,
         (roll) => ``);
     }    
   }
@@ -751,7 +751,7 @@ export class VGActor extends Actor {
       if (foodAndDrink === "eat") {
         await this.rollHealHitPoints("d6");
         await this.rollNeuromancyPointsPerDay();
-        if (this.data.system.favors.value === 0) {
+        if (this.system.favors.value === 0) {
           await this.rollOmens();
         }
       } else if (infected) {
@@ -784,7 +784,7 @@ export class VGActor extends Actor {
       this.getRollData(),
       game.i18n.localize("VG.Rest"), 
       (roll) => `${game.i18n.localize("VG.Heal")} ${roll.total} ${game.i18n.localize("VG.HP")}`);
-    const newHP = Math.min(this.data.system.hp.max, this.data.system.hp.value + roll.total);
+    const newHP = Math.min(this.system.hp.max, this.system.hp.value + roll.total);
     return this.update({["data.hp.value"]: newHP});
   }
 
@@ -794,7 +794,7 @@ export class VGActor extends Actor {
       this.getRollData(),
       game.i18n.localize("VG.Starvation"), 
       (roll) => `${game.i18n.localize("VG.Take")} ${roll.total} ${game.i18n.localize("VG.Damage")}`);
-    const newHP = this.data.system.hp.value - roll.total;
+    const newHP = this.system.hp.value - roll.total;
     return this.update({["data.hp.value"]: newHP});
   }
 
@@ -809,20 +809,20 @@ export class VGActor extends Actor {
       sound : diceSound(),
       speaker : ChatMessage.getSpeaker({actor: this}),
     });
-    const newHP = Math.min(this.data.system.hp.max, this.data.system.hp.value + 1);
+    const newHP = Math.min(this.system.hp.max, this.system.hp.value + 1);
     return this.update({["data.hp.value"]: newHP});
   }
 
   async improve() {
-    const oldHp = this.data.system.hp.max;
+    const oldHp = this.system.hp.max;
     const newHp = this._betterHp(oldHp);
-    const oldStr = this.data.system.abilities.strength.value;
+    const oldStr = this.system.abilities.strength.value;
     const newStr = this._betterAbility(oldStr);
-    const oldAgi = this.data.system.abilities.agility.value;
+    const oldAgi = this.system.abilities.agility.value;
     const newAgi = this._betterAbility(oldAgi);
-    const oldPre = this.data.system.abilities.presence.value
+    const oldPre = this.system.abilities.presence.value
     const newPre = this._betterAbility(oldPre);
-    const oldTou = this.data.system.abilities.toughness.value;
+    const oldTou = this.system.abilities.toughness.value;
     const newTou = this._betterAbility(oldTou);
 
     let hpOutcome = this._abilityOutcome(game.i18n.localize('VG.HP'), oldHp, newHp);
