@@ -1,8 +1,9 @@
 {
   "name": "vastgrimm",
+  "id": "vastgrimm",
   "title": "Vast Grimm",
   "description": "Foundry VTT system for Vast Grimm.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "templateVersion": 2,
   "author": "mcglincy",
   "scripts": [],
@@ -233,8 +234,12 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "hp",
   "secondaryTokenAttribute": null,
-  "minimumCoreVersion": "0.8.9",
-  "compatibleCoreVersion": "9",
+  "minimumCoreVersion": "10",
+  "compatibleCoreVersion": "10",
+  "compatibility": {
+    "minimum": 10,
+    "verified": 10
+  },  
   "url": "https://github.com/fvtt-fria-ligan/vastgrimm-foundry-vtt",
   "manifest": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.json",  
   "download": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.zip"
