@@ -1,3 +1,7 @@
+# 1.0.0
+
+- Foundry v10 compatibility.
+
 # 0.5.1
 - Fix add / delete item calls for Foundry v9.
 
