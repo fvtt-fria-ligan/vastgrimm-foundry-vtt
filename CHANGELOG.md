@@ -1,3 +1,7 @@
+# 1.0.1
+
+- Fix ChatMessage sound param when using DiceSoNice.
+
 # 1.0.0
 
 - Foundry v10 compatibility.
