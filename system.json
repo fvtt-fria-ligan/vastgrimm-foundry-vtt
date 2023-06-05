@@ -5,220 +5,46 @@
   "description": "Foundry VTT system for Vast Grimm.",
   "version": "1.0.0",
   "templateVersion": 2,
-  "author": "mcglincy",
+  "authors": [
+    {
+      "name": "mcglintlock"
+    }
+  ],  
+    "compatibility": {
+    "minimum": "11.300",
+    "verified": "11.300"
+  },  
   "scripts": [],
   "esmodules": ["module/vastgrimm.js"],
   "styles": ["css/vastgrimm.css"],
   "packs": [
     {
-      "name": "character-creation",
-      "label": "Character Creation",
+      "name": "vast-grimm-actors",
+      "label": "Vast Grimm (Actors)",
       "system": "vastgrimm",
-      "path": "./packs/character-creation.db",
-      "entity": "RollTable"
+      "path": "./packs/vast-grimm-actors",
+      "type": "Actor"
     },
     {
-      "name": "class-lost-technomaniac",
-      "label": "Class - Lost Technomaniac",
+      "name": "vast-grimm-items",
+      "label": "Vast Grimm (Items)",
       "system": "vastgrimm",
-      "path": "./packs/class-lost-technomaniac.db",
-      "entity": "Item"
+      "path": "./packs/vast-grimm-items",
+      "type": "Item"
     },
     {
-      "name": "class-devout",
-      "label": "Class - Devout",
+      "name": "vast-grimm-macros",
+      "label": "Vast Grimm (Macros)",
       "system": "vastgrimm",
-      "path": "./packs/class-devout.db",
-      "entity": "Item"
+      "path": "./packs/vast-grimm-macros",
+      "type": "Macro"
     },    
     {
-      "name": "class-emobot",
-      "label": "Class - EmoBot",
+      "name": "vast-grimm-tables",
+      "label": "Vast Grimm (Tables)",
       "system": "vastgrimm",
-      "path": "./packs/class-emobot.db",
-      "entity": "Item"
-    },
-    {
-      "name": "class-harvester",
-      "label": "Class - Harvester",
-      "system": "vastgrimm",
-      "path": "./packs/class-harvester.db",
-      "entity": "Item"
-    },        
-    {
-      "name": "class-manchine",
-      "label": "Class - MAnchiNe",
-      "system": "vastgrimm",
-      "path": "./packs/class-manchine.db",
-      "entity": "Item"
-    },
-    {
-      "name": "class-soul-survivor",
-      "label": "Class - Soul Survivor",
-      "system": "vastgrimm",
-      "path": "./packs/class-soul-survivor.db",
-      "entity": "Item"
-    },    
-    {
-      "name": "class-treacherous-merc",
-      "label": "Class - Treacherous Merc",
-      "system": "vastgrimm",
-      "path": "./packs/class-treacherous-merc.db",
-      "entity": "Item"
-    },
-    {
-      "name": "class-twisted-biochemist",
-      "label": "Class - Twisted Biochemist",
-      "system": "vastgrimm",
-      "path": "./packs/class-twisted-biochemist.db",
-      "entity": "Item"
-    },     
-    {
-      "name": "containers",
-      "label": "Containers",
-      "system": "vastgrimm",
-      "path": "./packs/containers.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "creatures",
-      "label": "Creatures",
-      "system": "vastgrimm",
-      "path": "./packs/creatures.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "equipment-armor",
-      "label": "Equipment - Armor",
-      "system": "vastgrimm",
-      "path": "./packs/equipment-armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "equipment-misc",
-      "label": "Equipment - Misc",
-      "system": "vastgrimm",
-      "path": "./packs/equipment-misc.db",
-      "entity": "Item"
-    },    
-    {
-      "name": "equipment-pharmaceuticals",
-      "label": "Equipment - Pharmaceuticals",
-      "system": "vastgrimm",
-      "path": "./packs/equipment-pharmaceuticals.db",
-      "entity": "Item"
-    },
-    {
-      "name": "equipment-ship",
-      "label": "Equipment - Ship",
-      "system": "vastgrimm",
-      "path": "./packs/equipment-ship.db",
-      "entity": "Item"
-    },
-    {
-      "name": "equipment-starting",
-      "label": "Equipment - Starting",
-      "system": "vastgrimm",
-      "path": "./packs/equipment-starting.db",
-      "entity": "Item"
-    }, 
-    {
-      "name": "equipment-weapons",
-      "label": "Equipment - Weapons",
-      "system": "vastgrimm",
-      "path": "./packs/equipment-weapons.db",
-      "entity": "Item"
-    },
-    {
-      "name": "followers",
-      "label": "Followers",
-      "system": "vastgrimm",
-      "path": "./packs/followers.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "macros-twisted-biochemist",
-      "label": "Macros - Twisted Biochemist",
-      "system": "vastgrimm",
-      "path": "./packs/macros-twisted-biochemist.db",
-      "entity": "Macro"
-    },     
-    {
-      "name": "parasites",
-      "label": "Parasites",
-      "system": "vastgrimm",
-      "path": "./packs/parasites.db",
-      "entity": "Item"
-    },
-    {
-      "name": "rolls-devout",
-      "label": "Rolls - Devout",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-devout.db",
-      "entity": "RollTable"
-    },    
-    {
-      "name": "rolls-emobot",
-      "label": "Rolls - EmoBot",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-emobot.db",
-      "entity": "RollTable"
-    },    
-    {
-      "name": "rolls-harvester",
-      "label": "Rolls - Harvester",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-harvester.db",
-      "entity": "RollTable"
-    },    
-    {
-      "name": "rolls-lost-technomaniac",
-      "label": "Rolls - Lost Technomaniac",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-lost-technomaniac.db",
-      "entity": "RollTable"
-    },    
-    {
-      "name": "rolls-manchine",
-      "label": "Rolls - Manchine",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-manchine.db",
-      "entity": "RollTable"
-    },
-    {
-      "name": "rolls-soul-survivor",
-      "label": "Rolls - Soul Survivor",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-soul-survivor.db",
-      "entity": "RollTable"
-    },    
-    {
-      "name": "rolls-treacherous-merc",
-      "label": "Rolls - Treacherous Merc",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-treacherous-merc.db",
-      "entity": "RollTable"
-    },
-    {
-      "name": "rolls-twisted-biochemist",
-      "label": "Rolls - Twisted Biochemist",
-      "system": "vastgrimm",
-      "path": "./packs/rolls-twisted-biochemist.db",
-      "entity": "RollTable"
-    },    
-    {
-      "name": "ships",
-      "label": "Ships",
-      "system": "vastgrimm",
-      "path": "./packs/ships.db",
-      "entity": "Actor"
-    },
-    {
-      "name": "tributes",
-      "label": "Tributes",
-      "system": "vastgrimm",
-      "path": "./packs/tributes.db",
-      "entity": "Item"
+      "path": "./packs/vast-grimm-tables",
+      "type": "RollTable"
     }
   ],
   "languages": [
@@ -234,12 +60,7 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "hp",
   "secondaryTokenAttribute": null,
-  "minimumCoreVersion": "10",
-  "compatibleCoreVersion": "10",
-  "compatibility": {
-    "minimum": 10,
-    "verified": 10
-  },  
+
   "url": "https://github.com/fvtt-fria-ligan/vastgrimm-foundry-vtt",
   "manifest": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.json",  
   "download": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.zip"

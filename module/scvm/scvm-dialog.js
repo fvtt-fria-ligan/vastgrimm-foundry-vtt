@@ -1,18 +1,18 @@
-import { classItemFromPack, createScvm, findClassPacks, scvmifyActor } from "./scvmfactory.js";
+import { createScvm, findClasses, scvmifyActor } from "./scvmfactory.js";
+import { byName, sample } from "../utils.js";
+
+export const showScvmDialog = async (actor) => {
+  const dialog = new ScvmDialog();
+  dialog.actor = actor;
+  const classes = await findClasses();
+  classes.sort(byName);
+  dialog.classes = classes.map(x => {
+    return { name: x.name, uuid: x.uuid};
+  });
+  dialog.render(true);
+};
 
 export default class ScvmDialog extends Application {
-
-    constructor(actor=null, options={}) {
-        super(options);
-        this.actor = actor;
-        const classPacks = findClassPacks();
-        this.classes = classPacks.map(p => {
-            return {
-                name: p.split("class-")[1].replace(/-/g, " "),
-                pack: p
-            }});
-        this.classes.sort((a, b) => (a.name > b.name) ? 1 : -1);
-    }
 
     /** @override */
     static get defaultOptions() {
@@ -63,18 +63,16 @@ export default class ScvmDialog extends Application {
     async _onScvm(event) {
         event.preventDefault();
         const form = $(event.currentTarget).parents(".scvm-dialog")[0];
-        const selected = [];
+        const uuids = [];
         $(form).find("input:checked").each(function() {
-           selected.push($(this).attr("name"));
+           uuids.push($(this).attr("name"));
         });
-
-        if (selected.length === 0) {
+        if (uuids.length === 0) {
             // nothing selected, so bail
             return;
         }
-
-        const packName = selected[Math.floor(Math.random() * selected.length)];
-        const clazz = await classItemFromPack(packName);
+        const uuid = sample(uuids);
+        const clazz = await fromUuid(uuid);
         if (!clazz) {
             // couldn't find class item, so bail
             const err = `No class item found in compendium ${packName}`;

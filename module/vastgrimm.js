@@ -12,7 +12,7 @@ import { VG } from "./config.js";
 import { VGItem } from "./item/item.js";
 import { VGItemSheet } from "./item/sheet/item-sheet.js";
 import { createVastGrimmMacro, rollItemMacro } from "./macros.js";
-import ScvmDialog from "./scvm/scvm-dialog.js";
+import { showScvmDialog } from "./scvm/scvm-dialog.js";
 import { registerSystemSettings } from "./settings.js";
 
 const VG_DOC_CLASS = "vastgrimm";
@@ -181,7 +181,7 @@ Hooks.on('renderActorDirectory', (app,  html, data) => {
       </div>
       `);
     section.querySelector('.create-scvm-button').addEventListener('click', (ev) => {
-      new ScvmDialog().render(true);
+      showScvmDialog();
     });  
   }
 });

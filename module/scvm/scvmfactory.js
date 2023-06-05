@@ -1,6 +1,9 @@
 import {VGActor} from "../actor/actor.js";
+import { VG } from "../config.js";
 import {VGItem} from "../item/item.js";
 import {randomName} from "./names.js";
+import { TABLES_PACK } from "../packutils.js";
+import { sample } from "../utils.js";
 
 export const createRandomScvm = async () => {
     const clazz = await pickRandomClass();
@@ -18,40 +21,19 @@ export const scvmifyActor = async (actor, clazz) => {
 };
 
 const pickRandomClass = async () => {
-    const classPacks = findClassPacks();
-    if (classPacks.length === 0) {
-        // TODO: error on 0-length classPaths
-        return;
-    }
-    const packName = classPacks[Math.floor(Math.random() * classPacks.length)];
-    // TODO: debugging hardcodes
-    const pack = game.packs.get(packName);
-    let content = await pack.getDocuments();
-    return content.find(i => i.type === "class");
+  const uuid = sample(VG.scvmFactory.classUuids);
+  const clazz = await fromUuid(uuid);
+  return clazz;
 };
 
-export const findClassPacks = () => {
-    const classPacks = [];
-    const packKeys = game.packs.keys();
-    for (const packKey of packKeys) {
-        // moduleOrSystemName.packName
-        const keyParts = packKey.split(".");
-        if (keyParts.length === 2) {
-            const packName = keyParts[1];
-            if (packName.startsWith("class-") && packName.length > 6) {
-                // class pack
-                classPacks.push(packKey);
-            }
-        }
-    }
-    return classPacks;
-};
-
-export const classItemFromPack = async (packName) => { 
-    const pack = game.packs.get(packName); 
-    const content = await pack.getDocuments(); 
-    return content.find(i => i.type === "class");
-};
+export const findClasses = async () => {
+  const classes = [];
+  for (let uuid of VG.scvmFactory.classUuids) {
+    const clazz = await fromUuid(uuid);
+    classes.push(clazz);
+  }
+  return classes;
+}
 
 const rollScvmForClass = async (clazz) => {
     console.log(`Creating new ${clazz.name}`);
@@ -77,7 +59,7 @@ const rollScvmForClass = async (clazz) => {
     const hitPoints = Math.max(1, hpRoll.total + toughness);
     const neuromancyPoints = Math.max(0, neuromancyPointsRoll.total + presence);
 
-    const ccPack = game.packs.get("vastgrimm.character-creation");
+    const ccPack = game.packs.get(TABLES_PACK);
     const ccContent = await ccPack.getDocuments();
     const myTable = ccContent.find(i => i.name === "Misspent Youth");
     const bsTable = ccContent.find(i => i.name === "Battle Scars");
@@ -288,16 +270,13 @@ const docsFromResults = async (results) => {
         const doc = await docFromResult(result);
         if (doc) {            
             docs.push(doc);
-        } else {
-            console.log("No document from result:");
-            console.log(result);
         }
     }
     return docs;
 }
 
 const randomHackedTribute = async () => {
-    const collection = game.packs.get("vastgrimm.character-creation");
+    const collection = game.packs.get(TABLES_PACK);
     const content = await collection.getDocuments();
     const table = content.find(i => i.name === "Hacked Tributes");
     const draw = await table.draw({displayChat: false});
@@ -306,7 +285,7 @@ const randomHackedTribute = async () => {
 };
 
 const randomEncryptedTribute = async () => {
-    const collection = game.packs.get("vastgrimm.character-creation");
+    const collection = game.packs.get(TABLES_PACK);
     const content = await collection.getDocuments();
     const table = content.find(i => i.name === "Encrypted Tributes");
     const draw = await table.draw({displayChat: false});
