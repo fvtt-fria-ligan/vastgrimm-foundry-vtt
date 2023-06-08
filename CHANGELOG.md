@@ -1,3 +1,7 @@
+# 2.0.1
+
+- Rebuild with latest files.
+
 # 2.0.0
 
 - Foundry v11 compatibility.
