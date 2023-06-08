@@ -155,3 +155,26 @@ VG.weaponTypes = {
   "melee": "VG.WeaponTypeMelee",
   "ranged": "VG.WeaponTypeRanged"
 };
+
+// Config variables for the Scvmfactory character generator
+VG.scvmFactory = {
+  // modules wanting to add more character classes to the generator should append uuids to this list
+  classUuids: [
+    // Devout
+    "Compendium.vastgrimm.vast-grimm-items.Item.0O4qPm6FnmhBA264",
+    // EmoBot
+    "Compendium.vastgrimm.vast-grimm-items.Item.ig6NF53yqX9oMXrI",
+    // Harvester
+    "Compendium.vastgrimm.vast-grimm-items.Item.sRnn6JUlCqbRmglx",
+    // Lost Technomaniac
+    "Compendium.vastgrimm.vast-grimm-items.Item.apAIAVLMV2i0CV0N",
+    // MAnchiNe
+    "Compendium.vastgrimm.vast-grimm-items.Item.fdInjY5EDKKpuiCm",
+    // Soul Survivor
+    "Compendium.vastgrimm.vast-grimm-items.Item.9x8XQ0VcqBk0je06",
+    // Treacherous Merc
+    "Compendium.vastgrimm.vast-grimm-items.Item.JKAJz3RUXajVJtlQ",
+    // Twisted Biochemist
+    "Compendium.vastgrimm.vast-grimm-items.Item.eqcNCawo1aSlGvZQ"
+  ],
+};

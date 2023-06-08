@@ -1,3 +1,9 @@
+# 2.0.0
+
+- Foundry v11 compatibility.
+- Reorganize compendiums using Foundry folders.
+- Use classUuids array in config to list available classes for generator.
+
 # 1.0.1
 
 - Fix ChatMessage sound param when using DiceSoNice.
