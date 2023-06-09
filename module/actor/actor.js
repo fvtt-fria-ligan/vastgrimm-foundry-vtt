@@ -1,5 +1,5 @@
 import { addShowDicePromise, diceSound, showDice } from "../dice.js";
-import ScvmDialog from "../scvm/scvm-dialog.js";
+import { showScvmDialog } from "../scvm/scvm-dialog.js";
 
 const ACTIVATE_TRIBUTE_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/activate-tribute-roll-card.html";
 const ATTACK_DIALOG_TEMPLATE = "systems/vastgrimm/templates/dialog/attack-dialog.html";
@@ -890,7 +890,7 @@ export class VGActor extends Actor {
   }
 
   async scvmify() {
-    new ScvmDialog(this).render(true);
+    showScvmDialog(this);
   }
 
   async rollBroken() {

@@ -1,3 +1,7 @@
+# 2.0.2
+
+- Fix Obliterate button / MakeScvmDialog to properly show class list.
+
 # 2.0.1
 
 - Rebuild with latest files.
