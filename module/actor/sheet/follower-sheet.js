@@ -88,7 +88,7 @@ export class VGFollowerSheet extends VGActorSheet {
     sheetData.system.equippedWeapons = equippedWeapons;
 
     sheetData.system.ammo = sheetData.items
-      .filter((item) => item.type === CONFIG.MB.itemTypes.ammo)
+      .filter((item) => item.type === CONFIG.VG.itemTypes.ammo)
       .sort(byName);    
   }
 
