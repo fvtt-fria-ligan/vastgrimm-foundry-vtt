@@ -634,8 +634,8 @@ select:focus {
 
 /* ================== 11. JOURNAL ENTRIES =================== */
 .window-app.app.journal-sheet .window-content {
-  background: var(--foreground-color);
-  color: var(--background-color);
+  background: var(--background-color);
+  color: var(--foreground-color);
   background-position: -43px -120px;
   display: flex;
   flex-direction: column;
