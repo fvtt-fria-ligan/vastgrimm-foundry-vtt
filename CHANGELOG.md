@@ -1,6 +1,10 @@
-# 2.0.3
+# 2.0.4
 
 - Fix journal background color (by @lonpalmer)
+
+# 2.0.3
+
+- ...
 
 # 2.0.2
 
