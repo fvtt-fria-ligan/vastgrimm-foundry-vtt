@@ -1,7 +1,7 @@
 # 2.0.3
 
 - Fix journal background color (by @lonpalmer)
-- 
+
 # 2.0.2
 
 - Fix Obliterate button / MakeScvmDialog to properly show class list.
