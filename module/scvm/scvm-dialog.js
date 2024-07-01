@@ -1,7 +1,7 @@
 import { createScvm, findClasses, scvmifyActor } from "./scvmfactory.js";
 import { byName, sample } from "../utils.js";
 
-export const showScvmDialog = async (actor) => {
+export async function showScvmDialog(actor) {
   const dialog = new ScvmDialog();
   dialog.actor = actor;
   const classes = await findClasses();
@@ -28,7 +28,7 @@ export default class ScvmDialog extends Application {
 
     /** @override */
     getData(options={}) {
-        return mergeObject(super.getData(options), {
+        return foundry.utils.mergeObject(super.getData(options), {
             classes: this.classes,
             forActor: (this.actor !== undefined && this.actor !== null),
         });

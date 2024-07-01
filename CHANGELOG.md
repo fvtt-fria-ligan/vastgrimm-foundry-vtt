@@ -1,3 +1,7 @@
+# 3.0.0
+
+- Foundry v12 compatibility.
+
 # 2.0.4
 
 - Fix journal background color (by @lonpalmer)

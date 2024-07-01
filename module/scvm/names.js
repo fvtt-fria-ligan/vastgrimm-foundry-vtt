@@ -49,6 +49,6 @@ const names = [
   "Zero",
 ];
 
-export const randomName = () => {
+export function randomName() {
   return names[Math.floor(Math.random() * names.length)];
 };

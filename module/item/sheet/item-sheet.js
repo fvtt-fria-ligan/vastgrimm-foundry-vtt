@@ -7,7 +7,7 @@ import * as editor from "../../editor.js";
 export class VGItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["vastgrimm", "sheet", "item"],
       width: 730,
       height: 680,
@@ -36,7 +36,7 @@ export class VGItemSheet extends ItemSheet {
 
   /** @override */
   async getData(options) {
-    const superData = super.getData(options);
+    const superData = await super.getData(options);
     // TODO: should config live elsewhere?
     superData.config = CONFIG.VG;
     if (superData.data.system.tributeType) {

@@ -7,7 +7,7 @@ import RestDialog from "./rest-dialog.js";
 export class VGCharacterSheet extends VGActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["vastgrimm", "sheet", "actor", "character"],
       template: "systems/vastgrimm/templates/actor/character-sheet.html",
       width: 820,
@@ -24,8 +24,8 @@ export class VGCharacterSheet extends VGActorSheet {
   }
 
   /** @override */
-  getData() {
-    const superData = super.getData();
+  async getData() {
+    const superData = await super.getData();
     const data = superData.data;
     data.config = CONFIG.MB;
 
@@ -77,7 +77,7 @@ export class VGCharacterSheet extends VGActorSheet {
         i.type === CONFIG.VG.itemTypes.helmet ||
         i.type === CONFIG.VG.itemTypes.weapon;
       if (item.equippable) {
-        const isEquipped = getProperty(item, "equipped");
+        const isEquipped = foundry.utils.getProperty(item, "equipped");
         item.toggleClass = isEquipped ? "equipped" : "";
         item.toggleTitle = game.i18n.localize(
           isEquipped ? "VG.ItemEquipped" : "VG.ItemUnequipped"
@@ -219,7 +219,7 @@ export class VGCharacterSheet extends VGActorSheet {
     event.preventDefault();
     const restDialog = new RestDialog();
     // TODO: maybe move this into a constructor,
-    // if we can resolve the mergeObject() Maximum call stack size exceeded error
+    // if we can resolve the foundry.utils.mergeObject() Maximum call stack size exceeded error
     restDialog.actor = this.actor;
     restDialog.render(true);
   }

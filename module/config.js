@@ -158,6 +158,32 @@ VG.weaponTypes = {
 
 // Config variables for the Scvmfactory character generator
 VG.scvmFactory = {
+  // Starting Equipment (1)
+  startingEquipmentTable1:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.KqGB1e4nXCu4EYf3",
+  // Starting Equipment (2)
+  startingEquipmentTable2:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.hI2phVOCRdTJaIDj",
+  // Starting Equipment (3)
+  startingEquipmentTable3:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.EN0bZpi0OE7oOSaC",
+  // Starting Weapon
+  startingWeaponTable:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.OczLqKvUegOmv4m7",
+  weaponDieIfRolledTribute: "1d6",
+  // Starting Armor
+  startingArmorTable:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.dlvNqCA6HRCNp5QP",
+  armorDieIfRolledTribute: "1d2",
+  // Misspent Youth
+  misspentYouthTable:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.792Eax9Pb4RRoon5",
+  // Battle Scars
+  battleScarsTable:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.1rd6gHMD2QacjNtv",
+  // Irritating Idiosyncrasies
+  irritatingIdiosyncrasiesTable:
+    "Compendium.vastgrimm.vast-grimm-tables.RollTable.q6SYfccjwUxu8N2a",
   // modules wanting to add more character classes to the generator should append uuids to this list
   classUuids: [
     // Devout

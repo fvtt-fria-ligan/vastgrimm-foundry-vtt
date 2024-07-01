@@ -7,7 +7,7 @@ export class VGShipSheet extends VGActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["vastgrimm", "sheet", "actor", "ship"],
       template: "systems/vastgrimm/templates/actor/ship-sheet.html",
       width: 720,
@@ -19,8 +19,8 @@ export class VGShipSheet extends VGActorSheet {
   }
 
   /** @override */
-  getData() {
-    const superData = super.getData();
+  async getData() {
+    const superData = await super.getData();
     const data = superData.data;
     data.config = CONFIG.VG;
     this._prepareShipItems(data);

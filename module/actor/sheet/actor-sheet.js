@@ -87,7 +87,7 @@ export default class VGActorSheet extends ActorSheet {
     const li = anchor.parents(".item");
     const itemId = li.data("itemId");
     const item = this.actor.items.get(itemId);
-    const attr = "data.quantity";
+    const attr = "system.quantity";
     const currQuantity = getProperty(item.data, attr);
     return item.update({[attr]: currQuantity + 1});
   }
@@ -101,8 +101,8 @@ export default class VGActorSheet extends ActorSheet {
     const li = anchor.parents(".item");
     const itemId = li.data("itemId");
     const item = this.actor.items.get(itemId);
-    const attr = "data.quantity";
-    const currQuantity = getProperty(item.data, attr);
+    const attr = "system.quantity";
+    const currQuantity = foundry.utils.getProperty(item.data, attr);
     // can't reduce quantity below one
     if (currQuantity > 1) {
       return item.update({[attr]: currQuantity - 1});  
@@ -121,8 +121,8 @@ export default class VGActorSheet extends ActorSheet {
     const li = anchor.parents(".item");
     const itemId = li.data("itemId");
     const item = this.actor.items.get(itemId);
-    const attr = "data.equipped";
-    const currEquipped = getProperty(item.data, attr);
+    const attr = "system.equipped";
+    const currEquipped = foundry.utils.getProperty(item.system, attr);
     if (!currEquipped) {
       // we're equipping something
       // if this is armor or helmet, unequip any other equipped armor/helmet
@@ -137,7 +137,7 @@ export default class VGActorSheet extends ActorSheet {
         }
       }
     }
-    return item.update({[attr]: !getProperty(item.data, attr)});
+    return item.update({[attr]: !foundry.utils.getProperty(item.system, attr)});
   }
 
   /**
@@ -194,15 +194,15 @@ export default class VGActorSheet extends ActorSheet {
     let newTier = parseInt(input[0].value);
     let li = input.parents(".item");
     const item = this.actor.items.get(li.data("itemId"));
-    return item.update({["data.tier.value"]: newTier});
+    return item.update({["system.tier.value"]: newTier});
   }
 
   /**
    * Handle a click on the Defend button.
    */
-  _onDefendRoll(event) {
+  async _onDefendRoll(event) {
     event.preventDefault();
-    const sheetData = this.getData();
+    const sheetData = await this.getData();
     const armorItemId = sheetData.data.system.equippedArmor?.id;
     const helmetItemId = sheetData.data.system.equippedHelmet?.id;
     this.actor.defend(armorItemId, helmetItemId);
@@ -214,7 +214,7 @@ export default class VGActorSheet extends ActorSheet {
     const weapon = this.actor.items.get(select.data("itemId"));
     //const ammo = this.actor.items.get(select.val());
     if (weapon) {
-      await weapon.update({ ["data.ammoId"]: select.val() });
+      await weapon.update({ ["system.ammoId"]: select.val() });
     }
   }  
  }

@@ -9,7 +9,7 @@ export class VGFollowerSheet extends VGActorSheet {
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["vastgrimm", "sheet", "actor", "follower"],
       template: "systems/vastgrimm/templates/actor/follower-sheet.html",
       width: 720,
@@ -21,8 +21,8 @@ export class VGFollowerSheet extends VGActorSheet {
   }
 
   /** @override */
-  getData() {
-    const superData = super.getData();
+  async getData() {
+    const superData = await super.getData();
     const data = superData.data;
     data.config = CONFIG.VG;
     if (this.actor.type == 'follower') {

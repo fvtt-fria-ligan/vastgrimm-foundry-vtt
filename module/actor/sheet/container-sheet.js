@@ -7,7 +7,7 @@ import VGActorSheet from "./actor-sheet.js";
 
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["vastgrimm", "sheet", "actor", "container"],
       template: "systems/vastgrimm/templates/actor/container-sheet.html",
       width: 720,
@@ -19,8 +19,8 @@ import VGActorSheet from "./actor-sheet.js";
   }
 
   /** @override */
-  getData() {
-    const superData = super.getData();
+  async getData() {
+    const superData = await super.getData();
     const data = superData.data;
     data.config = CONFIG.VG;
     if (this.actor.type == 'container') {

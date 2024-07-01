@@ -57,12 +57,8 @@
             <div class="form-group">
                 <label>{{ localize "VG.TributeType" }}:</label>
                 <select name="system.scrollType">
-                    {{#select data.system.type}}
-                        {{#each config.tributeTypes as |name value|}}
-                            <option value="{{value}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
-                </select>
+                  {{selectOptions config.tributeTypes selected=data.system.type localize=true}}
+                </select>        
             </div>
         </div>
     </section>

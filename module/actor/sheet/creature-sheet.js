@@ -6,7 +6,7 @@ import VGActorSheet from "./actor-sheet.js";
 export class VGCreatureSheet extends VGActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["vastgrimm", "sheet", "actor", "creature"],
       template: "systems/vastgrimm/templates/actor/creature-sheet.html",
       width: 720,

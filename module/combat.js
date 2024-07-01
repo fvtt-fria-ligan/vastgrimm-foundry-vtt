@@ -3,7 +3,7 @@ import { diceSound, showDice } from "./dice.js";
 const INDIVIDUAL_INITIATIVE_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/individual-initiative-roll-card.html";
 const PARTY_INITIATIVE_ROLL_CARD_TEMPLATE = "systems/vastgrimm/templates/chat/legion-initiative-roll-card.html";
 
-export const rollLegionInitiative = async () => {
+export async function rollLegionInitiative() {
   let initiativeRoll = new Roll("d6", {});
   initiativeRoll.evaluate({async: false});
   await showDice(initiativeRoll);
@@ -31,7 +31,7 @@ export const rollLegionInitiative = async () => {
   }
 };
 
-export const rollIndividualInitiative = async (actor) => {
+export async function rollIndividualInitiative(actor) {
   if (game.combats && game.combat) {
     // there is an encounter started in the Combat Tracker
     const combatant = game.combat.combatants.find (i => i.data.actorId === actor.id);

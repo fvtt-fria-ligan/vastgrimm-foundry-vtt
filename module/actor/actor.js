@@ -41,7 +41,7 @@ export class VGActor extends Actor {
         vision: false,
       };
     }
-    mergeObject(data.prototypeToken, defaults, {overwrite: false});
+    foundry.utils.mergeObject(data.prototypeToken, defaults, {overwrite: false});
     return super.create(data, options);
   }
 
@@ -122,7 +122,7 @@ export class VGActor extends Actor {
 
   async _testAbility(ability, abilityKey, abilityAbbrevKey, drModifiers) {
     let abilityRoll = new Roll(`1d20+@abilities.${ability}.value`, this.getRollData());
-    abilityRoll.evaluate({async: false});
+    await abilityRoll.evaluate();
     await showDice(abilityRoll);
     const rollResult = {
       abilityKey,
@@ -233,7 +233,7 @@ export class VGActor extends Actor {
     // ranged weapons use presence; melee weapons use strength
     const ability = isRanged ? 'presence' : 'strength';
     let attackRoll = new Roll(`d20+@abilities.${ability}.value`, actorRollData);
-    attackRoll.evaluate({async: false});
+    await attackRoll.evaluate();
     await showDice(attackRoll);
 
     const d20Result = attackRoll.terms[0].results[0].result;
@@ -254,7 +254,7 @@ export class VGActor extends Actor {
       // roll 2: damage
       const damageFormula = isCrit ? "@damageDie * 2" : "@damageDie";
       damageRoll = new Roll(damageFormula, itemRollData);
-      damageRoll.evaluate({async: false});
+      await damageRoll.evaluate();
       let dicePromises = [];
       addShowDicePromise(dicePromises, damageRoll);
       let damage = damageRoll.total;
@@ -428,7 +428,7 @@ export class VGActor extends Actor {
 
     // roll 1: defend
     let defendRoll = new Roll("d20+@abilities.agility.value", rollData);
-    defendRoll.evaluate({async: false});
+    await defendRoll.evaluate();
     await showDice(defendRoll);
 
     const d20Result = defendRoll.terms[0].results[0].result;
@@ -461,7 +461,7 @@ export class VGActor extends Actor {
         damageFormula += " * 2";
       }
       damageRoll = new Roll(damageFormula, {});
-      damageRoll.evaluate({async: false});
+      await damageRoll.evaluate();
       let dicePromises = [];
       addShowDicePromise(dicePromises, damageRoll);
       let damage = damageRoll.total;
@@ -478,7 +478,7 @@ export class VGActor extends Actor {
       }
       if (damageReductionDie) {
         armorRoll = new Roll("@die", {die: damageReductionDie});
-        armorRoll.evaluate({async: false});
+        await armorRoll.evaluate();
         addShowDicePromise(dicePromises, armorRoll);
         damage = Math.max(damage - armorRoll.total, 0);
       }
@@ -520,13 +520,13 @@ export class VGActor extends Actor {
   async checkMorale(sheetData) {
     const actorRollData = this.getRollData();
     const moraleRoll = new Roll("2d6", actorRollData);
-    moraleRoll.evaluate({async: false});
+    await moraleRoll.evaluate();
     await showDice(moraleRoll);
 
     let outcomeRoll = null;
     if (moraleRoll.total > this.system.morale) {
       outcomeRoll = new Roll("1d6", actorRollData);
-      outcomeRoll.evaluate({async: false});
+      await outcomeRoll.evaluate();
       await showDice(outcomeRoll);
     }
     await this._renderMoraleRollCard(moraleRoll, outcomeRoll);
@@ -563,7 +563,7 @@ export class VGActor extends Actor {
   async checkReaction(sheetData) {
     const actorRollData = this.getRollData();
     const reactionRoll = new Roll("2d6", actorRollData);
-    reactionRoll.evaluate({async: false});
+    await reactionRoll.evaluate();
     await showDice(reactionRoll);
     await this._renderReactionRollCard(reactionRoll);
   }
@@ -605,7 +605,7 @@ export class VGActor extends Actor {
     }
 
     const activateRoll = new Roll("d20+@abilities.presence.value", this.getRollData());
-    activateRoll.evaluate({async: false});
+    await activateRoll.evaluate();
     await showDice(activateRoll);
 
     const d20Result = activateRoll.terms[0].results[0].result;
@@ -623,7 +623,7 @@ export class VGActor extends Actor {
       // FAILURE
       activateOutcome = game.i18n.localize(isFumble ? 'VG.ActivateTributeFumble' : 'VG.Failure');
       damageRoll = new Roll("1d2", this.getRollData());
-      damageRoll.evaluate({async: false});
+      await damageRoll.evaluate();
       await showDice(damageRoll);
       takeDamage = `${game.i18n.localize('VG.Take')} ${damageRoll.total} ${game.i18n.localize('VG.Damage')}, ${game.i18n.localize('VG.ActivateTributeDizzy')}`;
     }
@@ -691,7 +691,7 @@ export class VGActor extends Actor {
 
   async _rollOutcome(dieRoll, rollData, cardTitle, outcomeTextFn, rollFormula=null) {
     let roll = new Roll(dieRoll, rollData);
-    roll.evaluate({async: false});
+    await roll.evaluate();
     await showDice(roll);
     const rollResult = {
       cardTitle: cardTitle,
@@ -815,15 +815,15 @@ export class VGActor extends Actor {
 
   async improve() {
     const oldHp = this.system.hp.max;
-    const newHp = this._betterHp(oldHp);
+    const newHp = await this._betterHp(oldHp);
     const oldStr = this.system.abilities.strength.value;
-    const newStr = this._betterAbility(oldStr);
+    const newStr = await this._betterAbility(oldStr);
     const oldAgi = this.system.abilities.agility.value;
-    const newAgi = this._betterAbility(oldAgi);
+    const newAgi = await this._betterAbility(oldAgi);
     const oldPre = this.system.abilities.presence.value
-    const newPre = this._betterAbility(oldPre);
+    const newPre = await this._betterAbility(oldPre);
     const oldTou = this.system.abilities.toughness.value;
-    const newTou = this._betterAbility(oldTou);
+    const newTou = await this._betterAbility(oldTou);
 
     let hpOutcome = this._abilityOutcome(game.i18n.localize('VG.HP'), oldHp, newHp);
     let strOutcome = this._abilityOutcome(game.i18n.localize('VG.AbilityStrength'), oldStr, newStr);
@@ -856,11 +856,11 @@ export class VGActor extends Actor {
     });
   }
 
-  _betterHp(oldHp) {
-    const hpRoll = new Roll("6d10", this.getRollData()).evaluate({async: false});
+  async _betterHp(oldHp) {
+    const hpRoll = await new Roll("6d10", this.getRollData()).evaluate();
     if (hpRoll.total >= oldHp) {
       // success, increase HP
-      const howMuchRoll = new Roll("1d6", this.getRollData()).evaluate({async: false});
+      const howMuchRoll = new Roll("1d6", this.getRollData()).evaluate();
       return oldHp + howMuchRoll.total;
     } else {
       // no soup for you
@@ -868,8 +868,8 @@ export class VGActor extends Actor {
     }
   }
 
-  _betterAbility(oldVal) {
-    const roll = new Roll("1d6", this.getRollData()).evaluate({async: false});
+  async _betterAbility(oldVal) {
+    const roll = await new Roll("1d6", this.getRollData()).evaluate();
     if (roll.total === 1 || roll.total < oldVal) {
       // decrease, to a minimum of -3
       return Math.max(-3, oldVal - 1);
@@ -894,23 +894,23 @@ export class VGActor extends Actor {
   }
 
   async rollBroken() {
-    const brokenRoll = new Roll("1d4").evaluate({async: false});
+    const brokenRoll = await new Roll("1d4").evaluate();
     await showDice(brokenRoll);
 
     let outcomeLines = [];
     let additionalRolls = [];
     if (brokenRoll.total === 1) {
       // fall unconscious
-      const unconsciousRoll = new Roll("1d4").evaluate({async: false});
+      const unconsciousRoll = await new Roll("1d4").evaluate();
       const s = unconsciousRoll.total > 1 ? "s" : "";
-      const hpRoll = new Roll("1d4").evaluate({async: false});
+      const hpRoll = await new Roll("1d4").evaluate();
       outcomeLines = [`Fall unconscious`, `for ${unconsciousRoll.total} round${s},`, `awaken with ${hpRoll.total} HP.`];
       additionalRolls = [unconsciousRoll, hpRoll];
     } else if (brokenRoll.total === 2) {
       // severed limb or lost eye
-      const limbRoll = new Roll("1d6").evaluate({async: false});
-      const actRoll = new Roll("1d4").evaluate({async: false});
-      const hpRoll = new Roll("1d4").evaluate({async: false});
+      const limbRoll = await new Roll("1d6").evaluate();
+      const actRoll = await new Roll("1d4").evaluate();
+      const hpRoll = await new Roll("1d4").evaluate();
       const s = actRoll.total > 1 ? "s" : "";
       if (limbRoll.total <= 5) {
         // severed limb
@@ -932,7 +932,7 @@ export class VGActor extends Actor {
       additionalRolls = [limbRoll, actRoll, hpRoll];
     } else if (brokenRoll.total === 3) {
       // hemorrhage
-      const hemorrhageRoll = new Roll("1d2").evaluate({async: false}); 
+      const hemorrhageRoll = await new Roll("1d2").evaluate(); 
       const s = hemorrhageRoll.total > 1 ? "s" : "";
       outcomeLines = [
         `Hemorrhage:`, 
@@ -946,7 +946,7 @@ export class VGActor extends Actor {
       additionalRolls = [hemorrhageRoll];
     } else {
       // loss of eye or death
-      const deathRoll = new Roll("1d4").evaluate({async: false}); 
+      const deathRoll = await new Roll("1d4").evaluate(); 
       if (deathRoll.total <= 2) {
         // loss of eye
         outcomeLines = [
