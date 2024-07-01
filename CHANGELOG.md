@@ -1,6 +1,7 @@
 # 3.0.0
 
 - Foundry v12 compatibility.
+- Spanish language translation by WallaceMcGregor.
 
 # 2.0.4
 
