@@ -57,7 +57,7 @@ export class VGActor extends Actor {
   }
 
   _firstEquipped(itemType) {
-    for (const item of this.data.items) {
+    for (const item of this.items) {
       if (item.type === itemType && item.system.equipped) {
         return item;
       }
@@ -261,7 +261,7 @@ export class VGActor extends Actor {
       // roll 3: target damage reduction
       if (targetArmor) {
         targetArmorRoll = new Roll(targetArmor, {});
-        targetArmorRoll.evaluate({async: false});
+        await targetArmorRoll.evaluate();
         addShowDicePromise(dicePromises, targetArmorRoll);
         damage = Math.max(damage - targetArmorRoll.total, 0);
       }
