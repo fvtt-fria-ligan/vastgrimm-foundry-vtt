@@ -1,1895 +1,1891 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Special+Elite&display=swap");
 :root {
-  --background-color: #000000;
-  --foreground-color: #ffffff;
-  --foreground-alt-color: #FF3EB5;
-  --highlight-background-color: #FF3EB5;
-  --highlight-foreground-color: #000000;
-  --sidebar-background-color: #000000;
-  --sidebar-foreground-color: #ffffff;
-  --sidebar-button-background-color: #000000;
-  --sidebar-button-foreground-color: #ffffff;
-  --window-background: #000000;
-  --chat-font: "helvetica";
-  --chat-info-font: "helvetica";
-  --h1-font: "Takota";
-  --h2-font: "Lazenby Computer";
-  --h3-font: "Audiowide";
-  --item-font: "Special Elite";
+    --background-color: #000000;
+    --foreground-color: #ffffff;
+    --foreground-alt-color: #ff3eb5;
+    --highlight-background-color: #ff3eb5;
+    --highlight-foreground-color: #000000;
+    --sidebar-background-color: #000000;
+    --sidebar-foreground-color: #ffffff;
+    --sidebar-button-background-color: #000000;
+    --sidebar-button-foreground-color: #ffffff;
+    --window-background: #000000;
+    --chat-font: "helvetica";
+    --chat-info-font: "helvetica";
+    --h1-font: "Takota";
+    --h2-font: "Lazenby Computer";
+    --h3-font: "Audiowide";
+    --item-font: "Special Elite";
 }
 
 /* ====================== */
 /* Fonts */
 /* ====================== */
 @font-face {
-  font-family: "Lazenby Computer";
-  src: url("../assets/fonts/LazenbyCompSmooth.ttf") format("truetype");
+    font-family: "Lazenby Computer";
+    src: url("../assets/fonts/LazenbyCompSmooth.ttf") format("truetype");
 }
 @font-face {
-  font-family: "a Aksentuasi";
-  src: url("../assets/fonts/aAksentuasi.ttf") format("truetype");
+    font-family: "a Aksentuasi";
+    src: url("../assets/fonts/aAksentuasi.ttf") format("truetype");
 }
 @font-face {
-  font-family: "Dinosaur Jr";
-  src: url("../assets/fonts/dinojp__.ttf") format("truetype");
+    font-family: "Dinosaur Jr";
+    src: url("../assets/fonts/dinojp__.ttf") format("truetype");
 }
 @font-face {
-  font-family: "Takota";
-  src: url("../assets/fonts/takota.ttf") format("truetype");
+    font-family: "Takota";
+    src: url("../assets/fonts/takota.ttf") format("truetype");
 }
 .vastgrimm .editor,
 .vastgrimm .editor-content {
-  height: 490px;
+    height: 490px;
 }
 
 .vastgrimm .editor-content {
-  padding-top: 10px;
-}
-
-.flexrow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.flexrow > * {
-  flex: 1;
-}
-
-.flexrow .flex1 {
-  flex: 1;
-}
-
-.flexrow .flex2 {
-  flex: 2;
-}
-
-.flexrow .flex3 {
-  flex: 3;
-}
-
-.flexrow .flex4 {
-  flex: 4;
-}
-
-.flexcol {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-}
-
-.flexcol > * {
-  flex: 1;
-}
-
-.flexcol .flex1 {
-  flex: 1;
-}
-
-.flexcol .flex2 {
-  flex: 2;
-}
-
-.flexcol .flex3 {
-  flex: 3;
-}
-
-.flexcol .flex4 {
-  flex: 4;
+    padding-top: 10px;
 }
 
 .vastgrimm .window-content {
-  font-size: 13px;
-  color: #191813;
+    font-size: 13px;
+    color: #191813;
 }
 
 .vastgrimm form {
-  height: 100%;
+    height: 100%;
 }
 
 .vastgrimm ::-webkit-scrollbar-thumb {
-  background: darkgray;
-  border: 1px solid lightgray;
+    background: darkgray;
+    border: 1px solid lightgray;
 }
 
 .vastgrimm ::-moz-selection {
-  background: var(--highlight-background-color);
-  color: var(--background-color);
+    background: var(--highlight-background-color);
+    color: var(--background-color);
 }
 
 .vastgrimm ::selection {
-  background: var(--highlight-background-color);
-  color: var(--background-color);
+    background: var(--highlight-background-color);
+    color: var(--background-color);
 }
 
 .vastgrimm select {
-  height: 27px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid #7a7971;
-  border-radius: 0px;
-  padding: 0 3px;
-  text-overflow: ellipsis;
-  color: var(--foreground-color);
+    height: 27px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid #7a7971;
+    border-radius: 0px;
+    padding: 0 3px;
+    text-overflow: ellipsis;
+    color: var(--foreground-color);
 }
 
 .vastgrimm select:focus {
-  box-shadow: 0 0 5px var(--highlight-background-color);
-  outline: none;
+    box-shadow: 0 0 5px var(--highlight-background-color);
+    outline: none;
 }
 
 .vastgrimm select[multiple] {
-  height: auto;
-  padding: 3px;
+    height: auto;
+    padding: 3px;
 }
 
 .vastgrimm select > option {
-  background-color: var(--background-color) !important;
-  color: var(--foreground-color) !important;
+    background-color: var(--background-color) !important;
+    color: var(--foreground-color) !important;
 }
 /* ====================== */
 /* UI/Dialog fixes */
 /* ====================== */
-.form-group input[type=text] {
-  color: var(--foreground-color);
+.form-group input[type="text"] {
+    color: var(--foreground-color);
 }
 
-.form-group input[type=text]:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+.form-group input[type="text"]:hover {
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
-.form-group input[type=text]:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+.form-group input[type="text"]:focus {
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .form-group textarea {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 .form-group textarea:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .form-group textarea:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
-  outline: none;
+    box-shadow: 0 0 10px var(--highlight-background-color);
+    outline: none;
 }
 
 form button {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 form button:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 a:hover {
-  text-shadow: 0 0 8px var(--highlight-background-color);
+    text-shadow: 0 0 8px var(--highlight-background-color);
 }
 
-input[type=text] {
-  color: var(--foreground-color);
+input[type="text"] {
+    color: var(--foreground-color);
 }
 
-input[type=text]:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+input[type="text"]:hover {
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
-input[type=text]:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+input[type="text"]:focus {
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 form.editable .results .result-image img {
-  background-color: var(--foreground-color);
+    background-color: var(--foreground-color);
 }
 
 form.editable .results .result-type select {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 form.editable .results .result-type select:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 form.editable .results .result-type select:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 form.editable .results .result-details select {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 form.editable .results .result-details select:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 form.editable .results .result-details select:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
-form.editable .results .result-details input[type=text] {
-  color: var(--foreground-color);
+form.editable .results .result-details input[type="text"] {
+    color: var(--foreground-color);
 }
 
-form.editable .results .result-details input[type=text]:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+form.editable .results .result-details input[type="text"]:hover {
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
-form.editable .results .result-details input[type=text]:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+form.editable .results .result-details input[type="text"]:focus {
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .table-results .table-result .result-text .entity-link {
-  background-color: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
+    background-color: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
 }
 
 /* Fixes Module Management dialog */
 #module-management .package-list .package-title,
 #module-management .package-list .package-metadata,
 #module-management .package-list .package-description {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 /* Fixes hard-to-read dark text on various system Dialogs */
 .window-app .window-content .notes {
-  background-color: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
+    background-color: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
 }
 
 .window-app .window-content form .form-header {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 /* TODO: determine if we need both .notes and form .notes styles specified */
 .window-app .window-content form .notes {
-  background-color: var(--background-color);
-  color: var(--foreground-alt-color);
+    background-color: var(--background-color);
+    color: var(--foreground-alt-color);
 }
 
 .window-app .window-content .form-group span.units {
-  background-color: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
+    background-color: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
 }
 
 .window-app .window-content .form-group input {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 .window-app .window-content .form-group input:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .window-app .window-content .form-group input:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 /* Fix readonly input on defend dialog */
 .window-app .window-content .form-group input.readonly {
-  color: gray;
+    color: gray;
 }
 
 .window-app .window-content .form-group input:hover.readonly {
-  box-shadow: none;
-  cursor: default;
+    box-shadow: none;
+    cursor: default;
 }
 
 .window-app .window-content .form-group input:focus.readonly {
-  box-shadow: none;
-  cursor: default;
+    box-shadow: none;
+    cursor: default;
 }
 
 /* Fixes Journal image select dialog */
 .journal-sheet.image-popout .window-content .form-group input {
-  color: var(--background-color);
+    color: var(--background-color);
 }
 
-.journal-sheet.image-popout .window-content .form-group.picker button.file-picker {
-  background-color: var(--background-color);
+.journal-sheet.image-popout
+    .window-content
+    .form-group.picker
+    button.file-picker {
+    background-color: var(--background-color);
 }
 
 .journal-sheet form select:hover {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .journal-sheet form select:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
-.journal-sheet form .form-group.title input[type=text] {
-  background-color: rgba(0, 0, 0, 0.05);
+.journal-sheet form .form-group.title input[type="text"] {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
-.journal-sheet form .form-group.picker input[type=text].image {
-  background-color: rgba(0, 0, 0, 0.05);
+.journal-sheet form .form-group.picker input[type="text"].image {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* Fix Player Configuration dialog */
 #player-config form .form-group label {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 #player-config form .form-group .directory-list .actor.directory-item {
-  border-bottom-color: none;
-  border-top-color: none;
+    border-bottom-color: none;
+    border-top-color: none;
 }
 
 #player-config form .form-group .directory-list .actor.directory-item.context {
-  border-bottom-color: var(--highlight-background-color);
-  border-top-color: var(--highlight-background-color);
-  box-shadow: 0 0 5px var(--highlight-background-color);
+    border-bottom-color: var(--highlight-background-color);
+    border-top-color: var(--highlight-background-color);
+    box-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 /* ====================== */
 /* UI / Chat */
 /* ====================== */
 .vastgrimm .button {
-  background: var(--foreground-color);
-  color: var(--background-color);
-  font-family: var(--h3-font);
+    background: var(--foreground-color);
+    color: var(--background-color);
+    font-family: var(--h3-font);
 }
 
 #chat-controls {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 #chat-controls i.fas:hover {
-  color: var(--highlight-background-color);
-  text-shadow: 0 0 5px var(--highlight-background-color);
+    color: var(--highlight-background-color);
+    text-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 #chat-controls .roll-type-select {
-  color: var(--foreground-color);
-  background: var(--background-color);
+    color: var(--foreground-color);
+    background: var(--background-color);
 }
 
 #chat-controls select:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
-#chat-log {
-  background: var(--sidebar-background-color);
+#chat {
+    background: var(--sidebar-background-color);
 }
 
-#chat-log .chat-message {
-  background: var(--window-background);
-  border: 3px solid #252525;
-  border-radius: 0;
-  color: var(--foreground-color);
-  margin-top: 6px;
-  font-family: var(--chat-font);
-  font-size: 16px;
+#chat .chat-message {
+    background: var(--window-background);
+    border: 3px solid #252525;
+    border-radius: 0;
+    color: var(--foreground-color);
+    margin-top: 6px;
+    font-family: var(--chat-font);
+    font-size: 16px;
 }
 
-#chat-log .message h4,
-#chat-log .message h3,
-#chat-log .message h2,
-#chat-log .message-metadata {
-  color: var(--foreground-color);
+#chat .message h4,
+#chat .message h3,
+#chat .message h2,
+#chat .message-metadata {
+    color: var(--foreground-color);
 }
 
-#chat-log .message h2 {
-  background: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
+#chat .message h2 {
+    background: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
 }
 
-#chat-log .chat-message .message-header .message-sender {
-  font-family: var(--h1-font);
-  font-size: 20px;
+#chat .chat-message .message-header .message-sender {
+    font-family: var(--h1-font);
+    font-size: 20px;
 }
 
-#chat-log .chat-message .message-header .message-metadata {
-  font-family: var(--chat-info-font);
-  font-size: 12px;
+#chat .chat-message .message-header .message-metadata {
+    font-family: var(--chat-info-font);
+    font-size: 12px;
 }
 
-#chat-log .chat-message .message-header span.flavor-text {
-  font-family: var(--chat-info-font);
-  font-size: 14px;
-  font-weight: bold;
-  color: var(--foreground-color);
+#chat .chat-message .message-header span.flavor-text {
+    font-family: var(--chat-info-font);
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--foreground-color);
 }
 
-#chat-log .message .dice-formula,
-#chat-log .message .dice-total {
-  font-size: 16px;
-  border: 1px solid #252525;
-  border-radius: 0;
+#chat .message .dice-formula,
+#chat .message .dice-total {
+    font-size: 16px;
+    border: 1px solid #252525;
+    border-radius: 0;
 }
 
 #chat-form textarea {
-  color: var(--foreground-color);
-  background: var(--background-color);
-  border: 2px solid #252525;
-  font-family: var(--chat-font);
-  font-size: 16px;
+    color: var(--foreground-color);
+    background: var(--background-color);
+    border: 2px solid #252525;
+    font-family: var(--chat-font);
+    font-size: 16px;
 }
 
 #chat-form textarea:focus {
-  outline: 2px solid var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    outline: 2px solid var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 #client-settings button {
-  color: var(--background-color);
-  background: var(--foreground-color);
+    color: var(--background-color);
+    background: var(--foreground-color);
 }
 
 #client-settings h2 {
-  border-bottom: none;
-  background: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
-  font-family: var(--h3-font);
+    border-bottom: none;
+    background: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
+    font-family: var(--h3-font);
 }
 
 #client-settings select {
-  color: var(--foreground-color);
-  background: var(--background-color);
+    color: var(--foreground-color);
+    background: var(--background-color);
 }
 
 #client-settings select:focus {
-  outline: none;
-  box-shadow: 0 0 5px var(--highlight-background-color);
+    outline: none;
+    box-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 /* XXX */
 /* XXX maybe only set controls li color and background ? */
 #controls {
-  color: var(--foreground-color);
-  /*  background: var(--background-color); */
+    color: var(--foreground-color);
+    /*  background: var(--background-color); */
 }
 
 #controls .control-tool.toggle {
-  background: unset;
-  border: 1px solid #252525;
+    background: unset;
+    border: 1px solid #252525;
 }
 
 #controls .control-tool.toggle.active {
-  background: var(--background-color);
-  text-shadow: 0 0 10px var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    background: var(--background-color);
+    text-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 #controls .control-tool.toggle:hover {
-  background: unset;
-  text-shadow: 0 0 10px var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    background: unset;
+    text-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 #controls .control-tools {
-  color: var(--foreground-color);
-  /*  background: var(--background-color); */
+    color: var(--foreground-color);
+    /*  background: var(--background-color); */
 }
 
 #controls li {
-  background: var(--background-color);
-  background-color: var(--background-color);
+    background: var(--background-color);
+    background-color: var(--background-color);
 }
 
 #controls .control-tool.active,
 #controls .control-tool:hover,
 #controls .scene-control.active,
 #controls .scene-control:hover {
-  background: var(--background-color);
-  color: var(--foreground-color);
-  border: 1px solid var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    background: var(--background-color);
+    color: var(--foreground-color);
+    border: 1px solid var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 #controls .scene-control.active {
-  color: var(--foreground-color);
-  border: 1px solid var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    color: var(--foreground-color);
+    border: 1px solid var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .dialog .dialog-buttons button {
-  background: var(--foreground-color);
-  color: var(--background-color);
-  font-family: var(--h3-font);
+    background: var(--foreground-color);
+    color: var(--background-color);
+    font-family: var(--h3-font);
 }
 
 .dialog .dialog-buttons button.default {
-  background: var(--foreground-color);
-  color: var(--background-color);
-  font-family: var(--h3-font);
+    background: var(--foreground-color);
+    color: var(--background-color);
+    font-family: var(--h3-font);
 }
 
 form .form-group select {
-  color: var(--foreground-color);
-  background: var(--background-color);
+    color: var(--foreground-color);
+    background: var(--background-color);
 }
 
 form .form-group select:focus {
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 #hotbar #hotbar-directory-controls,
 #hotbar #hotbar-page-controls {
-  background: var(--background-color);
-  color: var(--foreground-color);
+    background: var(--background-color);
+    color: var(--foreground-color);
 }
 
 #hotbar #action-bar li.macro:hover {
-  background: var(--background-color);
-  color: var(--foreground-color);
-  border: 1px solid var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    background: var(--background-color);
+    color: var(--foreground-color);
+    border: 1px solid var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 #navigation #nav-toggle {
-  background: var(--background-color);
-  color: var(--foreground-color);
+    background: var(--background-color);
+    color: var(--foreground-color);
 }
 
 #navigation #scene-list li.scene.nav-item {
-  border: 1px solid #252525;
+    border: 1px solid #252525;
 }
 
 #navigation #scene-list li.scene.nav-item.active,
 #navigation #scene-list li.scene.nav-item:hover {
-  background: var(--background-color);
-  color: var(--foreground-color);
-  border: 1px solid var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    background: var(--background-color);
+    color: var(--foreground-color);
+    border: 1px solid var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 select:focus {
-  color: var(--foreground-color);
-  background: var(--background-color);
+    color: var(--foreground-color);
+    background: var(--background-color);
 }
 
 #settings button {
-  color: var(--background-color);
-  background: var(--foreground-color);
-  font-family: var(--h3-font);
+    color: var(--background-color);
+    background: var(--foreground-color);
+    font-family: var(--h3-font);
 }
 
 #sidebar {
-  background: var(--sidebar-background-color);
-  color: var(--sidebar-foreground-color);
+    background: var(--sidebar-background-color);
+    color: var(--sidebar-foreground-color);
 }
 
 #sidebar.collapsed #sidebar-tabs > .item.active {
-  border-bottom: 1px solid var(--highlight-background-color);
-  border-radius: 5px;
+    border-bottom: 1px solid var(--highlight-background-color);
+    border-radius: 5px;
 }
 
 #sidebar-tabs {
-  background: var(--sidebar-background-color);
-  color: var(--sidebar-foreground-color);
-  border-bottom: 1px solid var(--highlight-background-color);
-  box-shadow: 0 0 10px var(--highlight-background-color);
+    background: var(--sidebar-background-color);
+    color: var(--sidebar-foreground-color);
+    border-bottom: 1px solid var(--highlight-background-color);
+    box-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 #sidebar-tabs > .item.active {
-  color: var(--highlight-foreground-color);
-  background: var(--highlight-background-color);
-  border: 1px solid var(--highlight-background-color);
-  border-bottom: none;
-  box-shadow: 0 0 6px inset var(--highlight-background-color);
-  text-shadow: 0 0 10px var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
+    background: var(--highlight-background-color);
+    border: 1px solid var(--highlight-background-color);
+    border-bottom: none;
+    box-shadow: 0 0 6px inset var(--highlight-background-color);
+    text-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .sidebar-tab .action-buttons button {
-  background: var(--sidebar-button-background-color);
-  color: var(--sidebar-button-foreground-color);
-  border-radius: 0;
-  font-family: var(--h3-font);
-  font-size: 12px;
+    background: var(--sidebar-button-background-color);
+    color: var(--sidebar-button-foreground-color);
+    border-radius: 0;
+    font-family: var(--h3-font);
+    font-size: 12px;
 }
 
 .sidebar-tab .directory-header .header-search input {
-  background: var(--sidebar-button-background-color);
-  color: var(--sidebar-button-foreground-color);
-  border: 1px solid #252525;
-  border-radius: 0;
-  font-family: var(--h3-font);
+    background: var(--sidebar-button-background-color);
+    color: var(--sidebar-button-foreground-color);
+    border: 1px solid #252525;
+    border-radius: 0;
+    font-family: var(--h3-font);
 }
 
-.sidebar-tab .directory-header .header-search input[type=text]:focus {
-  box-shadow: 0 0 5px var(--highlight-background-color);
+.sidebar-tab .directory-header .header-search input[type="text"]:focus {
+    box-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 .sidebar-tab .directory-list .directory-item h4 {
-  font-family: var(--item-font);
+    font-family: var(--item-font);
 }
 
 .tabs .item.active,
 .tabs .item:hover {
-  text-shadow: 0 0 10px var(--highlight-background-color);
+    text-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  outline: none;
-  border-radius: 3px;
-  background: var(--highlight-background-color) !important;
-  border: 1px solid var(--background-color) !important;
-  color: var(--highlight-foreground-color) !important;
+    outline: none;
+    border-radius: 3px;
+    background: var(--highlight-background-color) !important;
+    border: 1px solid var(--background-color) !important;
+    color: var(--highlight-foreground-color) !important;
 }
 
 .window-app .window-content {
-  background: var(--background-color);
-  color: var(--foreground-color);
+    background: var(--background-color);
+    color: var(--foreground-color);
 }
 
 /* ================== 11. JOURNAL ENTRIES =================== */
 .window-app.app.journal-sheet .window-content {
-  background: var(--background-color);
-  color: var(--foreground-color);
-  background-position: -43px -120px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  overflow-y: hidden;
-  padding: 0px;
-  margin: 0px;
-  font-family: var(--item-font);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.5;
+    background: var(--background-color);
+    color: var(--foreground-color);
+    background-position: -43px -120px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    padding: 0px;
+    margin: 0px;
+    font-family: var(--item-font);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .window-app.app.journal-sheet .window-content h1 {
-  font-family: var(--h3-font);
-  border-bottom: 2px solid #222222;
+    font-family: var(--h3-font);
+    border-bottom: 2px solid #222222;
 }
 
 .window-app.app.journal-sheet .window-content h2 {
-  border-bottom: 1px solid #252525;
+    border-bottom: 1px solid #252525;
 }
 
-.journal-sheet form button[type=submit] {
-  background: var(--background-color);
+.journal-sheet form button[type="submit"] {
+    background: var(--background-color);
 }
 
-.journal-sheet form input[name=name] {
-  color: var(--background-color);
-  font-family: var(--h3-font);
-  font-size: 32px;
+.journal-sheet form input[name="name"] {
+    color: var(--background-color);
+    font-family: var(--h3-font);
+    font-size: 32px;
 }
 
 .journal-sheet form select {
-  font-family: var(--item-font);
+    font-family: var(--item-font);
 }
 
 a.entity-link,
 a.inline-roll {
-  background: var(--background-color);
-  color: var(--foreground-color);
-  padding: 1px 4px;
-  border: 1px solid var(--background-color);
-  border-radius: 2px;
-  white-space: nowrap;
-  word-break: break-all;
+    background: var(--background-color);
+    color: var(--foreground-color);
+    padding: 1px 4px;
+    border: 1px solid var(--background-color);
+    border-radius: 2px;
+    white-space: nowrap;
+    word-break: break-all;
 }
 .vastgrimm.sheet .window-content {
-  overflow-y: hidden;
-  padding: 5px;
-  /* inherited background is parchment img bg */
-  background: var(--window-background);
-  font-size: 13px;
-  color: var(--foreground-color);
-  border-bottom: 1px solid #222222;
-  border-left: 1px solid #222222;
-  border-right: 1px solid #222222;
+    overflow-y: hidden;
+    padding: 5px;
+    /* inherited background is parchment img bg */
+    background: var(--window-background);
+    font-size: 13px;
+    color: var(--foreground-color);
+    border-bottom: 1px solid #222222;
+    border-left: 1px solid #222222;
+    border-right: 1px solid #222222;
 }
 
 .vastgrimm.sheet .window-content form {
-  height: 100%;
-  overflow: hidden;
+    height: 100%;
+    overflow: hidden;
 }
 
 .vastgrimm.sheet {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .vastgrimm.sheet .editable .rollable:hover {
-  color: var(--highlight-foreground-color);
-  text-shadow: 0 0 10px var(--highlight-background-color);
-  cursor: pointer;
+    color: var(--highlight-foreground-color);
+    text-shadow: 0 0 10px var(--highlight-background-color);
+    cursor: pointer;
 }
 
-.vastgrimm.sheet input[type=text],
-.vastgrimm.sheet input[type=number],
-.vastgrimm.sheet input[type=password],
-.vastgrimm.sheet input[type=date] {
-  color: var(--foreground-color);
-  border-radius: 0;
+.vastgrimm.sheet input[type="text"],
+.vastgrimm.sheet input[type="number"],
+.vastgrimm.sheet input[type="password"],
+.vastgrimm.sheet input[type="date"] {
+    color: var(--foreground-color);
+    border-radius: 0;
 }
 
-.vastgrimm.sheet input[type=text]:focus,
-.vastgrimm.sheet input[type=number]:focus,
-.vastgrimm.sheet input[type=password]:focus,
-.vastgrimm.sheet input[type=date]:focus,
-.vastgrimm.sheet input[type=time]:focus,
-.vastgrimm.sheet input[type=text]:hover,
-.vastgrimm.sheet input[type=number]:hover,
-.vastgrimm.sheet input[type=password]:hover,
-.vastgrimm.sheet input[type=date]:hover,
-.vastgrimm.sheet input[type=time]:hover {
-  box-shadow: 0 0 5px var(--highlight-background-color);
+.vastgrimm.sheet input[type="text"]:focus,
+.vastgrimm.sheet input[type="number"]:focus,
+.vastgrimm.sheet input[type="password"]:focus,
+.vastgrimm.sheet input[type="date"]:focus,
+.vastgrimm.sheet input[type="time"]:focus,
+.vastgrimm.sheet input[type="text"]:hover,
+.vastgrimm.sheet input[type="number"]:hover,
+.vastgrimm.sheet input[type="password"]:hover,
+.vastgrimm.sheet input[type="date"]:hover,
+.vastgrimm.sheet input[type="time"]:hover {
+    box-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 .vastgrimm.sheet select:focus {
-  box-shadow: 0 0 5px var(--highlight-background-color);
+    box-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 .vastgrimm.sheet button:hover,
 .vastgrimm.sheet button:focus {
-  box-shadow: 0 0 5px var(--highlight-background-color);
+    box-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 .vastgrimm.sheet a:hover {
-  text-shadow: 0 0 8px var(--highlight-background-color);
+    text-shadow: 0 0 8px var(--highlight-background-color);
 }
 
 .vastgrimm.sheet textarea {
-  border: 1px solid #7a7971;
-  border-radius: 0;
-  color: var(--foreground-color);
-  font-family: var(--item-font);
-  font-size: 14px;
-  resize: none;
+    border: 1px solid #7a7971;
+    border-radius: 0;
+    color: var(--foreground-color);
+    font-family: var(--item-font);
+    font-size: 14px;
+    resize: none;
 }
 
 .vastgrimm.sheet textarea:hover {
-  box-shadow: 0 0 5px var(--highlight-background-color);
+    box-shadow: 0 0 5px var(--highlight-background-color);
 }
 
 .vastgrimm.sheet textarea:focus {
-  box-shadow: 0 0 5px var(--highlight-background-color);
-  outline: none;
+    box-shadow: 0 0 5px var(--highlight-background-color);
+    outline: none;
 }
 
 .vastgrimm.sheet .profile-img {
-  border: none;
+    border: none;
 }
 
 /* ====================== */
 /* TinyMCE editor */
 /* ====================== */
 .vastgrimm.sheet .editor {
-  color: var(--foreground-color);
-  border: 1px solid #7a7971;
-  font-family: var(--item-font);
+    color: var(--foreground-color);
+    border: 1px solid #7a7971;
+    font-family: var(--item-font);
 }
 
 .vastgrimm.sheet .tox.tox-tinymce .tox-edit-area__iframe {
-  background: var(--background-color);
+    background: var(--background-color);
 }
 
 .mce-content-body {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  color: var(--foreground-color);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    color: var(--foreground-color);
 }
 
 .vastgrimm .editor,
 .vastgrimm .editor-content {
-  height: 100%;
+    height: 100%;
 }
 
 .vastgrimm.sheet .editor {
-  padding: 0 8px;
+    padding: 0 8px;
 }
 
 /* ====================== */
 /* Sheet Tabs */
 /* ====================== */
 .vastgrimm.sheet .sheet-tabs {
-  flex: 0 0 30px;
-  margin-bottom: 5px;
-  font-size: 20px;
-  font-weight: 700;
-  /* TODO: track down the border-top and border-bottom getting inherited on these */
-  border-top: none;
-  border-bottom: none;
+    flex: 0 0 30px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    /* TODO: track down the border-top and border-bottom getting inherited on these */
+    border-top: none;
+    border-bottom: none;
 }
 
 .vastgrimm.sheet .sheet-tabs .item {
-  border-bottom: 1px solid var(--highlight-background-color);
-  font-family: var(--h2-font);
-  font-size: 22px;
-  height: 30px;
-  padding: 0;
-  width: 150px;
+    border-bottom: 1px solid var(--highlight-background-color);
+    font-family: var(--h2-font);
+    font-size: 22px;
+    height: 30px;
+    padding: 0;
+    width: 150px;
 }
 
 .vastgrimm.sheet .sheet-tabs .item:hover {
-  color: var(--highlight-foreground-color);
-  text-shadow: 0 0 10px var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
+    text-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .vastgrimm.sheet .sheet-tabs .item.active {
-  text-shadow: none;
-  background-color: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
+    text-shadow: none;
+    background-color: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
 }
 
 /* ====================== */
 /* Sheet Body */
 /* ====================== */
 .vastgrimm .sheet-body {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .vastgrimm .sheet-body .tab {
-  height: 100%;
-  overflow-y: auto;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .vastgrimm.sheet .sheet-body .form-group {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .vastgrimm.sheet .sheet-body .form-group label {
-  font-family: var(--h2-font);
-  font-size: 20px;
-  text-align: right;
-  margin-right: 10px;
+    font-family: var(--h2-font);
+    font-size: 20px;
+    text-align: right;
+    margin-right: 10px;
 }
 
 .vastgrimm.sheet .sheet-body .form-group input {
-  font-family: var(--item-font);
-  font-size: 14pt;
+    font-family: var(--item-font);
+    font-size: 14pt;
 }
 
 .vastgrimm.sheet .sheet-body .form-group select {
-  font-family: var(--item-font);
-  font-size: 14pt;
+    font-family: var(--item-font);
+    font-size: 14pt;
 }
 
 .vastgrimm.sheet .sheet-body .form-group.special {
-  flex: 1;
+    flex: 1;
 }
 /* ====================== */
 /* Actor sheet */
 /* ====================== */
 .vastgrimm.sheet.actor .sheet-header .actor-subtitle {
-  font-family: var(--h3-font);
-  font-size: 24px;
-  text-transform: uppercase;
-  margin-left: 13px;
+    font-family: var(--h3-font);
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-left: 13px;
 }
 
 .vastgrimm.sheet.actor .rule-text {
-  font-family: var(--item-font);
-  font-size: 10pt;
+    font-family: var(--item-font);
+    font-size: 10pt;
 }
 
 /* ====================== */
 /* Actor sheet header */
 /* ====================== */
 .vastgrimm.sheet.actor .sheet-header {
-  margin-top: 0;
-  padding: 5px;
-  display: flex;
-  flex-direction: row;
+    margin-top: 0;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
 }
 
 .vastgrimm.sheet.actor .sheet-header .header-gutter-col {
-  flex: 0 0 10px;
+    flex: 0 0 10px;
 }
 
 .vastgrimm.sheet.actor .sheet-header .profile-img {
-  height: 200px;
-  width: 200px;
-  margin: 0;
-  padding: 0;
+    height: 200px;
+    width: 200px;
+    margin: 0;
+    padding: 0;
 }
 
 .vastgrimm.sheet.actor .stat-label {
-  font-family: var(--h2-font);
-  font-size: 22px;
-  margin-right: 10px;
+    font-family: var(--h2-font);
+    font-size: 22px;
+    margin-right: 10px;
 }
 
 .vastgrimm.sheet.actor .stat-input {
-  border: 1px solid #7a7971;
-  font-family: var(--item-font);
-  font-size: 14pt;
-  text-align: center;
-  padding-top: 8px;
-  width: 50px;
-  color: var(--foreground-color);
+    border: 1px solid #7a7971;
+    font-family: var(--item-font);
+    font-size: 14pt;
+    text-align: center;
+    padding-top: 8px;
+    width: 50px;
+    color: var(--foreground-color);
 }
 
 .vastgrimm.sheet.actor .stat-value {
-  font-family: var(--item-font);
-  font-size: 14pt;
-  text-align: center;
-  width: 50px;
-  color: var(--foreground-color);
+    font-family: var(--item-font);
+    font-size: 14pt;
+    text-align: center;
+    width: 50px;
+    color: var(--foreground-color);
 }
 
 .vastgrimm.sheet.actor .sheet-body .item-controls .item-toggle {
-  color: darkgray;
+    color: darkgray;
 }
 
 .vastgrimm.sheet.actor .sheet-body .item-controls .item-toggle.equipped {
-  color: var(--highlight-background-color);
+    color: var(--highlight-background-color);
 }
 
 /* ====================== */
 /* Actor sheet combat tab */
 /* ====================== */
 .vastgrimm.sheet.actor .sheet-body .combat-tab div.initiative {
-  margin-top: 10px;
-  text-align: center;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .roll-initiative {
-  font-family: var(--item-font);
-  font-size: 16px;
-  margin-right: 10px;
+    font-family: var(--item-font);
+    font-size: 16px;
+    margin-right: 10px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .initiative-button {
-  background-color: var(--foreground-color);
-  border: none;
-  border-bottom: 2px solid #777;
-  border-radius: 0;
-  color: var(--background-color);
-  font-family: var(--h3-font);
-  font-size: 20px;
-  width: 150px;
+    background-color: var(--foreground-color);
+    border: none;
+    border-bottom: 2px solid #777;
+    border-radius: 0;
+    color: var(--background-color);
+    font-family: var(--h3-font);
+    font-size: 20px;
+    width: 150px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .items-list {
-  margin-top: 0px;
+    margin-top: 0px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .item-list.weapon-list .item {
-  align-items: center;
+    align-items: center;
 }
 
-.vastgrimm.sheet.actor .sheet-body .combat-tab .item-list.weapon-list .item-button {
-  font-size: 20px;
-  width: 120px;
+.vastgrimm.sheet.actor
+    .sheet-body
+    .combat-tab
+    .item-list.weapon-list
+    .item-button {
+    font-size: 20px;
+    width: 120px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .item-name {
-  flex: 1;
-  font-size: 16px;
-  margin-top: 5px;
+    flex: 1;
+    font-size: 16px;
+    margin-top: 5px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .item-fields {
-  font-size: 16px;
-  margin-top: 6px;
+    font-size: 16px;
+    margin-top: 6px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .item-list .versus-armor {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
-.vastgrimm.sheet.actor .sheet-body .combat-tab .weapon-list .item-field.damage-die {
-  text-align: right;
+.vastgrimm.sheet.actor
+    .sheet-body
+    .combat-tab
+    .weapon-list
+    .item-field.damage-die {
+    text-align: right;
 }
 
-.vastgrimm.sheet.actor .sheet-body .combat-tab .weapon-list .item-field.weapon-type {
-  text-align: right;
-  width: 60px;
+.vastgrimm.sheet.actor
+    .sheet-body
+    .combat-tab
+    .weapon-list
+    .item-field.weapon-type {
+    text-align: right;
+    width: 60px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .attack-rule {
-  text-align: center;
+    text-align: center;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .combat-gutter {
-  height: 10px;
+    height: 10px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .tier-label {
-  float: left;
-  font-size: 20;
-  margin-right: 10px;
+    float: left;
+    font-size: 20;
+    margin-right: 10px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers {
-  list-style-type: none;
-  margin: 0;
-  margin-top: 3px;
-  padding: 0;
-  float: left;
+    list-style-type: none;
+    margin: 0;
+    margin-top: 3px;
+    padding: 0;
+    float: left;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers li {
-  float: left;
-  height: 45px;
+    float: left;
+    height: 45px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers label {
-  display: block;
-  padding: 4px;
-  position: relative;
-  padding-left: 32px;
+    display: block;
+    padding: 4px;
+    position: relative;
+    padding-left: 32px;
 }
 
-.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio] {
-  display: none;
+.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type="radio"] {
+    display: none;
 }
 
-.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio]:checked + span.tier-num {
-  background: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
-  border: none;
+.vastgrimm.sheet.actor
+    .sheet-body
+    .combat-tab
+    ul.tiers
+    input[type="radio"]:checked
+    + span.tier-num {
+    background: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
+    border: none;
 }
 
-.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio]:disabled + span.tier-num {
-  color: #444444;
-  border: 1px solid #444444;
+.vastgrimm.sheet.actor
+    .sheet-body
+    .combat-tab
+    ul.tiers
+    input[type="radio"]:disabled
+    + span.tier-num {
+    color: #444444;
+    border: 1px solid #444444;
 }
 
-.vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers input[type=radio]:disabled ~ span.tier-dmg {
-  color: #444444;
+.vastgrimm.sheet.actor
+    .sheet-body
+    .combat-tab
+    ul.tiers
+    input[type="radio"]:disabled
+    ~ span.tier-dmg {
+    color: #444444;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers span.tier-num {
-  border: 1px solid #7a7971;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  overflow: hidden;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 100%;
-  font-size: 14pt;
-  font-family: var(--item-font);
-  left: 0;
-  /*top: 50%; */
-  top: 0%;
+    border: 1px solid #7a7971;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    overflow: hidden;
+    line-height: 1.5;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 14pt;
+    font-family: var(--item-font);
+    left: 0;
+    /*top: 50%; */
+    top: 0%;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab ul.tiers span.tier-dmg {
-  width: 30px;
-  height: 15px;
-  position: absolute;
-  overflow: hidden;
-  line-height: 1;
-  text-align: center;
-  font-family: var(--item-font);
-  font-size: 10pt;
-  left: -5px;
-  top: 30px;
+    width: 30px;
+    height: 15px;
+    position: absolute;
+    overflow: hidden;
+    line-height: 1;
+    text-align: center;
+    font-family: var(--item-font);
+    font-size: 10pt;
+    left: -5px;
+    top: 30px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .underarmor-row {
-  margin-top: 0px;
-  text-align: center;
+    margin-top: 0px;
+    text-align: center;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .underarmor-row button {
-  margin-left: 10px;
-  width: 120px;
-  margin-bottom: 10px;
-  font-family: var(--h3-font);
-  font-size: 20px;
-  background-color: var(--foreground-color);
-  color: var(--background-color);
-  border: none;
-  border-bottom: 2px solid #777;
-  border-radius: 0;
+    margin-left: 10px;
+    width: 120px;
+    margin-bottom: 10px;
+    font-family: var(--h3-font);
+    font-size: 20px;
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+    border: none;
+    border-bottom: 2px solid #777;
+    border-radius: 0;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .helmet-rule {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .combat-tab .defend-rule {
-  text-align: center;
+    text-align: center;
 }
 
 /* ====================== */
 /* Actor sheet skills tab */
 /* ====================== */
 .vastgrimm.sheet.actor .skill-button {
-  min-width: 120px;
+    min-width: 120px;
 }
 
 .vastgrimm.sheet.actor .roll-button {
-  margin-left: 10px;
-  width: 120px;
-  margin-bottom: 10px;
-  font-family: var(--h3-font);
-  font-size: 20px;
-  background-color: var(--foreground-color);
-  color: var(--background-color);
-  border: none;
-  border-bottom: 2px solid #777;
-  border-radius: 0;
+    margin-left: 10px;
+    width: 120px;
+    margin-bottom: 10px;
+    font-family: var(--h3-font);
+    font-size: 20px;
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+    border: none;
+    border-bottom: 2px solid #777;
+    border-radius: 0;
 }
 /* ====================== */
 /* Character sheet */
 /* ====================== */
 .vastgrimm.sheet.actor.character {
-  min-width: 742px;
-  min-height: 650px;
+    min-width: 742px;
+    min-height: 650px;
 }
 
 /* ====================== */
 /* Character sheet header */
 /* ====================== */
 .vastgrimm.sheet.actor.character .sheet-header {
-  flex: 0 0 200px;
+    flex: 0 0 200px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col1 {
-  flex: 0 0 200px;
-  margin: 5px;
-  padding: 0;
+    flex: 0 0 200px;
+    margin: 5px;
+    padding: 0;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col2 {
-  flex: 1 0 350px;
-  margin: 5px;
-  display: flex;
-  flex-direction: column;
+    flex: 1 0 350px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col2 .rest-buttons {
-  margin-left: 14px;
-  width: 170px;
+    margin-left: 14px;
+    width: 170px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col2 button {
-  background: white;
-  border: none;
-  border-bottom: 2px solid #777;
-  border-radius: 0;
-  font-family: var(--h3-font);
-  font-size: 14px;
-  height: 28px;
+    background: white;
+    border: none;
+    border-bottom: 2px solid #777;
+    border-radius: 0;
+    font-family: var(--h3-font);
+    font-size: 14px;
+    height: 28px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col2 .broken-button {
-  width: 80px;
+    width: 80px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col2 .rest-button {
-  width: 80px;
+    width: 80px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col2 .improve-button {
-  width: 90px;
+    width: 90px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .header-col3 {
-  flex: 0 0 120px;
-  margin: 5px;
-  display: flex;
-  flex-direction: column;
+    flex: 0 0 120px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .profile-img {
-  height: 200px;
-  width: 200px;
+    height: 200px;
+    width: 200px;
 }
 
-.vastgrimm.sheet.actor input[type=text].actor-name {
-  font-family: var(--h1-font);
-  font-size: 38px;
+.vastgrimm.sheet.actor input[type="text"].actor-name {
+    font-family: var(--h1-font);
+    font-size: 38px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .name-row {
-  flex: 0 0 50px;
-  margin-bottom: 7px;
+    flex: 0 0 50px;
+    margin-bottom: 7px;
 }
 
-.vastgrimm.sheet.actor.character .sheet-header .name-row input[type=text] {
-  height: 45px;
-  width: 100%;
+.vastgrimm.sheet.actor.character .sheet-header .name-row input[type="text"] {
+    height: 45px;
+    width: 100%;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .classname-row {
-  display: flex;
-  flex: 0 0 30px;
-  flex-direction: row;
-  margin-bottom: 7px;
-  width: 100%;
+    display: flex;
+    flex: 0 0 30px;
+    flex-direction: row;
+    margin-bottom: 7px;
+    width: 100%;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .classname-row .stat-label {
-  padding-top: 5px;
+    padding-top: 5px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .classname-row label.classname {
-  font-family: var(--h3-font);
-  font-size: 28px;
-  width: 100%;
+    font-family: var(--h3-font);
+    font-size: 28px;
+    width: 100%;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .classname-row .item-controls {
-  flex: 0 0 35px;
-  text-align: right;
-  margin-right: 0;
-  padding-top: 12px;
+    flex: 0 0 35px;
+    text-align: right;
+    margin-right: 0;
+    padding-top: 12px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .hitpoints-row {
-  display: flex;
-  flex: 0 0 30px;
-  margin-bottom: 7px;
+    display: flex;
+    flex: 0 0 30px;
+    margin-bottom: 7px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .favors-row {
-  display: flex;
-  flex: 0 0 30px;
-  margin-bottom: 7px;
-  width: 100%;
+    display: flex;
+    flex: 0 0 30px;
+    margin-bottom: 7px;
+    width: 100%;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .favor-rule {
-  flex: 0 0 90px;
-  margin-left: 10px;
-  margin-right: 11px;
-  margin-top: 10px;
-  text-transform: lowercase;
+    flex: 0 0 90px;
+    margin-left: 10px;
+    margin-right: 11px;
+    margin-top: 10px;
+    text-transform: lowercase;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .torments-row {
-  flex: 0 0 30px;
+    flex: 0 0 30px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .stat-label {
-  float: left;
+    float: left;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .torments-label {
-  float: left;
+    float: left;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header ul.torments {
-  list-style-type: none;
-  margin: 0;
-  margin-top: 3px;
-  padding: 0;
-  float: left;
+    list-style-type: none;
+    margin: 0;
+    margin-top: 3px;
+    padding: 0;
+    float: left;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header ul.torments li {
-  float: left;
+    float: left;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header ul.torments label {
-  display: block;
-  padding: 4px;
-  position: relative;
-  padding-left: 20px;
+    display: block;
+    padding: 4px;
+    position: relative;
+    padding-left: 20px;
 }
 
-.vastgrimm.sheet.actor.character .sheet-header ul.torments label input[type=radio] {
-  display: none;
+.vastgrimm.sheet.actor.character
+    .sheet-header
+    ul.torments
+    label
+    input[type="radio"] {
+    display: none;
 }
 
-.vastgrimm.sheet.actor.character .sheet-header ul.torments input[type=radio]:checked + span {
-  background: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
-  border: none;
+.vastgrimm.sheet.actor.character
+    .sheet-header
+    ul.torments
+    input[type="radio"]:checked
+    + span {
+    background: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
+    border: none;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header ul.torments label span {
-  border: 1px solid #7a7971;
-  width: 17px;
-  height: 17px;
-  position: absolute;
-  overflow: hidden;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 100%;
-  font-size: 10pt;
-  font-family: var(--item-font);
-  left: 0;
-  top: 50%;
+    border: 1px solid #7a7971;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    overflow: hidden;
+    line-height: 1.5;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 10pt;
+    font-family: var(--item-font);
+    left: 0;
+    top: 50%;
 }
 
-.vastgrimm.sheet.actor.character .sheet-header ul.torments li:last-child label span {
-  background: var(--foreground-color);
-  color: var(--background-color);
+.vastgrimm.sheet.actor.character
+    .sheet-header
+    ul.torments
+    li:last-child
+    label
+    span {
+    background: var(--foreground-color);
+    color: var(--background-color);
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .ability-row {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .ability-row:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .ability-label {
-  font-family: var(--h2-font);
-  font-size: 24px;
-  margin-left: 5px;
-  margin-top: 5px;
-  float: left;
+    font-family: var(--h2-font);
+    font-size: 24px;
+    margin-left: 5px;
+    margin-top: 5px;
+    float: left;
 }
 
 .vastgrimm.sheet.actor.character .sheet-header .ability-input {
-  border: 1px solid #7a7971;
-  font-family: var(--item-font);
-  font-size: 14pt;
-  text-align: center;
-  padding: 5px;
-  padding-top: 10px;
-  line-height: 1.5;
-  width: 42px;
-  height: 42px;
-  float: left;
-  border-radius: 0;
-  color: var(--foreground-color);
+    border: 1px solid #7a7971;
+    font-family: var(--item-font);
+    font-size: 14pt;
+    text-align: center;
+    padding: 5px;
+    padding-top: 10px;
+    line-height: 1.5;
+    width: 42px;
+    height: 42px;
+    float: left;
+    border-radius: 0;
+    color: var(--foreground-color);
 }
 
 /* ====================== */
 /* Character sheet neuromancy tab */
 /* ====================== */
 .vastgrimm.sheet.actor.character .sheet-body .neuromancy-top-row {
-  margin-top: 15px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .activate-tribute {
-  flex: 0 0 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .neuromancy-gutter {
-  flex: 0 0 20px;
+    flex: 0 0 20px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .activate-tribute-button {
-  width: 200px;
-  margin-bottom: 10px;
-  font-family: var(--h3-font);
-  font-size: 24px;
-  background-color: var(--foreground-color);
-  color: var(--background-color);
-  border: none;
-  border-bottom: 2px solid #777;
-  border-radius: 0;
+    width: 200px;
+    margin-bottom: 10px;
+    font-family: var(--h3-font);
+    font-size: 24px;
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+    border: none;
+    border-bottom: 2px solid #777;
+    border-radius: 0;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .wield-rule {
-  text-align: center;
+    text-align: center;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body div.uses-remaining {
-  flex: 0 0 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .uses-remaining div {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 /* ====================== */
 /* Character sheet treasures (equipment) tab */
 /* ====================== */
 .vastgrimm.sheet.actor .sheet-body .equipment-top-row {
-  margin-top: 10px;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 .vastgrimm.sheet.actor .sheet-body .credits {
-  flex: 0 0 200px;
+    flex: 0 0 200px;
 }
 
 .vastgrimm.sheet.actor .sheet-body .credits-input {
-  width: 70px;
+    width: 70px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .carry-block {
-  flex: 1;
-  text-align: center;
+    flex: 1;
+    text-align: center;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .container-label {
-  margin-left: 40px;
+    margin-left: 40px;
 }
 
 .vastgrimm.sheet.actor.character .sheet-body .encumbered {
-  color: var(--highlight-background-color);
+    color: var(--highlight-background-color);
 }
 /* ====================== */
 /* Creature sheet */
 /* ====================== */
 .vastgrimm.sheet.actor.creature .sheet-header {
-  display: flex;
-  flex: 0 0 90px;
-  flex-direction: row;
-  margin-top: 0;
-  padding: 5px;
+    display: flex;
+    flex: 0 0 90px;
+    flex-direction: row;
+    margin-top: 0;
+    padding: 5px;
 }
 
 .vastgrimm.sheet.actor.creature .sheet-header .header-col1 {
-  flex: 0 0 200px;
+    flex: 0 0 200px;
 }
 
 .vastgrimm.sheet.actor.creature .sheet-header .header-col2 {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  margin: 5px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 5px;
 }
 
 .vastgrimm.sheet.actor.creature .sheet-header .profile-img {
-  height: 200px;
-  width: 200px;
+    height: 200px;
+    width: 200px;
 }
 
 .vastgrimm.sheet.actor.creature .sheet-header .name-row {
-  flex: 0 0 45px;
-  margin-bottom: 10px;
-  padding-left: 12px;
-  width: 100%;
+    flex: 0 0 45px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    width: 100%;
 }
 
-.vastgrimm.sheet.actor.creature .sheet-header input[type=text].creature-name {
-  height: 45px;
+.vastgrimm.sheet.actor.creature .sheet-header input[type="text"].creature-name {
+    height: 45px;
 }
 
 .vastgrimm.sheet.actor.creature .sheet-header .hitpoints-row {
-  flex: 0 0 35px;
-  margin-bottom: 10px;
-  margin-left: 14px;
+    flex: 0 0 35px;
+    margin-bottom: 10px;
+    margin-left: 14px;
 }
 .vastgrimm.sheet.actor.follower .sheet-header {
-  margin-top: 0;
-  flex: 0 0 90px;
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
+    margin-top: 0;
+    flex: 0 0 90px;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
 }
 
 .vastgrimm.sheet.actor.follower .sheet-header .header-col1 {
-  flex: 0 0 200px;
+    flex: 0 0 200px;
 }
 
 .vastgrimm.sheet.actor.follower .sheet-header .header-col2 {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  margin: 5px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 5px;
 }
 
 .vastgrimm.sheet.actor.follower .sheet-header .profile-img {
-  height: 200px;
-  width: 200px;
+    height: 200px;
+    width: 200px;
 }
 
 .vastgrimm.sheet.actor.follower .sheet-header .name-row {
-  flex: 0 0 45px;
-  margin-bottom: 10px;
-  padding-left: 12px;
-  width: 100%;
+    flex: 0 0 45px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    width: 100%;
 }
 
-.vastgrimm.sheet.actor.follower .sheet-header input[type=text].follower-name {
-  height: 45px;
+.vastgrimm.sheet.actor.follower .sheet-header input[type="text"].follower-name {
+    height: 45px;
 }
 
 .vastgrimm.sheet.actor.follower .sheet-header .hitpoints-row {
-  flex: 0 0 35px;
-  margin-bottom: 10px;
-  margin-left: 14px;
+    flex: 0 0 35px;
+    margin-bottom: 10px;
+    margin-left: 14px;
 }
 /* ====================== */
 /* Item list */
 /* ====================== */
 .vastgrimm .items-list .items-header {
-  height: 28px;
-  margin: 2px 0;
-  padding: 0;
-  align-items: center;
+    height: 28px;
+    margin: 2px 0;
+    padding: 0;
+    align-items: center;
 }
 
 .vastgrimm .items-list .items-header > * {
-  font-size: 12px;
-  text-align: center;
+    font-size: 12px;
+    text-align: center;
 }
 
 .vastgrimm .items-list .items-header .item-name {
-  font-family: var(--h2-font);
-  font-size: 24px;
+    font-family: var(--h2-font);
+    font-size: 24px;
 }
 
 .vastgrimm .item-list {
-  list-style: none;
-  margin: 7px 0;
-  padding: 0;
-  overflow-y: auto;
+    list-style: none;
+    margin: 7px 0;
+    padding: 0;
+    overflow-y: auto;
 }
 
 .vastgrimm .item-list .item {
-  min-height: 30px;
-  line-height: 24px;
-  padding: 3px 0;
-  border-bottom: 1px solid #7a7971;
-  align-items: stretch;
+    min-height: 30px;
+    line-height: 24px;
+    padding: 3px 0;
+    border-bottom: 1px solid #7a7971;
+    align-items: stretch;
 }
 
 .vastgrimm .item-list .item img {
-  flex: 0 0 24px;
-  margin-right: 5px;
+    flex: 0 0 24px;
+    margin-right: 5px;
 }
 
 .vastgrimm .item-list .item-name {
-  margin: 0;
-  font-family: var(--item-font);
-  font-size: 12pt;
+    margin: 0;
+    font-family: var(--item-font);
+    font-size: 12pt;
 }
 
 .vastgrimm .item-list .item-fields {
-  font-family: var(--item-font);
-  font-size: 12pt;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-right: 10px;
-  flex: 1;
+    font-family: var(--item-font);
+    font-size: 12pt;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 10px;
+    flex: 1;
 }
 
 .vastgrimm .item-list .item-field {
-  margin-right: 20px;
+    margin-right: 20px;
 }
 
 .vastgrimm .item-list .item-buttons {
-  align-items: right;
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+    align-items: right;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .vastgrimm .item-list .item-controls {
-  flex: 0 0 70px;
-  text-align: right;
+    flex: 0 0 70px;
+    text-align: right;
 }
 
 .vastgrimm .item-list .item-button {
-  background-color: var(--foreground-color);
-  border: none;
-  border-bottom: 2px solid #777;
-  border-radius: 0;
-  color: var(--background-color);
-  flex: none;
-  font-family: var(--h3-font);
-  font-size: 20px;
-  width: auto;
+    background-color: var(--foreground-color);
+    border: none;
+    border-bottom: 2px solid #777;
+    border-radius: 0;
+    color: var(--background-color);
+    flex: none;
+    font-family: var(--h3-font);
+    font-size: 20px;
+    width: auto;
 }
 
 .vastgrimm .item-list .equipped {
-  color: var(--foreground-color);
+    color: var(--foreground-color);
 }
 
 .vastgrimm .item-list .unequipped {
-  color: gray;
+    color: gray;
 }
 .vastgrimm.sheet.actor.ship .sheet-header {
-  margin-top: 0;
-  flex: 0 0 90px;
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
+    margin-top: 0;
+    flex: 0 0 90px;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
 }
 
 .vastgrimm.sheet.actor.ship .sheet-header .header-col1 {
-  flex: 0 0 200px;
+    flex: 0 0 200px;
 }
 
 .vastgrimm.sheet.actor.ship .sheet-header .header-col2 {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  margin: 5px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 5px;
 }
 
 .vastgrimm.sheet.actor.ship .sheet-header .profile-img {
-  height: 200px;
-  width: 200px;
+    height: 200px;
+    width: 200px;
 }
 
 .vastgrimm.sheet.actor.ship .sheet-header .name-row {
-  flex: 0 0 45px;
-  margin-bottom: 10px;
-  padding-left: 12px;
-  width: 100%;
+    flex: 0 0 45px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    width: 100%;
 }
 
-.vastgrimm.sheet.actor.ship .sheet-header input[type=text].ship-name {
-  height: 45px;
+.vastgrimm.sheet.actor.ship .sheet-header input[type="text"].ship-name {
+    height: 45px;
 }
 
 .vastgrimm.sheet.actor.ship .sheet-header .hitpoints-row {
-  flex: 0 0 35px;
-  margin-bottom: 10px;
-  margin-left: 14px;
+    flex: 0 0 35px;
+    margin-bottom: 10px;
+    margin-left: 14px;
 }
 /* ====================== */
 /* Roll Cards */
 /* ====================== */
 .roll-card {
-  border: 1px solid var(--highlight-background-color);
+    border: 1px solid var(--highlight-background-color);
 }
 
 .roll-card .card-title {
-  background: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
-  font-family: var(--h2-font);
-  font-size: 20px;
-  margin-bottom: 10px;
-  text-align: center;
+    background: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
+    font-family: var(--h2-font);
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .roll-card .item-row {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.roll-card .item-row img {
+    display: inline;
 }
 
 .roll-card .item-row span.item-name {
-  color: var(--foreground-color);
-  font-family: var(--item-font);
-  font-size: 14px;
+    color: var(--foreground-color);
+    font-family: var(--item-font);
+    font-size: 14px;
 }
 
 .roll-card .roll-title {
-  font-family: var(--chat-font);
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-transform: capitalize;
+    font-family: var(--chat-font);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
 }
 
 .roll-card .roll-result {
-  border: 1px solid gray;
-  font-family: var(--chat-font);
-  font-size: 18px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
+    border: 1px solid gray;
+    font-family: var(--chat-font);
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
 }
 
 .roll-card .roll-result span {
-  color: var(--foreground-color);
-  font-size: 20px;
+    color: var(--foreground-color);
+    font-size: 20px;
 }
 
 .roll-card .outcome-text {
-  font-family: var(--h3-font);
-  font-size: 20px;
-  margin-bottom: 10px;
-  text-align: center;
+    font-family: var(--h3-font);
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .roll-card .reaction-text {
-  font-family: var(--h3-font);
-  font-size: 20px;
-  text-align: center;
+    font-family: var(--h3-font);
+    font-size: 20px;
+    text-align: center;
 }
 
 .roll-card .outcome-text .attack-outcome,
 .roll-card .outcome-text .defend-outcome {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 .roll-card .outcome-text .attack-outcome,
 .roll-card .outcome-text .defend-outcome,
 .roll-card .outcome-text .take-damage {
-  background-color: var(--highlight-background-color);
-  color: var(--highlight-foreground-color);
-  padding-left: 4px;
-  padding-right: 4px;
+    background-color: var(--highlight-background-color);
+    color: var(--highlight-foreground-color);
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .dr-modifier {
-  margin-bottom: 5px;
-  text-align: center;
+    margin-bottom: 5px;
+    text-align: center;
 }
 /* ====================== */
 /* Container sheet */
 /* ====================== */
 .vastgrimm.sheet.actor.container .sheet-header {
-  margin-top: 0;
-  flex: 0 0 90px;
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
+    margin-top: 0;
+    flex: 0 0 90px;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
 }
 
 .vastgrimm.sheet.actor.container .sheet-header .header-col1 {
-  flex: 0 0 200px;
+    flex: 0 0 200px;
 }
 
 .vastgrimm.sheet.actor.container .sheet-header .header-col2 {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  margin: 5px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 5px;
 }
 
 .vastgrimm.sheet.actor.container .sheet-header .profile-img {
-  height: 200px;
-  width: 200px;
+    height: 200px;
+    width: 200px;
 }
 
 .vastgrimm.sheet.actor.container .sheet-header .name-row {
-  flex: 0 0 45px;
-  margin-bottom: 10px;
-  padding-left: 12px;
-  width: 100%;
+    flex: 0 0 45px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    width: 100%;
 }
 
-.vastgrimm.sheet.actor.container .sheet-header input[type=text].container-name {
-  height: 45px;
+.vastgrimm.sheet.actor.container
+    .sheet-header
+    input[type="text"].container-name {
+    height: 45px;
 }
 
 .vastgrimm.sheet.actor.container .sheet-header .holding-row {
-  flex: 0 0 35px;
-  margin-bottom: 10px;
-  margin-left: 14px;
+    flex: 0 0 35px;
+    margin-bottom: 10px;
+    margin-left: 14px;
 }
 .vastgrimm.sheet.item .sheet-header {
-  margin-top: 0;
-  flex: 0 0 90px;
-  display: flex;
-  flex-direction: row;
-  padding: 5px;
+    margin-top: 0;
+    flex: 0 0 90px;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
 }
 
 .vastgrimm.sheet.item .sheet-header .profile-img {
-  height: 150px;
-  width: 150px;
+    height: 150px;
+    width: 150px;
 }
 
-.vastgrimm.sheet.item .sheet-header .item-name input[type=text] {
-  font-family: var(--h1-font);
-  font-size: 38px;
-  flex: 1;
-  height: 45px;
-  margin-bottom: 10px;
+.vastgrimm.sheet.item .sheet-header .item-name input[type="text"] {
+    font-family: var(--h1-font);
+    font-size: 38px;
+    flex: 1;
+    height: 45px;
+    margin-bottom: 10px;
 }
 
 .vastgrimm.sheet.item .sheet-header .item-subtitle {
-  font-family: var(--h3-font);
-  font-size: 24px;
-  text-transform: uppercase;
-  margin-left: 13px;
+    font-family: var(--h3-font);
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-left: 13px;
 }
 
 .vastgrimm.sheet.item .sheet-body {
-  margin-top: 8px;
-  padding: 5px;
+    margin-top: 8px;
+    padding: 5px;
 }
 /* ====================== */
 /* Attack/Defend Custom Dialogs */
 /* ====================== */
 .custom-dialog .form-group {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .custom-dialog .form-group label {
-  font-family: var(--h2-font);
-  font-size: 20px;
-  margin-right: 10px;
-  text-align: right;
+    font-family: var(--h2-font);
+    font-size: 20px;
+    margin-right: 10px;
+    text-align: right;
 }
 
 .dialog-button.attack,
 .dialog-button.create {
-  font-family: var(--h2-font);
-  font-size: 20px;
+    font-family: var(--h2-font);
+    font-size: 20px;
 }
 
 .dialog-buttons button.dialog-button:active,
 .dialog-buttons button.dialog-button:focus,
 .dialog-buttons button.dialog-button:hover {
-  box-shadow: 0 0 5px var(--highlight-background-color);
-  text-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 5px var(--highlight-background-color);
+    text-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 /* ====================== */
 /* Rest and Scvm Dialogs */
 /* ====================== */
 .custom-dialog {
-  border: 1px solid #7a7971;
-  font-size: 14px;
-  margin: 0;
+    border: 1px solid #7a7971;
+    font-size: 14px;
+    margin: 0;
 }
 
 .custom-dialog .section {
-  margin: 10px 10px 20px 10px;
+    margin: 10px 10px 20px 10px;
 }
 
 .custom-dialog .subtitle {
-  font-family: var(--h2-font);
-  font-size: 22px;
+    font-family: var(--h2-font);
+    font-size: 22px;
 }
 
 .custom-dialog ul {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 .custom-dialog li {
-  margin: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
-.custom-dialog li input[type=checkbox],
-.custom-dialog li input[type=radio] {
-  float: left;
+.custom-dialog li input[type="checkbox"],
+.custom-dialog li input[type="radio"] {
+    float: left;
 }
 
-.custom-dialog li input[type=checkbox] {
-  height: 14px;
-  width: 14px;
+.custom-dialog li input[type="checkbox"] {
+    height: 14px;
+    width: 14px;
 }
 
 .custom-dialog li label div {
-  display: block;
-  margin-left: 30px;
+    display: block;
+    margin-left: 30px;
 }
 
 .custom-dialog .button-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin-bottom: 10px;
-  margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .custom-dialog .button-row button {
-  border: none;
-  border-bottom: 2px solid #777;
-  border-radius: 0;
-  font-family: var(--h2-font);
-  font-size: 20px;
-  width: 150px;
+    border: none;
+    border-bottom: 2px solid #777;
+    border-radius: 0;
+    font-family: var(--h2-font);
+    font-size: 20px;
+    width: 150px;
 }
 
 .custom-dialog .button-row button:active,
 .custom-dialog .button-row button:focus,
 .custom-dialog .button-row button:hover {
-  box-shadow: 0 0 5px var(--highlight-background-color);
-  text-shadow: 0 0 10px var(--highlight-background-color);
+    box-shadow: 0 0 5px var(--highlight-background-color);
+    text-shadow: 0 0 10px var(--highlight-background-color);
 }
 
 .scvm-dialog .class-name {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }

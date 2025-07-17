@@ -9,11 +9,11 @@
     {
       "name": "mcglintlock"
     }
-  ],  
-    "compatibility": {
-    "minimum": "11.300",
-    "verified": "11.300"
-  },  
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
   "scripts": [],
   "esmodules": ["module/vastgrimm.js"],
   "styles": ["css/vastgrimm.css"],
@@ -38,7 +38,7 @@
       "system": "vastgrimm",
       "path": "./packs/vast-grimm-macros",
       "type": "Macro"
-    },    
+    },
     {
       "name": "vast-grimm-tables",
       "label": "Vast Grimm (Tables)",
@@ -58,7 +58,7 @@
       "name": "Español",
       "path": "lang/es.json"
     }
-  ],  
+  ],
   "socket": true,
   "initiative": "1d6",
   "gridDistance": 10,
@@ -67,6 +67,6 @@
   "secondaryTokenAttribute": null,
 
   "url": "https://github.com/fvtt-fria-ligan/vastgrimm-foundry-vtt",
-  "manifest": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.json",  
+  "manifest": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.json",
   "download": "https://github.com/fvtt-fria-ligan/deathinspace-foundry-vtt/releases/latest/download/system.zip"
 }
