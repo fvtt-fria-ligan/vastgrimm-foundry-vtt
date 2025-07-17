@@ -48,24 +48,24 @@ async function startingEquipment() {
   // 3 starting equipment tables
   if (VG.scvmFactory.startingEquipmentTable1) {
     const eq1 = await drawDocumentsFromTableUuid(
-      VG.scvmFactory.startingEquipmentTable1
+      VG.scvmFactory.startingEquipmentTable1,
     );
     docs.push(...eq1);
   }
   if (VG.scvmFactory.startingEquipmentTable2) {
     const eq2 = await drawDocumentsFromTableUuid(
-      VG.scvmFactory.startingEquipmentTable2
+      VG.scvmFactory.startingEquipmentTable2,
     );
     docs.push(...eq2);
   }
   if (VG.scvmFactory.startingEquipmentTable3) {
     const eq3 = await drawDocumentsFromTableUuid(
-      VG.scvmFactory.startingEquipmentTable3
+      VG.scvmFactory.startingEquipmentTable3,
     );
     docs.push(...eq3);
   }
   return docs;
-};
+}
 
 async function startingWeapons(clazz, rolledTribute) {
   const docs = [];
@@ -80,13 +80,13 @@ async function startingWeapons(clazz, rolledTribute) {
     }
     const draw = await drawFromTableUuid(
       VG.scvmFactory.startingWeaponTable,
-      weaponDie
+      weaponDie,
     );
     const weapons = await documentsFromDraw(draw);
     docs.push(...weapons);
   }
   return docs;
-};
+}
 
 async function startingArmor(clazz, rolledTribute) {
   const docs = [];
@@ -101,13 +101,13 @@ async function startingArmor(clazz, rolledTribute) {
     }
     const draw = await drawFromTableUuid(
       VG.scvmFactory.startingArmorTable,
-      armorDie
+      armorDie,
     );
     const armor = await documentsFromDraw(draw);
     docs.push(...armor);
   }
   return docs;
-};
+}
 
 async function startingClassItems(clazz) {
   const docs = [];
@@ -120,7 +120,7 @@ async function startingClassItems(clazz) {
     }
   }
   return docs;
-};
+}
 
 async function startingDescriptionLines(clazz) {
   // start accumulating character description, starting with the class description
@@ -131,10 +131,10 @@ async function startingDescriptionLines(clazz) {
   let descriptionLine = "";
   if (VG.scvmFactory.misspentYouthTable) {
     const misspentYouth1 = await drawTextFromTableUuid(
-      VG.scvmFactory.misspentYouthTable
+      VG.scvmFactory.misspentYouthTable,
     );
     const misspentYouth2 = await drawTextFromTableUuid(
-      VG.scvmFactory.misspentYouthTable
+      VG.scvmFactory.misspentYouthTable,
     );
     // Battle Scars and Idiosyncrasies end with a period, but Misspent Youth entries don't.
     descriptionLine += `${misspentYouth1} and ${misspentYouth2
@@ -143,12 +143,14 @@ async function startingDescriptionLines(clazz) {
   }
   if (VG.scvmFactory.battleScarTable) {
     const battleScars = await drawTextFromTableUuid(
-      VG.scvmFactory.battleScarsTable
+      VG.scvmFactory.battleScarsTable,
     );
     descriptionLine += ` ${battleScar}`;
   }
   if (VG.scvmFactory.idiosyncrasyTable) {
-    const idiosyncrasy = await drawTextFromTableUuid(VG.scvmFactory.idiosyncrasyTable);
+    const idiosyncrasy = await drawTextFromTableUuid(
+      VG.scvmFactory.idiosyncrasyTable,
+    );
     descriptionLine += ` ${idiosyncrasy}`;
   }
   if (descriptionLine) {
@@ -156,7 +158,7 @@ async function startingDescriptionLines(clazz) {
     descriptionLines.push("<p>&nbsp;</p>");
   }
   return descriptionLines;
-};
+}
 
 async function startingRollItemsAndDescriptionLines(clazz) {
   // class-specific starting rolls
@@ -200,7 +202,7 @@ async function startingRollItemsAndDescriptionLines(clazz) {
     rollDescriptionLines,
     rollItems,
   };
-};
+}
 
 async function rollScvmForClass(clazz) {
   const name = randomName() + " " + randomName();
@@ -226,7 +228,7 @@ async function rollScvmForClass(clazz) {
 
   const armor = await startingArmor(clazz, rolledTribute);
   allDocs.push(...armor);
-  
+
   const classItems = await startingClassItems(clazz);
   allDocs.push(...classItems);
 
@@ -303,14 +305,12 @@ function scvmToActorData(s) {
         src: s.actorImg,
       },
     },
-    type: "character",    
+    type: "character",
   };
 }
 
 async function createActorWithScvm(s) {
   const data = scvmToActorData(s);
-  console.log("scum", s);
-  console.log("actorData", data);
   // use VGActor.create() so we get default disposition, actor link, vision, etc
   const actor = await VGActor.create(data);
   actor.sheet.render(true);

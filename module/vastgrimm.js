@@ -17,9 +17,9 @@ import { registerSystemSettings } from "./settings.js";
 
 const VG_DOC_CLASS = "vastgrimm";
 
-Hooks.once("init", async function() {
+Hooks.once("init", async function () {
   console.log("Initializing Vast Grimm system");
-  
+
   registerSystemSettings();
 
   game.vastgrimm = {
@@ -40,39 +40,39 @@ Hooks.once("init", async function() {
   Actors.registerSheet(VG_DOC_CLASS, VGCharacterSheet, {
     types: ["character"],
     makeDefault: true,
-    label: "VG.SheetClassCharacter"
+    label: "VG.SheetClassCharacter",
   });
   Actors.registerSheet(VG_DOC_CLASS, VGContainerSheet, {
     types: ["container"],
     makeDefault: true,
-    label: "VG.SheetClassContainer"
+    label: "VG.SheetClassContainer",
   });
   Actors.registerSheet(VG_DOC_CLASS, VGCreatureSheet, {
     types: ["creature"],
     makeDefault: true,
-    label: "VG.SheetClassCreature"
-  });    
+    label: "VG.SheetClassCreature",
+  });
   Actors.registerSheet(VG_DOC_CLASS, VGFollowerSheet, {
     types: ["follower"],
     makeDefault: true,
-    label: "VG.SheetClassFollower"
+    label: "VG.SheetClassFollower",
   });
   Actors.registerSheet(VG_DOC_CLASS, VGShipSheet, {
     types: ["ship"],
     makeDefault: true,
-    label: "VG.SheetClassShip"
-  });  
+    label: "VG.SheetClassShip",
+  });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet(VG_DOC_CLASS, VGItemSheet, { makeDefault: true });  
+  Items.registerSheet(VG_DOC_CLASS, VGItemSheet, { makeDefault: true });
 });
 
 /**
  * Once the entire VTT framework is initialized, check to see if we should perform a data migration
  */
- Hooks.once("ready", () => {
+Hooks.once("ready", () => {
   applyFontsAndColors();
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createVastGrimmMacro(data, slot));  
+  Hooks.on("hotbarDrop", (bar, data, slot) => createVastGrimmMacro(data, slot));
 });
 
 const applyFontsAndColors = () => {
@@ -85,12 +85,30 @@ const applyFontsAndColors = () => {
   r.style.setProperty("--background-color", colorScheme.background);
   r.style.setProperty("--foreground-color", colorScheme.foreground);
   r.style.setProperty("--foreground-alt-color", colorScheme.foregroundAlt);
-  r.style.setProperty("--highlight-background-color", colorScheme.highlightBackground);
-  r.style.setProperty("--highlight-foreground-color", colorScheme.highlightForeground);
-  r.style.setProperty("--sidebar-background-color", colorScheme.sidebarBackground);
-  r.style.setProperty("--sidebar-foreground-color", colorScheme.sidebarForeground);
-  r.style.setProperty("--sidebar-button-background-color", colorScheme.sidebarButtonBackground);
-  r.style.setProperty("--sidebar-button-foreground-color", colorScheme.sidebarButtonForeground);
+  r.style.setProperty(
+    "--highlight-background-color",
+    colorScheme.highlightBackground,
+  );
+  r.style.setProperty(
+    "--highlight-foreground-color",
+    colorScheme.highlightForeground,
+  );
+  r.style.setProperty(
+    "--sidebar-background-color",
+    colorScheme.sidebarBackground,
+  );
+  r.style.setProperty(
+    "--sidebar-foreground-color",
+    colorScheme.sidebarForeground,
+  );
+  r.style.setProperty(
+    "--sidebar-button-background-color",
+    colorScheme.sidebarButtonBackground,
+  );
+  r.style.setProperty(
+    "--sidebar-button-foreground-color",
+    colorScheme.sidebarButtonForeground,
+  );
   r.style.setProperty("--chat-font", fontScheme.chat);
   r.style.setProperty("--chat-info-font", fontScheme.chatInfo);
   r.style.setProperty("--h1-font", fontScheme.h1);
@@ -106,33 +124,38 @@ const classWasDropped = async (dropped) => {
   if (dropped.pack) {
     const collection = game.packs.get(dropped.pack);
     const content = await collection.getDocuments();
-    const item = content.find(i => i.id === dropped.id);
+    const item = content.find((i) => i.id === dropped.id);
     return item && item.data && item.data.type === "class";
   }
   // not from pack, see if it's in world/game items
-  const item = game.items.find(i => i.id === dropped.id);
+  const item = game.items.find((i) => i.id === dropped.id);
   if (item && item.data) {
     return item.data.type === "class";
   }
   return false;
 };
 
-Hooks.on('dropActorSheetData', async (actor, actorSheet, dropped) => {
+Hooks.on("dropActorSheetData", async (actor, actorSheet, dropped) => {
   // Handle only allowing one Class item at a time
   const isAClass = await classWasDropped(dropped);
   if (isAClass) {
     // Dropping a new class, so nuke any pre-existing class item(s),
     // to enforce that a character only has one class item at a time.
-    const classes = actor.items.filter(i => i.data.type === "class");
-    const deletions = classes.map(i => i.id);
+    const classes = actor.items.filter((i) => i.data.type === "class");
+    const deletions = classes.map((i) => i.id);
     await actor.deleteEmbeddedDocuments("Item", deletions);
   }
 
   // Handle container actor destructive drag-drop
   if (dropped.type === "Item" && dropped.data && dropped.data._id) {
-    const sourceActor = dropped.tokenId ? game.actors.tokens[dropped.tokenId] : game.actors.get(dropped.actorId);
-    if (sourceActor && actor.id !== sourceActor.id && 
-      (sourceActor.data.type === "container" || actor.data.type === "container")) {
+    const sourceActor = dropped.tokenId
+      ? game.actors.tokens[dropped.tokenId]
+      : game.actors.get(dropped.actorId);
+    if (
+      sourceActor &&
+      actor.id !== sourceActor.id &&
+      (sourceActor.data.type === "container" || actor.data.type === "container")
+    ) {
       // either the source or target actor is a container,
       // so delete the item from the source
       await sourceActor.deleteEmbeddedDocuments("Item", [dropped.data._id]);
@@ -140,18 +163,20 @@ Hooks.on('dropActorSheetData', async (actor, actorSheet, dropped) => {
   }
 });
 
-Hooks.on('createActor', async (actor, options, userId) => {
+Hooks.on("createActor", async (actor, options, userId) => {
   // give Characters a default class
   if (actor.type === "character" && game.packs) {
-    const hasAClass = actor.items.filter(i => i.type === "class").length > 0;
+    const hasAClass = actor.items.filter((i) => i.type === "class").length > 0;
     if (!hasAClass) {
       const pack = game.packs.get("vastgrimm.class-treacherous-merc");
       if (!pack) {
-        console.error("Could not find compendium vastgrimm.class-treacherous-merc");
+        console.error(
+          "Could not find compendium vastgrimm.class-treacherous-merc",
+        );
         return;
       }
       const index = await pack.getIndex();
-      const entry = index.find(e => e.name === "Treacherous Merc");
+      const entry = index.find((e) => e.name === "Treacherous Merc");
       if (!entry) {
         console.error("Could not find Treacherous Merc class in compendium.");
         return;
@@ -166,58 +191,67 @@ Hooks.on('createActor', async (actor, options, userId) => {
   }
 });
 
-Hooks.on('renderActorDirectory', (app,  html, data) => {
-  if (game.user.can("ACTOR_CREATE")) {
+Hooks.on("renderActorDirectory", (tab, html, context, options) => {
+  if (options.isFirstRender && game.user.can("ACTOR_CREATE")) {
     // only show the Generate Character button to users who can create actors
-    const section = document.createElement('header');
-    section.classList.add('scvmfactory');
-    section.classList.add('directory-header');
+    const section = document.createElement("header");
+    section.classList.add("scvmfactory");
+    section.classList.add("directory-header");
     // Add menu before directory header
-    const dirHeader = html[0].querySelector('.directory-header');
+    const dirHeader = $(html)[0].querySelector(".directory-header");
     dirHeader.parentNode.insertBefore(section, dirHeader);
-    section.insertAdjacentHTML('afterbegin',`
+    section.insertAdjacentHTML(
+      "afterbegin",
+      `
       <div class="header-actions action-buttons flexrow">
         <button class="create-scvm-button"><i class="fas fa-skull"></i>${game.i18n.localize("VG.GenerateCharacter")}</button>
       </div>
-      `);
-    section.querySelector('.create-scvm-button').addEventListener('click', (ev) => {
-      showScvmDialog();
-    });  
+      `,
+    );
+    section
+      .querySelector(".create-scvm-button")
+      .addEventListener("click", (ev) => {
+        showScvmDialog();
+      });
   }
 });
 
-Hooks.on('renderCombatTracker', (tracker, html) => {
-  const partyInitiativeButton = `<a class="combat-control" title="${game.i18n.localize('MB.RollPartyInitiative')}" dataControl="rollParty"><i class="fas fa-dice-six"></i></a>`;
-  html.find("header").find("nav").last().prepend(partyInitiativeButton);
-  html.find("a[dataControl=rollParty]").click(ev => { rollPartyInitiative() });
+Hooks.on("renderCombatTracker", (_, html) => {
+  const partyInitiativeButton = `<a class="combat-control" title="${game.i18n.localize("MB.RollPartyInitiative")}" dataControl="rollParty"><i class="fas fa-dice-six"></i></a>`;
+  $(html).find("header").find("nav").last().prepend(partyInitiativeButton);
+  $(html)
+    .find("a[dataControl=rollParty]")
+    .click((ev) => {
+      rollPartyInitiative();
+    });
 });
 
 // Handlebars helpers
 // TODO: registering a helper named "eq" breaks filepicker
-Handlebars.registerHelper('ifEq', function(arg1, arg2, options) {
+Handlebars.registerHelper("ifEq", function (arg1, arg2, options) {
   // TODO: verify whether we want == or === for this equality check
-  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+  return arg1 == arg2 ? options.fn(this) : options.inverse(this);
 });
-Handlebars.registerHelper('ifGe', function(arg1, arg2, options) {
-  return (arg1 >= arg2) ? options.fn(this) : options.inverse(this);
+Handlebars.registerHelper("ifGe", function (arg1, arg2, options) {
+  return arg1 >= arg2 ? options.fn(this) : options.inverse(this);
 });
-Handlebars.registerHelper('ifGt', function(arg1, arg2, options) {
-  return (arg1 > arg2) ? options.fn(this) : options.inverse(this);
+Handlebars.registerHelper("ifGt", function (arg1, arg2, options) {
+  return arg1 > arg2 ? options.fn(this) : options.inverse(this);
 });
-Handlebars.registerHelper('ifLe', function(arg1, arg2, options) {
-  return (arg1 <= arg2) ? options.fn(this) : options.inverse(this);
+Handlebars.registerHelper("ifLe", function (arg1, arg2, options) {
+  return arg1 <= arg2 ? options.fn(this) : options.inverse(this);
 });
-Handlebars.registerHelper('ifLt', function(arg1, arg2, options) {
-  return (arg1 < arg2) ? options.fn(this) : options.inverse(this);
+Handlebars.registerHelper("ifLt", function (arg1, arg2, options) {
+  return arg1 < arg2 ? options.fn(this) : options.inverse(this);
 });
-Handlebars.registerHelper('ifNe', function(arg1, arg2, options) {
+Handlebars.registerHelper("ifNe", function (arg1, arg2, options) {
   // TODO: verify whether we want == or === for this equality check
-  return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
+  return arg1 != arg2 ? options.fn(this) : options.inverse(this);
 });
 /**
  * Formats a Roll as either the total or x + y + z = total if the roll has multiple terms.
  */
-Handlebars.registerHelper('xtotal', (roll) => {
+Handlebars.registerHelper("xtotal", (roll) => {
   // collapse addition of negatives into just subtractions
   // e.g., 15 +  - 1 => 15 - 1
   // Also: apparently roll.result uses 2 spaces as separators?
