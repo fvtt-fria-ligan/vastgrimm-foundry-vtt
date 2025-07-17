@@ -1,3 +1,7 @@
+# 4.0.0
+
+- Foundry v13 compatibility.
+
 # 3.0.0
 
 - Foundry v12 compatibility.
@@ -40,7 +44,7 @@
 - Improve various displayed formula and formatting in roll cards.
 - Set url in system.json for better system info display.
 
-# 0.4.0 
+# 0.4.0
 - Made Vast Grimm compatible with Foundry v9.
 
 # 0.3.0
