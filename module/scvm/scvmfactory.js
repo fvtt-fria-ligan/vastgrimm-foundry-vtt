@@ -180,12 +180,9 @@ async function startingRollItemsAndDescriptionLines(clazz) {
             // draw result type
             if (result.type === CONST.TABLE_RESULT_TYPES.TEXT) {
               // text
-              rollDescriptionLines.push(`<p>${table.name}: ${result.text}</p>`);
+              rollDescriptionLines.push(`<p>${table.name}: ${result.description}</p>`);
             } else if (result.type === CONST.TABLE_RESULT_TYPES.DOCUMENT) {
-              // entity
-              // TODO: what do we want to do here?
-            } else if (result.type === CONST.TABLE_RESULT_TYPES.COMPENDIUM) {
-              // compendium
+              // compendium / doc
               const doc = await documentFromResult(result);
               rollItems.push(doc);
             }

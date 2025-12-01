@@ -1,3 +1,7 @@
+# 4.0.1
+
+- v13 fixes for scvmfactory and packutils.
+
 # 4.0.0
 
 - Foundry v13 compatibility.
