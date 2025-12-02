@@ -1,10 +1,8 @@
 {
-  "name": "vastgrimm",
   "id": "vastgrimm",
   "title": "Vast Grimm",
   "description": "Foundry VTT system for Vast Grimm.",
   "version": "1.0.0",
-  "templateVersion": 2,
   "authors": [
     {
       "name": "mcglintlock"
@@ -61,8 +59,10 @@
   ],
   "socket": true,
   "initiative": "1d6",
-  "gridDistance": 10,
-  "gridUnits": "ft",
+  "grid": {
+    "distance": 10,
+    "units": "ft"
+  },
   "primaryTokenAttribute": "hp",
   "secondaryTokenAttribute": null,
 
