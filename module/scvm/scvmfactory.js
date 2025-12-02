@@ -11,6 +11,7 @@ import {
   drawDocumentsFromTableUuid,
   drawFromTableUuid,
   drawTextFromTableUuid,
+  simpleData,
 } from "../packutils.js";
 
 export async function createRandomScvm() {
@@ -256,15 +257,6 @@ async function rollScvmForClass(clazz) {
     strength,
     tokenImg: clazz.img,
     toughness,
-  };
-}
-
-function simpleData(item) {
-  return {
-    img: item.img,
-    name: item.name,
-    system: item.system,
-    type: item.type,
   };
 }
 
